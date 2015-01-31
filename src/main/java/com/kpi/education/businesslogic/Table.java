@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@javax.persistence.Table(name = "table")
+@javax.persistence.Table(name = "eating_table")
 public class Table {
 
     @Id
@@ -22,7 +22,6 @@ public class Table {
 
     @OneToMany(mappedBy = "table", cascade = CascadeType.ALL)
     private List<Reservation> reservations = new ArrayList<Reservation>();
-
 
 
     public int getId() {

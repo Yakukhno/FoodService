@@ -42,6 +42,7 @@
         <mapping class="com.kpi.education.businesslogic.Rating"/>
         <mapping class="com.kpi.education.businesslogic.Ordering"/>
         <mapping class="com.kpi.education.businesslogic.Position"/>
+        <mapping class="com.kpi.education.businesslogic.Location"/>
 
     </session-factory>
 </hibernate-configuration>

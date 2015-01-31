@@ -17,8 +17,8 @@ public class Message {
     private String text;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "message_id"))
+    @JoinTable(joinColumns = @JoinColumn(name = "message_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> receivers = new ArrayList<User>();
 
     public int getId() {
