@@ -3,11 +3,13 @@ package com.kpi.education.businesslogic.user;
 import com.kpi.education.businesslogic.Message;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@javax.persistence.Table(name = "USERS")
+@javax.persistence.Table(name = "user")
 public abstract class User {
 
     @Id
@@ -19,11 +21,12 @@ public abstract class User {
     private String login;
     private String password;
 
-    @ManyToMany
-    private Set<Message> sentMessages = new HashSet<Message>();
+    @ManyToMany(mappedBy = "receivers", cascade = CascadeType.ALL)
+    private List<Message> sentMessages = new ArrayList<Message>();
 
-    @ManyToMany
-    @JoinTable(name = "FRIENDS")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "friend", joinColumns = @JoinColumn(name = "user1_id"),
+            inverseJoinColumns = @JoinColumn(name = "user2_id"))
     private Set<User> friends = new HashSet<User>();
 
 
@@ -67,11 +70,11 @@ public abstract class User {
         this.password = password;
     }
 
-    public Set<Message> getSentMessages() {
+    public List<Message> getSentMessages() {
         return sentMessages;
     }
 
-    public void setSentMessages(Set<Message> sentMessages) {
+    public void setSentMessages(List<Message> sentMessages) {
         this.sentMessages = sentMessages;
     }
 

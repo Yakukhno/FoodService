@@ -7,7 +7,7 @@
     <session-factory>
         <!-- Database connection settings -->
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/FOOD_SERVICE_DB</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/food_service_db</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">root</property>
 
@@ -31,7 +31,6 @@
 
 
         <mapping class="com.kpi.education.businesslogic.user.User"/>
-        <mapping class="com.kpi.education.businesslogic.user.AdminUser"/>
         <mapping class="com.kpi.education.businesslogic.user.ManagerUser"/>
         <mapping class="com.kpi.education.businesslogic.user.SimpleUser"/>
         <mapping class="com.kpi.education.businesslogic.Message"/>

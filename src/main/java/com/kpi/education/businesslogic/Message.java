@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@javax.persistence.Table(name = "MESSAGES")
+@javax.persistence.Table(name = "message")
 public class Message {
 
     @Id
@@ -16,9 +16,10 @@ public class Message {
 
     private String text;
 
-    @ManyToMany(mappedBy = "sentMessages")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "message_id"))
     private List<User> receivers = new ArrayList<User>();
-
 
     public int getId() {
         return id;

@@ -1,13 +1,12 @@
 package com.kpi.education.businesslogic;
 
+import com.kpi.education.businesslogic.data.State;
 import com.kpi.education.businesslogic.user.SimpleUser;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
-@javax.persistence.Table(name = "RATINGS")
+@javax.persistence.Table(name = "rating")
 public class Rating {
 
     @Id
@@ -15,13 +14,17 @@ public class Rating {
 
     private int value;
     private String comment;
-    private boolean state;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "shop_id")
     private Shop shop;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "simple_user_id")
     private SimpleUser user;
+
+    @Enumerated(EnumType.STRING)
+    private State state;
 
     public int getId() {
         return id;
@@ -47,14 +50,6 @@ public class Rating {
         this.comment = comment;
     }
 
-    public boolean isState() {
-        return state;
-    }
-
-    public void setState(boolean state) {
-        this.state = state;
-    }
-
     public Shop getShop() {
         return shop;
     }
@@ -69,5 +64,13 @@ public class Rating {
 
     public void setUser(SimpleUser user) {
         this.user = user;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 }

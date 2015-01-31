@@ -1,14 +1,11 @@
 package com.kpi.education.businesslogic;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@javax.persistence.Table(name = "TABLES")
+@javax.persistence.Table(name = "table")
 public class Table {
 
     @Id
@@ -16,11 +13,17 @@ public class Table {
     private int size;
     private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "shop_id")
     private Shop shop;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Photo> photos = new ArrayList<Photo>();
+
+    @OneToMany(mappedBy = "table", cascade = CascadeType.ALL)
+    private List<Reservation> reservations = new ArrayList<Reservation>();
+
+
 
     public int getId() {
         return id;
@@ -60,5 +63,13 @@ public class Table {
 
     public void setPhotos(List<Photo> photos) {
         this.photos = photos;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

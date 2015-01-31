@@ -1,20 +1,20 @@
 package com.kpi.education.businesslogic;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
-@javax.persistence.Table(name = "POSITIONS")
+@javax.persistence.Table(name = "position")
 public class Position {
 
     @Id
     private int id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dish_id")
     private Dish dish;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ordering_id")
     private Ordering ordering;
 
     private int number;

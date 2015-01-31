@@ -1,16 +1,15 @@
 package com.kpi.education.businesslogic;
 
+import com.kpi.education.businesslogic.user.ManagerUser;
+import com.kpi.education.businesslogic.user.SimpleUser;
 import com.kpi.education.businesslogic.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@javax.persistence.Table(name = "SHOPS")
+@javax.persistence.Table(name = "shop")
 public class Shop {
 
     @Id
@@ -19,20 +18,24 @@ public class Shop {
     private String address;
     private String description;
 
-    @ManyToOne
-    private User manager;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "manager_user_id")
+    private ManagerUser manager;
 
-    @OneToMany(mappedBy = "shop")
+    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
     private List<Table> tables = new ArrayList<Table>();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Photo> photos = new ArrayList<Photo>();
 
-    @OneToMany(mappedBy = "shop")
+    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
     private List<Dish> dishes = new ArrayList<Dish>();
 
-    @OneToMany(mappedBy = "shop")
+    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
     private List<Rating> ratings = new ArrayList<Rating>();
+
+
+
 
     public int getId() {
         return id;
@@ -66,11 +69,11 @@ public class Shop {
         this.description = description;
     }
 
-    public User getManager() {
+    public ManagerUser getManager() {
         return manager;
     }
 
-    public void setManager(User manager) {
+    public void setManager(ManagerUser manager) {
         this.manager = manager;
     }
 

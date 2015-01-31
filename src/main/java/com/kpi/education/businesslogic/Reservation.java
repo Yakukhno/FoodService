@@ -1,28 +1,36 @@
 package com.kpi.education.businesslogic;
 
+import com.kpi.education.businesslogic.data.State;
+import com.kpi.education.businesslogic.user.SimpleUser;
 import com.kpi.education.businesslogic.user.User;
 
 import javax.persistence.*;
 import java.util.Calendar;
 
 @Entity
-@javax.persistence.Table(name = "RESERVATIONS")
+@javax.persistence.Table(name = "reservation")
 public class Reservation {
 
     @Id
     private int id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "table_id")
     private Table table;
 
-    @ManyToOne
-    private User client;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "simple_user_id")
+    private SimpleUser client;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar startpoint;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar endpoint;
+
+    @Enumerated(EnumType.STRING)
+    private State state;
+
 
     public int getId() {
         return id;
@@ -40,11 +48,11 @@ public class Reservation {
         this.table = table;
     }
 
-    public User getClient() {
+    public SimpleUser getClient() {
         return client;
     }
 
-    public void setClient(User client) {
+    public void setClient(SimpleUser client) {
         this.client = client;
     }
 
@@ -62,5 +70,13 @@ public class Reservation {
 
     public void setEndpoint(Calendar endpoint) {
         this.endpoint = endpoint;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 }

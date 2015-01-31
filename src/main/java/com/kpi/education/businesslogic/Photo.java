@@ -3,7 +3,7 @@ package com.kpi.education.businesslogic;
 import javax.persistence.*;
 
 @Entity
-@javax.persistence.Table(name = "PHOTOS")
+@javax.persistence.Table(name = "photo")
 public class Photo {
 
     @Id
@@ -14,6 +14,7 @@ public class Photo {
     private byte[] image;
 
     private String name;
+
 
     public int getId() {
         return id;

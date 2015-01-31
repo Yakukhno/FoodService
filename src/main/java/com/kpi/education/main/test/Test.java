@@ -54,27 +54,12 @@ public class Test {
         u1.getSentMessages().add(m1);
         u1.getSentMessages().add(m2);
 
-        File f = new File("E:\\projects\\workspaces\\idea\\FoodService\\src\\main\\resources\\images.jpg");
-        byte[] b = new byte[(int) f.length()];
-        try {
-            FileInputStream fileInputStream = new FileInputStream(f);
-            fileInputStream.read(b);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Photo photo = new Photo();
-        photo.setName("photo 1");
-        photo.setImage(b);
 
         session.save(u1);
-        session.save(u2);
-        session.save(u3);
+//        session.save(u2);
+//        session.save(u3);
         session.save(m1);
         session.save(m2);
-        session.save(photo);
 
         session.getTransaction().commit();
         session.close();
