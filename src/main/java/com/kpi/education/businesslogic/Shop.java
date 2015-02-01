@@ -1,9 +1,6 @@
 package com.kpi.education.businesslogic;
 
 import com.kpi.education.businesslogic.user.ManagerUser;
-import com.kpi.education.businesslogic.user.SimpleUser;
-import com.kpi.education.businesslogic.user.User;
-import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,18 +13,15 @@ public class Shop {
     @Id
     private int id;
 
-    @NotNull
     private String name;
 
     @Embedded
-    @NotNull
     private Location location;
 
     private String description;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manager_user_id")
-    @NotNull
     private ManagerUser manager;
 
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)

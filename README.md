@@ -1,0 +1,1 @@
+Before compilation you need "Enable annotation processing" in Settings->Compiler->Annotation Processors.

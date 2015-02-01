@@ -2,6 +2,8 @@ package com.kpi.education.businesslogic.user;
 
 import com.kpi.education.businesslogic.Message;
 import com.kpi.education.businesslogic.data.Gender;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,7 +18,6 @@ public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
-
     private String firstName;
     private String lastName;
     private String login;

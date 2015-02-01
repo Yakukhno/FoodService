@@ -4,11 +4,13 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
 @javax.persistence.Table(name = "eating_table")
 public class Table {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
     private int size;
     private String description;

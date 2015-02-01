@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="unit1">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>com.kpi.education.businesslogic.user.User</class>
+        <class>com.kpi.education.businesslogic.user.ManagerUser</class>
+        <class>com.kpi.education.businesslogic.user.SimpleUser</class>
+        <class>com.kpi.education.businesslogic.Message</class>
+        <class>com.kpi.education.businesslogic.Photo</class>
+        <class>com.kpi.education.businesslogic.Shop</class>
+        <class>com.kpi.education.businesslogic.Table</class>
+        <class>com.kpi.education.businesslogic.Dish</class>
+        <class>com.kpi.education.businesslogic.Reservation</class>
+        <class>com.kpi.education.businesslogic.Rating</class>
+        <class>com.kpi.education.businesslogic.Ordering</class>
+        <class>com.kpi.education.businesslogic.Position</class>
+        <class>com.kpi.education.businesslogic.Location</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/food_service_db"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value="root"/>
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+        </properties>
+    </persistence-unit>
+</persistence>
