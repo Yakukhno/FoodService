@@ -16,7 +16,10 @@ public abstract class UserDAO {
 
     private EntityManager manager;
 
-//    public List<Message> getIncommingMessages(User user) {
-//
+//    public boolean acceptFriendship(User applicant) {
+//        manager.getTransaction().begin();
+//            Query query = manager.
+//        manager.getTransaction().commit();
+//        manager.clear();
 //    }
 }

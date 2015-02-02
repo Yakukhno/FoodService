@@ -5,12 +5,9 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- bean definitions here -->
-    <beans>
 
         <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
             <property name="persistenceUnitName" value="unit1"/>
         </bean>
-
-    </beans>
 
 </beans>

@@ -12,6 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class Tester {
 
@@ -37,39 +38,42 @@ public class Tester {
         manager.getTransaction().begin();
 
         SimpleUser u1 = new SimpleUser();
-        u1.setFirstName("First User");
+        u1.setFirstName("User1");
 
         SimpleUser u2 = new SimpleUser();
-        u2.setFirstName("Second User");
+        u2.setFirstName("User2");
 
         SimpleUser u3 = new SimpleUser();
-        u3.setFirstName("Third User");
-
-        u1.getFriends().add(u2);
-        u1.getFriends().add(u3);
-
-        u2.getFriends().add(u1);
-        u2.getFriends().add(u3);
-
-        u3.getFriends().add(u1);
-        u3.getFriends().add(u2);
+        u3.setFirstName("User3");
 
         Message m1 = new Message();
-        m1.setText("first message");
+        m1.setText("message to user2 user3");
         m1.getReceivers().add(u2);
         m1.getReceivers().add(u3);
 
         Message m2 = new Message();
-        m2.setText("second message");
+        m2.setText("message to user3");
         m2.getReceivers().add(u3);
 
         u1.getSentMessages().add(m1);
-        u1.getSentMessages().add(m2);
+        u2.getSentMessages().add(m2);
 
         manager.persist(u1);
+        manager.persist(u2);
+        manager.persist(u3);
         manager.persist(m1);
         manager.persist(m2);
 
+        manager.getTransaction().commit();
+        manager.clear();
+
+        manager.getTransaction().begin();
+        SimpleUser u = manager.find(SimpleUser.class, u3.getId());
+        List<Message> messages = u.getReceivedMessages();
+        System.out.println("//////////////////////// size: " + messages.size());
+        System.out.println("//////////////////////// messages to user3");
+        for (Message m : messages)
+            System.out.println("///////////////////////// " + m);
         manager.getTransaction().commit();
     }
 }

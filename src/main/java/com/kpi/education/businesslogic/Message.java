@@ -1,6 +1,8 @@
 package com.kpi.education.businesslogic;
 
 import com.kpi.education.businesslogic.user.User;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,8 +18,13 @@ public class Message {
 
     private String text;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "sender_message", joinColumns = @JoinColumn(name = "message_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private User sender;
+
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(joinColumns = @JoinColumn(name = "message_id"),
+    @JoinTable(name = "receiver_message", joinColumns = @JoinColumn(name = "message_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> receivers = new ArrayList<User>();
 
@@ -29,14 +36,6 @@ public class Message {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public List<User> getReceivers() {
         return receivers;
     }
@@ -45,5 +44,29 @@ public class Message {
         this.receivers = receivers;
     }
 
+    public User getSender() {
+        return sender;
+    }
 
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", sender=" + sender +
+                ", receivers=" + receivers +
+                '}';
+    }
 }
