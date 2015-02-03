@@ -6,8 +6,12 @@
 
     <!-- bean definitions here -->
 
-        <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-            <property name="persistenceUnitName" value="unit1"/>
-        </bean>
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="unit1"/>
+    </bean>
+
+    <bean id="FriendshipDAO" class="com.kpi.education.dao.FriendshipDAO">
+        <constructor-arg name="factory" ref="entityManagerFactory"/>
+    </bean>
 
 </beans>

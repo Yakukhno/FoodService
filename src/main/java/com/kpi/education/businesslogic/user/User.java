@@ -11,7 +11,6 @@ import java.util.List;
 
 @Entity
 @Inheritance(strategy= InheritanceType.JOINED)
-
 public abstract class User {
 
     @Id
@@ -94,5 +93,22 @@ public abstract class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+
+        if (id != user.id) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 }

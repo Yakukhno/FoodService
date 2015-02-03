@@ -1,8 +1,9 @@
 package com.kpi.education;
 
-import com.kpi.education.businesslogic.Message;
+import com.kpi.education.businesslogic.data.State;
 import com.kpi.education.businesslogic.user.SimpleUser;
-import lombok.Setter;
+import com.kpi.education.businesslogic.user.User;
+import com.kpi.education.dao.FriendshipDAO;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -11,18 +12,20 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.List;
+
+import  static org.junit.Assert.*;
 
 public class Tester {
 
     public static EntityManagerFactory factory;
     public static EntityManager manager;
+    public static AbstractApplicationContext ctx;
 
     @BeforeClass
     public static void beforeTests() {
 //        factory = Persistence.createEntityManagerFactory("unit1");
-        AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        ctx = new ClassPathXmlApplicationContext("spring.xml");
         factory = (EntityManagerFactory) ctx.getBean("entityManagerFactory");
         manager = factory.createEntityManager();
     }
@@ -34,8 +37,8 @@ public class Tester {
     }
 
     @Test
-    public void testSimpleUser() {
-        manager.getTransaction().begin();
+    public void testFriendship() {
+        FriendshipDAO friendshipDAO = (FriendshipDAO) ctx.getBean("FriendshipDAO");
 
         SimpleUser u1 = new SimpleUser();
         u1.setFirstName("User1");
@@ -46,34 +49,35 @@ public class Tester {
         SimpleUser u3 = new SimpleUser();
         u3.setFirstName("User3");
 
-        Message m1 = new Message();
-        m1.setText("message to user2 user3");
-        m1.getReceivers().add(u2);
-        m1.getReceivers().add(u3);
-
-        Message m2 = new Message();
-        m2.setText("message to user3");
-        m2.getReceivers().add(u3);
-
-        u1.getSentMessages().add(m1);
-        u2.getSentMessages().add(m2);
-
+        manager.getTransaction().begin();
         manager.persist(u1);
         manager.persist(u2);
         manager.persist(u3);
-        manager.persist(m1);
-        manager.persist(m2);
-
         manager.getTransaction().commit();
-        manager.clear();
 
-        manager.getTransaction().begin();
-        SimpleUser u = manager.find(SimpleUser.class, u3.getId());
-        List<Message> messages = u.getReceivedMessages();
-        System.out.println("//////////////////////// size: " + messages.size());
-        System.out.println("//////////////////////// messages to user3");
-        for (Message m : messages)
-            System.out.println("///////////////////////// " + m);
-        manager.getTransaction().commit();
+        friendshipDAO.sendRequest(u1, u2);
+        friendshipDAO.sendRequest(u1, u3);
+        friendshipDAO.sendRequest(u2, u3);
+
+        friendshipDAO.decideOnRequest(u1, u2, State.ACCEPTED);
+        friendshipDAO.decideOnRequest(u1, u3, State.ACCEPTED);
+        friendshipDAO.decideOnRequest(u2, u3, State.REFUSED);
+
+        List<User> u1friends = friendshipDAO.getUsers(u1, State.ACCEPTED);
+        assertTrue(u1friends.size() == 2);
+        assertTrue(u1friends.contains(u2));
+        assertTrue(u1friends.contains(u3));
+
+        List<User> u2friends = friendshipDAO.getUsers(u2, State.ACCEPTED);
+        assertTrue(u2friends.size() == 1);
+        assertTrue(u2friends.contains(u1));
+
+        List<User> u3friends = friendshipDAO.getUsers(u3, State.ACCEPTED);
+        assertTrue(u3friends.size() == 1);
+        assertTrue(u3friends.contains(u1));
+
+        List<User> u3followers = friendshipDAO.getUsers(u3, State.REFUSED);
+        assertTrue(u3followers.size() == 1);
+        assertTrue(u3followers.contains(u2));
     }
 }

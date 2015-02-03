@@ -16,7 +16,8 @@
         <class>com.kpi.education.businesslogic.Ordering</class>
         <class>com.kpi.education.businesslogic.Position</class>
         <class>com.kpi.education.businesslogic.Location</class>
-        <class>com.kpi.education.businesslogic.Friendship</class>
+        <class>com.kpi.education.businesslogic.friendship.Friendship</class>
+        <class>com.kpi.education.businesslogic.friendship.Couple</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/food_service_db"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
