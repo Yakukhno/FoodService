@@ -1,13 +1,12 @@
 package com.kpi.education.dao;
 
+import org.springframework.beans.factory.DisposableBean;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
-/**
- * Created by GR on 1/31/2015.
- */
-public abstract class DAO {
+public abstract class DAO implements DisposableBean {
 
     private EntityManager manager;
 
@@ -21,5 +20,10 @@ public abstract class DAO {
 
     public EntityTransaction getTransaction() {
         return manager.getTransaction();
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        manager.close();
     }
 }

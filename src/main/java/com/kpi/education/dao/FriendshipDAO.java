@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Grigoriy on 2/1/2015.
  */
-public class FriendshipDAO extends DAO implements DisposableBean {
+public class FriendshipDAO extends DAO {
 
 
     public FriendshipDAO(EntityManagerFactory factory) {
@@ -52,9 +52,4 @@ public class FriendshipDAO extends DAO implements DisposableBean {
         getEntityManager().getTransaction().commit();
     }
 
-
-    @Override
-    public void destroy() throws Exception {
-        getEntityManager().close();
-    }
 }

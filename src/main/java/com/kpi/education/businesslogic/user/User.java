@@ -2,6 +2,9 @@ package com.kpi.education.businesslogic.user;
 
 import com.kpi.education.businesslogic.Message;
 import com.kpi.education.businesslogic.data.Gender;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 
 import javax.persistence.*;
@@ -9,6 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+//@EqualsAndHashCode(exclude = {
+//        "firstName",
+//        "lastName",
+//        "login",
+//        "password",
+//        "gender",
+//        "sentMessages",
+//        "receivedMessages"})
+//@Getter
+//@Setter
 @Entity
 @Inheritance(strategy= InheritanceType.JOINED)
 public abstract class User {
@@ -16,6 +29,7 @@ public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
+
     private String firstName;
     private String lastName;
     private String login;
@@ -71,20 +85,20 @@ public abstract class User {
         this.password = password;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getLogin() {
         return login;
     }
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getFirstName() {

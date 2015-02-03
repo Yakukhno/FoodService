@@ -10,8 +10,13 @@
         <property name="persistenceUnitName" value="unit1"/>
     </bean>
 
-    <bean id="FriendshipDAO" class="com.kpi.education.dao.FriendshipDAO">
+    <!--dao-->
+
+    <bean id="dao" class="com.kpi.education.dao.DAO" abstract="true">
         <constructor-arg name="factory" ref="entityManagerFactory"/>
     </bean>
+
+    <bean id="FriendshipDAO" class="com.kpi.education.dao.FriendshipDAO" parent="dao"/>
+
 
 </beans>
