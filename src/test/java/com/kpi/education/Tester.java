@@ -12,6 +12,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 import  static org.junit.Assert.*;
@@ -26,6 +28,7 @@ public class Tester {
     public static void beforeTests() {
 //        factory = Persistence.createEntityManagerFactory("unit1");
         ctx = new ClassPathXmlApplicationContext("spring.xml");
+        ctx.registerShutdownHook();
         factory = (EntityManagerFactory) ctx.getBean("entityManagerFactory");
         manager = factory.createEntityManager();
     }

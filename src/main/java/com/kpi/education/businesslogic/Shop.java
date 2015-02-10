@@ -20,7 +20,7 @@ public class Shop {
 
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+        @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manager_user_id")
     private ManagerUser manager;
 

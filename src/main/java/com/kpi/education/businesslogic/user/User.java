@@ -2,9 +2,6 @@ package com.kpi.education.businesslogic.user;
 
 import com.kpi.education.businesslogic.Message;
 import com.kpi.education.businesslogic.data.Gender;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 
 import javax.persistence.*;
@@ -22,8 +19,15 @@ import java.util.List;
 //        "receivedMessages"})
 //@Getter
 //@Setter
+
 @Entity
 @Inheritance(strategy= InheritanceType.JOINED)
+@NamedQueries(value = {
+        @NamedQuery(name = "list.byKeyword.name", query = "from User u where u.firstName like :keyword or u.lastName like :keyword"),
+        @NamedQuery(name = "list.byKeyword.personalData", query = "from User u where u.personalData like :keyword "),
+        @NamedQuery(name = "list.byKeyword.login", query = "from User u where u.login like :keyword"),
+        @NamedQuery(name = "list.byGender", query = "from User u where u.gender = gender"),
+})
 public abstract class User {
 
     @Id
@@ -34,6 +38,7 @@ public abstract class User {
     private String lastName;
     private String login;
     private String password;
+    private String personalData;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
@@ -107,6 +112,14 @@ public abstract class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getPersonalData() {
+        return personalData;
+    }
+
+    public void setPersonalData(String personalData) {
+        this.personalData = personalData;
     }
 
     @Override

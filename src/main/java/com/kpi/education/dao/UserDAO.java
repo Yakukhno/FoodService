@@ -1,13 +1,11 @@
 package com.kpi.education.dao;
 
-import com.kpi.education.businesslogic.Message;
-import com.kpi.education.businesslogic.user.User;
 
-import javax.management.Query;
-import javax.persistence.EntityManager;
+import com.kpi.education.businesslogic.user.User;
+import org.hibernate.HibernateException;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,16 +13,20 @@ import java.util.List;
  */
 public class UserDAO extends DAO {
 
-    private EntityManager manager;
-
     public UserDAO(EntityManagerFactory factory) {
         super(factory);
     }
 
-//    public boolean acceptFriendship(User applicant) {
-//        manager.getTransaction().begin();
-//            Query query = manager.
-//        manager.getTransaction().commit();
-//        manager.clear();
-//    }
+    public List<User> byKeyword(String keyword) {
+        List<User> result = null;
+        try {
+            TypedQuery<User> query = (TypedQuery<User>) getEntityManager().createQuery("from User u where u.firstName like :keyword or u.lastName like :keyword");
+            query.setParameter("keyword", keyword);
+            result = query.getResultList();
+        } catch(HibernateException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 }
