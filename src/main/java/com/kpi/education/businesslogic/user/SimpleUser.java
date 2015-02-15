@@ -46,4 +46,5 @@ public class SimpleUser extends User {
     public void setOrderings(List<Ordering> orderings) {
         this.orderings = orderings;
     }
+
 }

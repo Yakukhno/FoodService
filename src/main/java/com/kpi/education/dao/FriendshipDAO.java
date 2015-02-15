@@ -16,11 +16,31 @@ import java.util.List;
 /**
  * Created by Grigoriy on 2/1/2015.
  */
-public class FriendshipDAO extends DAO {
+public class FriendshipDAO extends DAO<Friendship> {
 
 
     public FriendshipDAO(EntityManagerFactory factory) {
         super(factory);
+    }
+
+    @Override
+    public void create(Friendship object) {
+
+    }
+
+    @Override
+    public Friendship retreive(Object object) {
+        return null;
+    }
+
+    @Override
+    public void update(Friendship object) {
+
+    }
+
+    @Override
+    public void delete(Friendship object) {
+
     }
 
     public List<User> getUsers(User user, State state) {

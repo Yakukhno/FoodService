@@ -21,7 +21,7 @@ import java.util.List;
 //@Setter
 
 @Entity
-@Inheritance(strategy= InheritanceType.JOINED)
+@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @NamedQueries(value = {
         @NamedQuery(name = "list.byKeyword.name", query = "from User u where u.firstName like :keyword or u.lastName like :keyword"),
         @NamedQuery(name = "list.byKeyword.personalData", query = "from User u where u.personalData like :keyword "),
@@ -137,5 +137,20 @@ public abstract class User {
     @Override
     public int hashCode() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", personalData='" + personalData + '\'' +
+                ", gender=" + gender +
+                ", sentMessages=" + sentMessages +
+                ", receivedMessages=" + receivedMessages +
+                '}';
     }
 }
