@@ -2,6 +2,7 @@ package com.kpi.education.web.rest.resources;
 
 import com.kpi.education.businesslogic.data.Gender;
 import com.kpi.education.businesslogic.user.SimpleUser;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -28,20 +29,16 @@ public class SimpleUserResource {
 
     @POST
     @Path("/create/form")
-    @Consumes("*/*")
+    @Consumes("application/json")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response create(@FormParam("firstName") String firstName,
-                           @FormParam("lastName") String lastName,
-                           @FormParam("login") String login,
-                           @FormParam("password") String password,
-//                           @FormParam("gender") Gender gender,
-                           @FormParam("personalData") String personalData) {
+    public Response create(JSONObject jsonObject) {
 
+        System.out.println(jsonObject);
         SimpleUser simpleUser = new SimpleUser();
-        simpleUser.setFirstName(firstName);
-        simpleUser.setLastName(lastName);
-        simpleUser.setLogin(login);
-        simpleUser.setPassword(password);
+//        simpleUser.setFirstName(firstName);
+//        simpleUser.setLastName(lastName);
+//        simpleUser.setLogin(login);
+//        simpleUser.setPassword(password);
 //        simpleUser.setGender(gender);
         try {
             manager.getTransaction().begin();

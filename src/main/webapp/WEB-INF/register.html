@@ -3,36 +3,67 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Simple User register form</title>
+
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        function sendJSON()  {
+            var formData = {
+                firstName: ('#firstName'),
+                lastName: ('#lastName'),
+                login: ('#login'),
+                password: ('#password'),
+                personalData: ('#personalData')
+            }
+
+            alert("Code to make AJAX Call");
+            var res = $.ajax({
+                type: 'POST',
+                contentType: 'application/json',
+                url: 'http://[MYIP]:8081/FoodService/resources/user/simple/create/form',
+                dataType: 'json',
+                data: formData,
+
+                success: function(data) {
+                    console.log(data);
+                    //success handler
+                },
+                error: function(data) {
+                    //error handler
+                }
+            });
+            res.setRequestHeader('Access-Control-Allow-Origin','*');
+        }
+//        $("#submit").click(function() {
+//
+//        });
+    </script>
+
+
 </head>
 <body>
-    <form action="http://localhost:8081/FoodService/resources/user/simple/create/form" method="post">
+    <form id="form" name="form" method="post" >
         <table>
             <tr>
-                <td>First Name:<input type="text" name="firstName"/></td>
+                <td>First Name:</td><td><input id="firstName" type="text" name="firstName"/></td>
             </tr>
             <tr>
-                <td>Last Name:<input type="text" name="lastName"/></td>
+                <td>Last Name:</td><td><input id="lastName" type="text" name="lastName"/></td>
             </tr>
             <tr>
-                <td>Login:<input type="text" name="login"/></td>
+                <td>Login:</td><td><input id="login" type="text" name="login"/></td>
             </tr>
             <tr>
-                <td>Password:<input type="text" name="password"/></td>
+                <td>Password:</td><td><input id="password" type="text" name="password"/></td>
             </tr>
             <tr>
-                <p>
-                <td>MALE:<input type="radio" name="gender" value="MALE"/></td>
-                <td>FEMALE:<input type="radio" name="gender" value="FEMALE"/></td>
-                </p>
-
+                <td>Personal Data:</td><td><input id="personalData" type="text" /></td>
             </tr>
             <tr>
-                <td>Personal Data:<textarea  name="personalData" cols="40" rows="3"></textarea></td>
-            </tr>
-            <tr>
-                <td><input type="submit"/></td>
+                <td><input id="submit" name="submit" type="submit" onclick="sendJSON()"/></td>
             </tr>
         </table>
     </form>
+
+
 </body>
 </html>
