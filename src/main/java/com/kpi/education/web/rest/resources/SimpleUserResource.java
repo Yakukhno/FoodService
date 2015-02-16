@@ -1,5 +1,6 @@
 package com.kpi.education.web.rest.resources;
 
+import com.kpi.education.businesslogic.data.Gender;
 import com.kpi.education.businesslogic.user.SimpleUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -26,10 +27,22 @@ public class SimpleUserResource {
     }
 
     @POST
-    @Path("/create")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/create/form")
+    @Consumes("*/*")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response create(SimpleUser simpleUser) {
+    public Response create(@FormParam("firstName") String firstName,
+                           @FormParam("lastName") String lastName,
+                           @FormParam("login") String login,
+                           @FormParam("password") String password,
+//                           @FormParam("gender") Gender gender,
+                           @FormParam("personalData") String personalData) {
+
+        SimpleUser simpleUser = new SimpleUser();
+        simpleUser.setFirstName(firstName);
+        simpleUser.setLastName(lastName);
+        simpleUser.setLogin(login);
+        simpleUser.setPassword(password);
+//        simpleUser.setGender(gender);
         try {
             manager.getTransaction().begin();
             manager.persist(simpleUser);
