@@ -1,7 +1,9 @@
 package com.kpi.education.web.rest.resources;
 
+import com.kpi.education.businesslogic.user.ManagerUser;
 import com.kpi.education.businesslogic.user.SimpleUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,6 +11,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@Component
 @Path("/user/manager")
 public class ManagerUserResource {
 
@@ -23,29 +26,18 @@ public class ManagerUserResource {
 
     @POST
     @Path("/create/form")
-    @Consumes("*/*")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response create(@FormParam("firstName") String firstName,
-                           @FormParam("lastName") String lastName,
-                           @FormParam("login") String login,
-                           @FormParam("password") String password,
-//                           @FormParam("gender") Gender gender,
-                           @FormParam("personalData") String personalData) {
-
-        SimpleUser simpleUser = new SimpleUser();
-        simpleUser.setFirstName(firstName);
-        simpleUser.setLastName(lastName);
-        simpleUser.setLogin(login);
-        simpleUser.setPassword(password);
-//        simpleUser.setGender(gender);
+    public Response create(ManagerUser managerUser) {
+        System.out.println(managerUser);
         try {
             manager.getTransaction().begin();
-            manager.persist(simpleUser);
+            manager.persist(managerUser);
             manager.getTransaction().commit();
-            return Response.ok(simpleUser).status(200).build();
+            return Response.ok(managerUser).status(200).build();
         } catch (Exception e) {
-            manager.getTransaction().rollback();
             e.printStackTrace();
+            manager.getTransaction().rollback();
             return Response.status(404).build();
         }
     }

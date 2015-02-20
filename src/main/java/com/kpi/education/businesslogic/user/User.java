@@ -36,6 +36,7 @@ public abstract class User {
 
     private String firstName;
     private String lastName;
+    private String email;
     private String login;
     private String password;
     private String personalData;
@@ -76,6 +77,14 @@ public abstract class User {
 
     public Gender getGender() {
         return gender;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setGender(Gender gender) {

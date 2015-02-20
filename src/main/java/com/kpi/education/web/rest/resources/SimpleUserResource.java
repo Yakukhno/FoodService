@@ -1,10 +1,7 @@
 package com.kpi.education.web.rest.resources;
 
-import com.kpi.education.businesslogic.data.Gender;
 import com.kpi.education.businesslogic.user.SimpleUser;
-import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -15,7 +12,6 @@ import javax.ws.rs.core.Response;
 
 @Path("/user/simple")
 @Component
-@Scope("request")
 public class SimpleUserResource {
 
     private EntityManagerFactory entityManagerFactory;
@@ -30,11 +26,10 @@ public class SimpleUserResource {
     @POST
     @Path("/create/form")
     @Consumes("application/json")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response create(JSONObject jsonObject) {
-
-        System.out.println(jsonObject);
-        SimpleUser simpleUser = new SimpleUser();
+    @Produces("application/json")
+    public Response create(SimpleUser simpleUser) {
+        System.out.println(simpleUser);
+//        SimpleUser simpleUser = new SimpleUser();
 //        simpleUser.setFirstName(firstName);
 //        simpleUser.setLastName(lastName);
 //        simpleUser.setLogin(login);
@@ -44,10 +39,10 @@ public class SimpleUserResource {
             manager.getTransaction().begin();
             manager.persist(simpleUser);
             manager.getTransaction().commit();
-            return Response.ok(simpleUser).status(200).build();
+            return Response.ok().status(200).entity(simpleUser).build();
         } catch (Exception e) {
-            manager.getTransaction().rollback();
             e.printStackTrace();
+            manager.getTransaction().rollback();
             return Response.status(404).build();
         }
     }

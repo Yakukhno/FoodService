@@ -13,16 +13,15 @@ public class ResponseCorsFilter implements ContainerResponseFilter {
 
         Response.ResponseBuilder resp = Response.fromResponse(contResp.getResponse());
         resp.header("Access-Control-Allow-Origin", "*")
-                .header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                .header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, X-Codingpedia");
 
-        String reqHead = req.getHeaderValue("Access-Control-Request-Headers");
-
-        if(null != reqHead && !reqHead.equals("")){
-            resp.header("Access-Control-Allow-Headers", reqHead);
-        }
+        //headers.add("Access-Control-Allow-Origin", "http://podcastpedia.org"); //allows CORS requests only coming from podcastpedia.org
 
         contResp.setResponse(resp.build());
         return contResp;
     }
+
+
 
 }

@@ -7,8 +7,63 @@ body {
 }
 
 #container {
-	height: 800px;
+	height: 150px;
 	background: url(images/bg.jpg) center top no-repeat;
+    <!--background-color: #eee9d9;-->
+}
+
+#leftbar {
+	position: absolute;
+	top: 150px; 
+	width: 270px; 
+	height: 385px;
+	padding: 10px 20px 35px 20px; 
+	font-size: 20px;
+	background-color: #9c5959;
+	color : #000000;
+}
+
+#centralbar {
+    position: absolute;
+    top: 150px;
+    left: 310px;
+    right: 270px;
+	width: 707px; 
+	height: 380px;
+	padding: 15px 20px 35px 20px;
+    font: Helvetica, Arial, Sans-Serif;
+	font-size: 20px;
+    text-shadow: 0 1px 3px #c4bda6;
+	background: #f5f0e0 url(images/noise.png);
+	color: #9c5959;
+}
+
+#rightbar {
+	position: fixed;
+	top: 150px; 
+	right: 0;
+    left: 1055px;
+	height: 385px;
+	padding: 10px 20px 35px 20px;
+	font-size: 20px;
+	background-color: #9c5959;
+	color : #000000;
+}
+
+#title {
+    font: bold 16px Helvetica, Arial, Sans-Serif;
+    text-shadow: 0 1px 3px #c4bda6;
+	font-size: 25px;
+}
+
+input#text {
+    font-size: 17px;
+}
+
+button#button {
+    font: bold 16px Sans-Serif;
+    color: #9c5959;
+    padding: 5px;
 }
 
 ul#nav {

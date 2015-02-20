@@ -1,16 +1,13 @@
 package com.kpi.education.dao;
 
+import com.kpi.education.businesslogic.data.State;
 import com.kpi.education.businesslogic.friendship.Couple;
 import com.kpi.education.businesslogic.friendship.Friendship;
-import com.kpi.education.businesslogic.data.State;
 import com.kpi.education.businesslogic.user.User;
 import org.hibernate.HibernateException;
 
-import javax.management.Query;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 /**
