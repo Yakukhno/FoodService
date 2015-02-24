@@ -3,50 +3,83 @@ body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, img, form, fieldse
 }
 
 body {
-	background: #f5f0e0 url(images/noise.png);
+    background: url(images/wood1.jpg);
+	<!--background: #f5f0e0 url(images/noise.png);-->
 }
 
-#container {
+#header {
+    vertical-align: top;
 	height: 150px;
-	background: url(images/bg.jpg) center top no-repeat;
+    margin-left: 50px;
+    display: inline-block;
+	background: url(images/bg1.png) center top no-repeat;
     <!--background-color: #eee9d9;-->
 }
 
+#logo {
+    vertical-align: top;
+    margin-left: 25px;
+    height: 150px;
+    width: 250px;
+    display: inline-block;
+/*    background: url(images/foodservice.png);*/
+}
+
+#content {
+    top: 150px;
+    margin: 0 auto;
+    width: 1366px;
+}
+
 #leftbar {
-	position: absolute;
-	top: 150px; 
-	width: 270px; 
+    vertical-align: top;
+    margin-left: 25px;
+	width: 250px; 
 	height: 385px;
-	padding: 10px 20px 35px 20px; 
+	padding: 20px 20px 35px 20px; 
 	font-size: 20px;
-	background-color: #9c5959;
+    display: inline-block;
+	background-color: #FFFBED;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
 	color : #000000;
 }
 
 #centralbar {
-    position: absolute;
-    top: 150px;
-    left: 310px;
-    right: 270px;
-	width: 707px; 
-	height: 380px;
+    vertical-align: top;
+    margin-left: 20px;
+    margin-right: 20px;
+	width: 640px; 
+	height: auto;
 	padding: 15px 20px 35px 20px;
     font: Helvetica, Arial, Sans-Serif;
 	font-size: 20px;
     text-shadow: 0 1px 3px #c4bda6;
-	background: #f5f0e0 url(images/noise.png);
-	color: #9c5959;
+    display: inline-block;
+    background: #FFFBED;
+    border-radius: 30px;
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+	color: #000000;
 }
 
 #rightbar {
-	position: fixed;
-	top: 150px; 
-	right: 0;
-    left: 1055px;
+	vertical-align: top;
+	width: 250px; 
 	height: 385px;
-	padding: 10px 20px 35px 20px;
+	padding: 20px 20px 35px 20px;
 	font-size: 20px;
-	background-color: #9c5959;
+    display: inline-block;
+	background-color: #FFFBED;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
 	color : #000000;
 }
 
@@ -56,13 +89,13 @@ body {
 	font-size: 25px;
 }
 
-input#text {
-    font-size: 17px;
+input {
+    font-size: 16px;
 }
 
-button#button {
-    font: bold 16px Sans-Serif;
-    color: #9c5959;
+button {
+    font: bold 14px Sans-Serif;
+    color: #000000;
     padding: 5px;
 }
 
@@ -76,7 +109,7 @@ ul#nav {
 			display: block; width: 97px; height: 77px; 
 			padding: 72px 0 0 0; margin: 0 32px 0 32px;
 			font: bold 16px Helvetica, Arial, Sans-Serif; text-transform: uppercase;
-			color: #9c5959; text-shadow: 0 1px 3px #c4bda6; text-decoration: none;
+			color: #000000; text-shadow: 0 1px 3px #c4bda6; text-decoration: none;
 			
 			background: url(images/label.png) 0 -149px no-repeat;
 		}

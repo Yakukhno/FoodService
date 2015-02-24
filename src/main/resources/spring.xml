@@ -22,7 +22,9 @@
         <constructor-arg name="factory" ref="entityManagerFactory"/>
     </bean>
 
-    <bean id="FriendshipDAO" class="com.kpi.education.dao.FriendshipDAO" parent="dao"/>
+    <bean id="simpleUserDAO" class="com.kpi.education.dao.SimpleUserDAO" parent="dao"/>
+    <bean id="friendshipDAO" class="com.kpi.education.dao.FriendshipDAO" parent="dao"/>
+    <bean id="managerUserDAO" class="com.kpi.education.dao.ManagerUserDAO" parent="dao"/>
 
 
 </beans>

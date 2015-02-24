@@ -1,12 +1,10 @@
 package com.kpi.education.web.rest.resources;
 
 import com.kpi.education.businesslogic.user.ManagerUser;
-import com.kpi.education.businesslogic.user.SimpleUser;
+import com.kpi.education.dao.ManagerUserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -15,13 +13,11 @@ import javax.ws.rs.core.Response;
 @Path("/user/manager")
 public class ManagerUserResource {
 
-    private EntityManagerFactory entityManagerFactory;
-    private EntityManager manager;
+    private ManagerUserDAO managerUserDAO;
 
     @Autowired
-    public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
-        this.manager = entityManagerFactory.createEntityManager();
+    public void setManagerUserDAO(ManagerUserDAO managerUserDAO) {
+        this.managerUserDAO = managerUserDAO;
     }
 
     @POST
@@ -29,63 +25,45 @@ public class ManagerUserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(ManagerUser managerUser) {
-        System.out.println(managerUser);
-        try {
-            manager.getTransaction().begin();
-            manager.persist(managerUser);
-            manager.getTransaction().commit();
-            return Response.ok(managerUser).status(200).build();
-        } catch (Exception e) {
-            e.printStackTrace();
-            manager.getTransaction().rollback();
-            return Response.status(404).build();
-        }
+        ManagerUser managerUser1 = managerUserDAO.create(managerUser);
+        if (managerUser1 != null)
+            return Response.ok(managerUser1).status(200).build();
+        else
+            return Response.status(403).build();
     }
 
     @GET
     @Path("/retrieve/byid/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response retrieve(@PathParam("id") int id) {
-        try {
-            SimpleUser simpleUser = manager.find(SimpleUser.class, id);
-            return Response.ok(simpleUser).status(200).build();
-        } catch (Exception e) {
-            e.printStackTrace();
+        ManagerUser managerUser = managerUserDAO.retrieve(id);
+        if (managerUser != null)
+            return Response.ok(managerUser).status(200).build();
+        else
             return Response.status(404).build();
-        }
     }
 
     @PUT
     @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(SimpleUser simpleUser) {
-        try {
-            manager.getTransaction().begin();
-            simpleUser = manager.merge(simpleUser);
-            manager.getTransaction().commit();
-            return Response.ok(simpleUser).status(200).build();
-        } catch (Exception e) {
-            manager.getTransaction().rollback();
-            e.printStackTrace();
+    public Response update(ManagerUser managerUser) {
+        ManagerUser managerUser1 = managerUserDAO.update(managerUser);
+        if (managerUser1 != null)
+            return Response.status(200).build();
+        else
             return Response.status(404).build();
-        }
     }
 
     @DELETE
     @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-    public Response delete(SimpleUser simpleUser) {
-        try {
-            manager.getTransaction().begin();
-            manager.remove(simpleUser);
-            manager.getTransaction().commit();
-            return Response.noContent().status(200).build();
-        } catch (Exception e) {
-            manager.getTransaction().rollback();
-            e.printStackTrace();
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response delete(ManagerUser managerUser) {
+        boolean res = managerUserDAO.delete(managerUser);
+        if (res)
+            return Response.status(200).build();
+        else
             return Response.status(404).build();
-        }
     }
 }

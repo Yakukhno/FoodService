@@ -1,7 +1,6 @@
 package com.kpi.education.dao;
 
 import com.kpi.education.businesslogic.data.State;
-import com.kpi.education.businesslogic.friendship.Couple;
 import com.kpi.education.businesslogic.friendship.Friendship;
 import com.kpi.education.businesslogic.user.User;
 import org.hibernate.HibernateException;
@@ -13,38 +12,16 @@ import java.util.List;
 /**
  * Created by Grigoriy on 2/1/2015.
  */
-public class FriendshipDAO extends DAO<Friendship> {
+public class FriendshipDAO extends DAO<Friendship, Integer> {
 
 
     public FriendshipDAO(EntityManagerFactory factory) {
         super(factory);
     }
 
-    @Override
-    public void create(Friendship object) {
-
-    }
-
-    @Override
-    public Friendship retreive(Object object) {
-        return null;
-    }
-
-    @Override
-    public void update(Friendship object) {
-
-    }
-
-    @Override
-    public void delete(Friendship object) {
-
-    }
-
     public List<User> getUsers(User user, State state) {
         List<User> result = null;
         try {
-//            TypedQuery<User> query1 = getEntityManager().createQuery("select f.couple.applicant from Friendship f where f.couple.acceptor = :user and f.state = :state", User.class);
-//            TypedQuery<User> query2 = getEntityManager().createQuery("select f.couple.acceptor from Friendship f where f.couple.applicant = :user and f.state = :state", User.class);
             TypedQuery<User> query1 = (TypedQuery<User>) getEntityManager().createNamedQuery("user.list");
             TypedQuery<User> query2 = (TypedQuery<User>) getEntityManager().createNamedQuery("user.reverse.list");
             query1.setParameter("user", user);
@@ -53,40 +30,62 @@ public class FriendshipDAO extends DAO<Friendship> {
             query2.setParameter("state", state);
             result = query1.getResultList();
             result.addAll(query2.getResultList());
-
-//            CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
-//            CriteriaQuery criteriaQuery = criteriaBuilder.createQuery();
-//            criteriaQuery.from(Friendship.class).
         } catch(HibernateException e) {
             e.printStackTrace();
         }
         return result;
     }
 
-    public void sendRequest(User applicant, User acceptor) {
+    @Override
+    public Friendship create(Friendship friendship) {
         try {
             getEntityManager().getTransaction().begin();
-            Friendship friendship = new Friendship();
-            friendship.setCouple(new Couple(applicant, acceptor));
-            friendship.setState(State.NEW);
-            getEntityManager().merge(friendship);
+            getEntityManager().persist(friendship);
             getEntityManager().getTransaction().commit();
+            return friendship;
         } catch(HibernateException e) {
-            getEntityManager().getTransaction().rollback();
             e.printStackTrace();
+            getEntityManager().getTransaction().rollback();
+            return null;
         }
     }
 
-    public void decideOnRequest(User applicant, User acceptor, State state) {
+    @Override
+    public Friendship retrieve(Integer id) {
+        try {
+            Friendship friendship = getEntityManager().find(Friendship.class, id);
+            return friendship;
+        } catch(HibernateException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Friendship update(Friendship friendship) {
         try {
             getEntityManager().getTransaction().begin();
-            Friendship friendship = getEntityManager().find(Friendship.class, new Couple(applicant, acceptor));
-            friendship.setState(state);
-            getEntityManager().merge(friendship);
+            Friendship friendship1 = getEntityManager().merge(friendship);
             getEntityManager().getTransaction().commit();
+            return friendship1;
         } catch(HibernateException e) {
             getEntityManager().getTransaction().rollback();
             e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public boolean delete(Friendship friendship) {
+        try {
+            getEntityManager().getTransaction().begin();
+            getEntityManager().remove(friendship);
+            getEntityManager().getTransaction().commit();
+            return true;
+        } catch(HibernateException e) {
+            getEntityManager().getTransaction().rollback();
+            e.printStackTrace();
+            return false;
         }
     }
 }
