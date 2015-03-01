@@ -4,17 +4,17 @@ import com.kpi.education.businesslogic.data.State;
 import com.kpi.education.businesslogic.friendship.Friendship;
 import com.kpi.education.businesslogic.user.User;
 import org.hibernate.HibernateException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-/**
- * Created by Grigoriy on 2/1/2015.
- */
+@Repository(value = "friendshipDAO")
 public class FriendshipDAO extends DAO<Friendship, Integer> {
 
-
+    @Autowired
     public FriendshipDAO(EntityManagerFactory factory) {
         super(factory);
     }

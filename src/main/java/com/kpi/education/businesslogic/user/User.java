@@ -1,24 +1,12 @@
 package com.kpi.education.businesslogic.user;
 
 import com.kpi.education.businesslogic.Message;
+import com.kpi.education.businesslogic.Photo;
 import com.kpi.education.businesslogic.data.Gender;
-
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
-
-//@EqualsAndHashCode(exclude = {
-//        "firstName",
-//        "lastName",
-//        "login",
-//        "password",
-//        "gender",
-//        "sentMessages",
-//        "receivedMessages"})
-//@Getter
-//@Setter
 
 @Entity
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
@@ -40,6 +28,9 @@ public abstract class User {
     private String login;
     private String password;
     private String personalData;
+    
+    @OneToOne
+    private Photo photo;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
@@ -89,6 +80,14 @@ public abstract class User {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public Photo getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
     }
 
     public String getPassword() {

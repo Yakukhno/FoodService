@@ -19,11 +19,18 @@
         <class>com.kpi.education.businesslogic.friendship.Friendship</class>
         <class>com.kpi.education.businesslogic.friendship.Couple</class>
         <properties>
+            <!--connection-->
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/food_service_db"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.connection.username" value="root"/>
             <property name="hibernate.connection.password" value="root"/>
-
+            
+            <!--cache-->
+            <!--<property name="hibernate.cache.provider_class"  value="org.hibernate.cache.EhCacheProvider" />-->
+            <!--<property name="hibernate.cache.use_second_level_cache" value="true" />-->
+            <!--<property name="hibernate.cache.use_query_cache" value="true" />-->
+            <!--<property name="hibernate.generate_statistics" value="true" />-->
+            <!--schema-->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>

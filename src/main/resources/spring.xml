@@ -9,6 +9,8 @@
 
     <context:annotation-config />
     <context:component-scan base-package="com.kpi.education.web.rest.resources"/>
+    <context:component-scan base-package="com.kpi.education.dao"/>
+
     <!-- bean definitions here -->
 
 
@@ -18,13 +20,13 @@
 
     <!--dao-->
 
-    <bean id="dao" class="com.kpi.education.dao.DAO" abstract="true">
-        <constructor-arg name="factory" ref="entityManagerFactory"/>
-    </bean>
+    <!--<bean id="dao" class="com.kpi.education.dao.DAO" abstract="true">-->
+        <!--<constructor-arg name="factory" ref="entityManagerFactory"/>-->
+    <!--</bean>-->
 
-    <bean id="simpleUserDAO" class="com.kpi.education.dao.SimpleUserDAO" parent="dao"/>
-    <bean id="friendshipDAO" class="com.kpi.education.dao.FriendshipDAO" parent="dao"/>
-    <bean id="managerUserDAO" class="com.kpi.education.dao.ManagerUserDAO" parent="dao"/>
+    <!--<bean id="simpleUserDAO" class="com.kpi.education.dao.SimpleUserDAO" parent="dao"/>-->
+    <!--<bean id="friendshipDAO" class="com.kpi.education.dao.FriendshipDAO" parent="dao"/>-->
+    <!--<bean id="managerUserDAO" class="com.kpi.education.dao.ManagerUserDAO" parent="dao"/>-->
 
 
 </beans>

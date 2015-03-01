@@ -1,14 +1,15 @@
 package com.kpi.education.dao;
 
 import com.kpi.education.businesslogic.user.ManagerUser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManagerFactory;
 
-/**
- * Created by Grigoriy on 2/23/2015.
- */
+@Repository(value = "managerUserDAO")
 public class ManagerUserDAO extends DAO<ManagerUser, Integer> {
-    
+
+    @Autowired
     public ManagerUserDAO(EntityManagerFactory factory) {
         super(factory);
     }

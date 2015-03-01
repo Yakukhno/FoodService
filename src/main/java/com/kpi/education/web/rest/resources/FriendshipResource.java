@@ -3,6 +3,7 @@ package com.kpi.education.web.rest.resources;
 import com.kpi.education.businesslogic.friendship.Friendship;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@Component
 @Path("/friendship")
 public class FriendshipResource {
 

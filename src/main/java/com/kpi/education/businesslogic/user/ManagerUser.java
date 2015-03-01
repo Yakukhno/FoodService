@@ -2,6 +2,7 @@ package com.kpi.education.businesslogic.user;
 
 import com.kpi.education.businesslogic.Shop;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Entity
 @javax.persistence.Table(name = "manager_user")
+@Cacheable()
 public class ManagerUser extends User {
 
     private String contactTelephone;

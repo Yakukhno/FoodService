@@ -1,11 +1,15 @@
 package com.kpi.education.dao;
 
 import com.kpi.education.businesslogic.user.SimpleUser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManagerFactory;
 
+@Repository(value = "simpleUserDAO")
 public class SimpleUserDAO extends DAO<SimpleUser, Integer> {
 
+    @Autowired
     public SimpleUserDAO(EntityManagerFactory factory) {
         super(factory);
     }

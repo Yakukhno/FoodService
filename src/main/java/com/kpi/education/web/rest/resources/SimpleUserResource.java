@@ -9,8 +9,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/user/simple")
 @Component
+@Path("/user/simple")
 public class SimpleUserResource {
     
     private SimpleUserDAO simpleUserDAO;

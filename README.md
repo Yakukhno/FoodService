@@ -1,5 +1,11 @@
-Used technologies:
-Spring, Hibernate, JQuery, Jersey
+FoodService
+===========
+
+**Used technologies:**
+* Spring 
+* Hibernate, JPA
+* Jersey
+* JavaScript (JQuery)
 
 Run project steps:
 1) Change database settings to yours in persistence.xml
