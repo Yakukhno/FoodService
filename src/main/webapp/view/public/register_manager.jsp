@@ -3,24 +3,23 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Register</title>
-		<link href="style.css" rel="stylesheet" type="text/css">
+		<link href="../res/style.css" rel="stylesheet" type="text/css">
+
 
         <!--for posting data-->
-        <!--<script src="js/lib/JQuery-2.1.1.js"></script>-->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
-        <script src="js/register/SimpleUserPost.js"></script>
-        <script src="js/animate-bg.js" type="text/javascript"></script> 
-	    <script src="js/scripts.js" type="text/javascript"></script> 
-
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script> 
+        <script src="../res/js/scripts.js" type="text/javascript"></script>
+        <script src="../res/js/animate-bg.js" type="text/javascript"></script>
+        <script src="../res/js/register/ManagerUserPost.js"></script>
 	</head>
 	<body>
         <div>
             <div id="logo">
-                <a href="home.html"><img src="images/foodservice.png" href="images/foodservice.png"></a>
+                <a href="index.jsp"><img src="../res/images/foodservice.png" href="images/foodservice.png"></a>
             </div>
             <div id="header">
                 <ul id="nav"> 
-                    <li><a href="home.html">Home</a></li>
+                    <li><a href="index.jsp">Home</a></li>
                     <li><a href="#">About</a></li> 
                     <li><a href="#">Work</a></li> 
                     <li><a href="#">Contact</a></li>
@@ -32,7 +31,7 @@
                 <p>Leftbar</p>
             </div>
             <div id="centralbar">
-                <div id="title"><p>Sign up as user</p></div>
+                <div id="title"><p>Sign up as manager</p></div>
                 <br>
                 <form action="">
                     <p>First name</p>
@@ -41,6 +40,8 @@
                     <p><input id="lastName"  type="text" placeholder="Your last name" required></p>
                     <p>E-mail</p>
                     <p><input id="email"  type="email" placeholder="Your e-mail" required></p>
+                    <p>Contact telephone</p>
+                    <p><input id="telephone"  type="text" placeholder="Your telephone" required></p>
                     <p>Login</p>
                     <p><input id="login"  type="text" placeholder="Your login" required></p>
                     <p>Password</p>
@@ -48,8 +49,8 @@
                     <p><input id="passwordconfirm"  type="password" placeholder="Confirm password" required></p>
                     <p>About you</p>
                     <p><input id="personalData"  type="text" placeholder="Tell some words about you"></p><br>
-                    <p><button id="submitSimpleUserForm" type="submit">Send</button></p>
-                </form>    
+                    <p><button id="submitManagerUserForm" type="submit">Send</button></p>
+                </form>
             </div>
             <div id="rightbar">
                 <p>Rightbar</p>

@@ -1,22 +1,23 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<c:set var="root" value="${pageContext.request.contextPath}" />
 <head> 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
 	<title>Food Service</title> 
  
-	<link href="style.css" rel="stylesheet" type="text/css" media="screen" /> 
+    
+	<link href="${root}/view/res/style.css" rel="stylesheet" type="text/css" media="screen" />
  
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script> 
-	<script src="js/animate-bg.js" type="text/javascript"></script> 
-	<script src="js/scripts.js" type="text/javascript"></script> 
+	<script src="${root}/view/res/js/animate-bg.js" type="text/javascript"></script>
+	<script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>
 </head> 
 
 <body> 
 
 <div>
     <div id="logo">
-        <a href="home.html"><img src="images/foodservice.png" href="images/foodservice.png"></a>
+        <a href="index.jsp"><img src="${root}/view/res/images/foodservice.png" href="images/foodservice.png"></a>
     </div>
     <div id="header">
         <ul id="nav"> 
@@ -36,10 +37,10 @@
         <p>Welcome!</p>
     </div>
     <div id="rightbar">
-        <form action="register_user.html">
+        <form action="${root}/view/public/register_user.jsp">
             <p><button id="userSignUp"><font color="#9c5959" size="4">Sign up as user</font></button></p> <br>
         </form>
-        <form action="register_manager.html">
+        <form action="${root}/view/public/register_manager.jsp">
             <p><button id="managerSignUp"><font color="#9c5959" size="4">Sign up as manager</font></button></p>
         </form>
     </div>
