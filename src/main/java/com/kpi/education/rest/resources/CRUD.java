@@ -1,4 +1,4 @@
-package com.kpi.education.web.rest.resources;
+package com.kpi.education.rest.resources;
 
 /**
  * Created by Grigoriy on 2/23/2015.

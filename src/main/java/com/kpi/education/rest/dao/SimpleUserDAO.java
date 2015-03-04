@@ -1,10 +1,12 @@
-package com.kpi.education.dao;
+package com.kpi.education.rest.dao;
 
 import com.kpi.education.businesslogic.user.SimpleUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Repository(value = "simpleUserDAO")
 public class SimpleUserDAO extends DAO<SimpleUser, Integer> {
@@ -33,6 +35,21 @@ public class SimpleUserDAO extends DAO<SimpleUser, Integer> {
         try {
             SimpleUser simpleUser = getEntityManager().find(SimpleUser.class, id);
             return simpleUser;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public SimpleUser retrieveByLogin(String login) {
+        try {
+            TypedQuery<SimpleUser> query = (TypedQuery<SimpleUser>) getEntityManager().createNamedQuery("byLogin");
+            query.setParameter("login", login);
+            List<SimpleUser> users = query.getResultList();
+            //checking on errors in database
+            if (users.size() > 1)
+                throw new IllegalStateException("There are more than one users with the same 'login'!");
+            return users.get(0);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

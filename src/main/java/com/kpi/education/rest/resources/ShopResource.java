@@ -1,4 +1,4 @@
-package com.kpi.education.web.rest.resources;
+package com.kpi.education.rest.resources;
 
 import org.springframework.stereotype.Component;
 

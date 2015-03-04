@@ -1,7 +1,3 @@
-/**
- * @author Alexander Farkas
- * v. 1.21
- */
 
 
 (function($) {

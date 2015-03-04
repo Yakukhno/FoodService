@@ -4,25 +4,29 @@ body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, img, form, fieldse
 
 body {
     background: url(images/wood.png);
-	<!--background: #f5f0e0 url(images/noise.png);-->
 }
 
 #header {
     vertical-align: top;
-	height: 150px;
-    margin-left: 50px;
+    width: 1366px;
+    margin: 0 auto;
+}
+
+#menu {
+    vertical-align: top;
+    width: 700px;
+    height: 150px;
+    margin-left: 12px;
     display: inline-block;
 	background: url(images/bg1.png) center top no-repeat;
-    <!--background-color: #eee9d9;-->
 }
 
 #logo {
     vertical-align: top;
     margin-left: 25px;
     height: 150px;
-    width: 250px;
+    width: 290px;
     display: inline-block;
-/*    background: url(images/foodservice.png);*/
 }
 
 #content {
@@ -83,6 +87,30 @@ body {
 	color : #000000;
 }
 
+#profileImage {
+    height: 150px;
+    width: 150px;
+    display: inline-block;
+}
+
+#profileText {
+    width: auto;
+    height: auto;
+    margin-top: -155px;
+    margin-left: 160px;
+}
+
+#profileTextKey {
+    width: 120px;
+    height: auto;
+    display: inline-block;
+}
+
+#profileTextValue {
+    width: 300px;
+    display: inline-block;
+}
+
 #title {
     font: bold 16px Helvetica, Arial, Sans-Serif;
     text-shadow: 0 1px 3px #c4bda6;
@@ -107,7 +135,7 @@ ul#nav {
 	}
 		ul#nav li a {
 			display: block; width: 97px; height: 77px; 
-			padding: 72px 0 0 0; margin: 0 32px 0 32px;
+			padding: 68px 0 0 0; margin: 0 32px 0 44px;
 			font: bold 16px Helvetica, Arial, Sans-Serif; text-transform: uppercase;
 			color: #000000; text-shadow: 0 1px 3px #c4bda6; text-decoration: none;
 			

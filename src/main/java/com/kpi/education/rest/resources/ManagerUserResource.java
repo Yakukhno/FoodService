@@ -1,7 +1,7 @@
-package com.kpi.education.web.rest.resources;
+package com.kpi.education.rest.resources;
 
 import com.kpi.education.businesslogic.user.ManagerUser;
-import com.kpi.education.dao.ManagerUserDAO;
+import com.kpi.education.rest.dao.ManagerUserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -43,6 +43,16 @@ public class ManagerUserResource {
             return Response.status(404).build();
     }
 
+    @GET
+    @Path("/byLogin/{login}")
+    public Response retrieve(@PathParam("login") String login) {
+        ManagerUser managerUser = managerUserDAO.retrieveByLogin(login);
+        if (managerUser != null)
+            return Response.ok(managerUser).status(200).build();
+        else
+            return Response.status(404).build();
+    }
+    
     @PUT
     @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)

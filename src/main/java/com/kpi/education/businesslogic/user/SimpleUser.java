@@ -13,7 +13,6 @@ import java.util.List;
 //@XmlRootElement
 @Entity
 @javax.persistence.Table(name = "simple_user")
-@Cacheable()
 public class SimpleUser extends User {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)

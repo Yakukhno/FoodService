@@ -1,4 +1,4 @@
-package com.kpi.education.dao;
+package com.kpi.education.rest.dao;
 
 import com.kpi.education.businesslogic.data.State;
 import com.kpi.education.businesslogic.friendship.Friendship;

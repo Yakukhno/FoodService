@@ -1,4 +1,4 @@
-package com.kpi.education.web.rest.resources;
+package com.kpi.education.rest.resources;
 
 import com.kpi.education.businesslogic.friendship.Friendship;
 import org.hibernate.HibernateException;

@@ -1,7 +1,7 @@
-package com.kpi.education.web.rest.resources;
+package com.kpi.education.rest.resources;
 
 import com.kpi.education.businesslogic.user.SimpleUser;
-import com.kpi.education.dao.SimpleUserDAO;
+import com.kpi.education.rest.dao.SimpleUserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -38,6 +38,16 @@ public class SimpleUserResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response retrieve(@PathParam("id") int id) {
         SimpleUser simpleUser = simpleUserDAO.retrieve(id);
+        if (simpleUser != null)
+            return Response.ok(simpleUser).status(200).build();
+        else
+            return Response.status(404).build();
+    }
+
+    @GET
+    @Path("/byLogin/{login}")
+    public Response retrieve(@PathParam("login") String login) {
+        SimpleUser simpleUser = simpleUserDAO.retrieveByLogin(login);
         if (simpleUser != null)
             return Response.ok(simpleUser).status(200).build();
         else

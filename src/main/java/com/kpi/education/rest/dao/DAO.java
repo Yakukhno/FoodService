@@ -1,4 +1,4 @@
-package com.kpi.education.dao;
+package com.kpi.education.rest.dao;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
