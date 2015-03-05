@@ -18,6 +18,7 @@
                 username-parameter="username"
                 password-parameter="password" />
         <logout logout-success-url="/" delete-cookies="JSESSIONID" />
+        
         <!--<remember-me  />-->
         
     </http>
