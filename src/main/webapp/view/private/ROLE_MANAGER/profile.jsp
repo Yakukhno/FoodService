@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <c:set var="root" value="${pageContext.request.contextPath}" />
+<%@page session="true"%>
 <head>
     <meta charset="utf-8">
     <title>Manager profile</title>
@@ -65,6 +66,33 @@
                 </form>
             </div>
         </div>
+
+
+        <c:url value="/j_spring_security_logout" var="logoutUrl" />
+
+        <!-- csrt for log out-->
+        <form action="${logoutUrl}" method="post" id="logoutForm">
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}" />
+        </form>
+
+        <script>
+            function formSubmit() {
+                document.getElementById("logoutForm").submit();
+            }
+        </script>
+
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
+            <h2>
+                Welcome : ${pageContext.request.userPrincipal.name} | <a
+                    href="javascript:formSubmit()"> Logout</a>
+            </h2>
+        </c:if>
+        
+        
+        
+        
     </div>
     <div id="rightBar">
         <p>Rightbar</p>

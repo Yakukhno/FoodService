@@ -17,7 +17,9 @@
                 authentication-failure-url="/view/public/login.jsp?error"
                 username-parameter="username"
                 password-parameter="password" />
-        <logout logout-success-url="/login?logout" />
+        <logout logout-success-url="/" />
+        <remember-me  />
+        
     </http>
 
     <authentication-manager>

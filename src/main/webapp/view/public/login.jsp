@@ -52,7 +52,7 @@
           <p><input type='text' name='username' style="border-width: 1px; border-style: solid"></p>
           <p>Password</p>
           <p><input type='password' name='password' style="border-width: 1px; border-style: solid"></p>
-          <%--<p><input type="checkbox" name="remember-me" /> Remember me</p>--%>
+          <p><input type="checkbox" name="remember-me" /> Remember me</p>
           <input name="submit" type="submit" value="Login"/><p>Sign in</p></button>
 
           <input type="hidden" name="${_csrf.parameterName}"

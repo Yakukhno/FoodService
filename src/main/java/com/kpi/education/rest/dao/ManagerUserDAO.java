@@ -49,6 +49,8 @@ public class ManagerUserDAO extends DAO<ManagerUser, Integer> {
             //checking on errors in database
             if (users.size() > 1)
                 throw new IllegalStateException("There are more than one users with the same 'login'!");
+            if (users.size() == 0)
+                return null;
             return users.get(0);
         } catch (Exception e) {
             e.printStackTrace();
