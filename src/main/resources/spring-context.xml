@@ -18,6 +18,14 @@
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="unit1"/>
     </bean>
-    
+
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/food_service_db"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
     
 </beans>
