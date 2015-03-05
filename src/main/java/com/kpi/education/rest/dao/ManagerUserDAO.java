@@ -43,8 +43,24 @@ public class ManagerUserDAO extends DAO<ManagerUser, Integer> {
 
     public ManagerUser retrieveByLogin(String login) {
         try {
-            TypedQuery<ManagerUser> query = (TypedQuery<ManagerUser>) getEntityManager().createNamedQuery("byLogin");
+            TypedQuery<ManagerUser> query = (TypedQuery<ManagerUser>) getEntityManager().createNamedQuery("managerUser.byLogin");
             query.setParameter("login", login);
+            List<ManagerUser> users = query.getResultList();
+            //checking on errors in database
+            if (users.size() > 1)
+                throw new IllegalStateException("There are more than one users with the same 'login'!");
+            return users.get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ManagerUser retrieveByLoginAndPassword(String login, String password) {
+        try {
+            TypedQuery<ManagerUser> query = (TypedQuery<ManagerUser>) getEntityManager().createNamedQuery("managerUser.byLoginAndPassword");
+            query.setParameter("login", login);
+            query.setParameter("password", password);
             List<ManagerUser> users = query.getResultList();
             //checking on errors in database
             if (users.size() > 1)

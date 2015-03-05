@@ -2,16 +2,16 @@ package com.kpi.education.businesslogic.user;
 
 import com.kpi.education.businesslogic.Shop;
 
-import javax.persistence.Cacheable;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @javax.persistence.Table(name = "manager_user")
-@Cacheable()
+@NamedQueries(value = {
+        @NamedQuery(name = "managerUser.byLogin", query = "from ManagerUser u where u.login = :login"),
+        @NamedQuery(name = "managerUser.byLoginAndPassword", query = "from ManagerUser u where u.login = :login and u.password = :password"),
+})
 public class ManagerUser extends User {
 
     private String contactTelephone;

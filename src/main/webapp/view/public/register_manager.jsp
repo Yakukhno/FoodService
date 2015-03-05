@@ -9,7 +9,7 @@
         <!--for posting data-->
         <!--<script src="js/lib/JQuery-2.1.1.js"></script>-->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
-        <script src="${root}/view/res/js/register/SimpleUserPost.js"></script>
+        <script src="${root}/view/res/js/register/ManagerUserPost.js"></script>
         <script src="${root}/view/res/js/animate-bg.js" type="text/javascript"></script>
         <script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>
 
@@ -24,7 +24,7 @@
                     <li><a href="${root}/view/public/index.jsp">Home</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Work</a></li>
-                    <li><a href="${root}/view/private/user/profile.jsp">Profile</a></li>
+                    <li><a href="${root}/view/private/redirect">Profile</a></li>
                 </ul>
             </div>
         </div>
@@ -35,7 +35,7 @@
             <div id="centralbar">
                 <div id="title"><p>Sign up as manager</p></div>
                 <br>
-                <form action="">
+                <form action="${root}/view/private/redirect">
                     <p>First name</p>
                     <p><input id="firstName"  type="text" placeholder="Your first name" required></p>
                     <p>Last name</p>
@@ -51,7 +51,7 @@
                     <p><input id="passwordconfirm" onchange="checkPasswords()" type="password" placeholder="Confirm password" required></p>
                     <p>About you</p>
                     <p><input id="personalData"  type="text" placeholder="Tell some words about you"></p><br>
-                    <p><button id="submitManagerUserForm" type="submit">Send</button></p>
+                    <p><button id="submitManagerUserForm" type="submit" >Send</button></p>
                 </form>
             </div>
             <div id="rightbar">

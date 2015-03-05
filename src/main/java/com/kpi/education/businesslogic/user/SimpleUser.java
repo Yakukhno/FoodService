@@ -4,15 +4,16 @@ import com.kpi.education.businesslogic.Ordering;
 import com.kpi.education.businesslogic.Rating;
 import com.kpi.education.businesslogic.Reservation;
 
-import javax.persistence.Cacheable;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 //@XmlRootElement
 @Entity
 @javax.persistence.Table(name = "simple_user")
+@NamedQueries(value = {
+        @NamedQuery(name = "simpleUser.byLogin", query = "from SimpleUser u where u.login = :login"),
+        @NamedQuery(name = "simpleUser.byLoginAndPassword", query = "from SimpleUser u where u.login = :login and u.password = :password"),
+})
 public class SimpleUser extends User {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)

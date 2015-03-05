@@ -24,7 +24,7 @@
                     <li><a href="${root}/view/public/index.jsp">Home</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Work</a></li>
-                    <li><a href="${root}/view/private/user/profile.jsp">Profile</a></li>
+                    <li><a href="${root}/view/private/redirect">Profile</a></li>
                 </ul>
             </div>
         </div>
@@ -35,7 +35,7 @@
             <div id="centralbar">
                 <div id="title"><p>Sign up as user</p></div>
                 <br>
-                <form action="">
+                <form action="${root}/view/private/redirect">
                     <p>First name</p>
                     <p><input id="firstName"  type="text" placeholder="Your first name" required></p>
                     <p>Last name</p>

@@ -1,5 +1,22 @@
+
 body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, img, form, fieldset, input, textarea, blockquote {
+    font-family: Montserrat;
 	margin: 0; padding: 0; border: 0;
+}
+
+@font-face {
+    font-family: Abeezee;
+    src: url(fonts/Abeezee/abeezee-regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url(fonts/Montserrat/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url(fonts/Montserrat/Montserrat-Bold.ttf);
 }
 
 body {
@@ -33,15 +50,15 @@ body {
     top: 150px;
     margin: 0 auto;
     width: 1366px;
+    font-size: 18px;
 }
 
-#leftbar {
+#leftBar {
     vertical-align: top;
     margin-left: 25px;
 	width: 250px; 
 	height: 385px;
 	padding: 20px 20px 35px 20px; 
-	font-size: 20px;
     display: inline-block;
 	background-color: #FFFBED;
     border-top-right-radius: 30px;
@@ -52,16 +69,14 @@ body {
 	color : #000000;
 }
 
-#centralbar {
+#centralBar {
     vertical-align: top;
     margin-left: 20px;
     margin-right: 20px;
 	width: 640px; 
 	height: auto;
 	padding: 15px 20px 35px 20px;
-    font: Helvetica, Arial, Sans-Serif;
-	font-size: 20px;
-    text-shadow: 0 1px 3px #c4bda6;
+    font: bold;
     display: inline-block;
     background: #FFFBED;
     border-radius: 30px;
@@ -71,12 +86,11 @@ body {
 	color: #000000;
 }
 
-#rightbar {
+#rightBar {
 	vertical-align: top;
 	width: 250px; 
 	height: 385px;
 	padding: 20px 20px 35px 20px;
-	font-size: 20px;
     display: inline-block;
 	background-color: #FFFBED;
     border-top-left-radius: 30px;
@@ -107,24 +121,47 @@ body {
 }
 
 #profileTextValue {
-    width: 300px;
+    width: 280px;
     display: inline-block;
 }
 
-#title {
-    font: bold 16px Helvetica, Arial, Sans-Serif;
+#profileMenu {;
+    width: 55px;
+    height: auto;
+    vertical-align: top;
+    display: inline-block;
+
+}
+
+h2 {
+    color: darkred;
     text-shadow: 0 1px 3px #c4bda6;
 	font-size: 25px;
 }
 
 input {
     font-size: 16px;
+    border-width: 1px;
+    border-style: dotted;
+    margin-bottom: 7px;
 }
 
 button {
-    font: bold 14px Sans-Serif;
-    color: #000000;
+    font: bold 16px Sans-Serif;
+    margin-bottom: 7px;
+    color: darkred;
     padding: 5px;
+}
+
+button#imageButton {
+    background-color: darksalmon; 
+    width: auto;
+    height: 45px;
+    padding: 0px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: firebrick;
+    border-radius: 5px;
 }
 
 ul#nav {
@@ -137,7 +174,7 @@ ul#nav {
 			display: block; width: 97px; height: 77px; 
 			padding: 68px 0 0 0; margin: 0 32px 0 44px;
 			font: bold 16px Helvetica, Arial, Sans-Serif; text-transform: uppercase;
-			color: #000000; text-shadow: 0 1px 3px #c4bda6; text-decoration: none;
+			color: darkred; text-shadow: 0 1px 3px #c4bda6; text-decoration: none;
 			
 			background: url(images/label.png) 0 -149px no-repeat;
 		}

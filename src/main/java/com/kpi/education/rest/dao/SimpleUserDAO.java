@@ -43,8 +43,24 @@ public class SimpleUserDAO extends DAO<SimpleUser, Integer> {
 
     public SimpleUser retrieveByLogin(String login) {
         try {
-            TypedQuery<SimpleUser> query = (TypedQuery<SimpleUser>) getEntityManager().createNamedQuery("byLogin");
+            TypedQuery<SimpleUser> query = (TypedQuery<SimpleUser>) getEntityManager().createNamedQuery("simpleUser.byLogin");
             query.setParameter("login", login);
+            List<SimpleUser> users = query.getResultList();
+            //checking on errors in database
+            if (users.size() > 1)
+                throw new IllegalStateException("There are more than one users with the same 'login'!");
+            return users.get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public SimpleUser retrieveByLoginAndPassword(String login, String password) {
+        try {
+            TypedQuery<SimpleUser> query = (TypedQuery<SimpleUser>) getEntityManager().createNamedQuery("simpleUser.byLoginAndPassword");
+            query.setParameter("login", login);
+            query.setParameter("password", password);
             List<SimpleUser> users = query.getResultList();
             //checking on errors in database
             if (users.size() > 1)

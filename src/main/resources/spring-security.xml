@@ -8,25 +8,24 @@
                                  http://www.springframework.org/schema/security/spring-security-3.2.xsd">
     
     <http>
-        <intercept-url pattern='/view/private/manager/*' access="ROLE_MANAGER"/>
-        <intercept-url pattern='/view/private/user/*' access='ROLE_USER' />
-
-        <form-login login-page="/view/public/login.jsp"
-                    username-parameter="username"
-                    password-parameter="password" />
-        <remember-me remember-me-parameter="remember-me" />
-        <logout logout-success-url="/"/>
+        <intercept-url pattern='/view/private/redirect' access='ROLE_USER, ROLE_MANAGER' />
+        <intercept-url pattern='/view/private/friends.jsp' access='ROLE_USER, ROLE_MANAGER' />
+        <intercept-url pattern='/view/private/messages.jsp' access='ROLE_USER, ROLE_MANAGER' />
+        <form-login
+                login-page="/view/public/login.jsp"
+                default-target-url="/welcome"
+                authentication-failure-url="/view/public/login.jsp?error"
+                username-parameter="username"
+                password-parameter="password" />
+        <logout logout-success-url="/login?logout" />
     </http>
 
     <authentication-manager>
         <authentication-provider ref="authenticationProvider"/>
-        <!--<authentication-provider>-->
-            <!--<user-service id="userDetailsService">-->
-                <!--<user name="abdellah" password="32fe5bbf04adc744455c92fa7b71e9dca8ce729c" authorities="ROLE_CLOUD_USER" />-->
-                <!--<user name="guest"    password="35675e68f4b5af7b995d9205ad0fc43842f16450" authorities="ROLE_CLOUD_USER" />-->
-            <!--</user-service>-->
-        <!--</authentication-provider>-->
     </authentication-manager>
-    <!---->
+
     <beans:bean id="authenticationProvider" class="com.kpi.education.rest.config.security.CustomAuthenticationProvider"/>
+    <!--<beans:bean id="roleBasedAuthenticationSuccessHandler" class="com.kpi.education.rest.config.security.RoleBasedAuthenticationSuccessHandler"/>-->
+
+
 </beans:beans>
