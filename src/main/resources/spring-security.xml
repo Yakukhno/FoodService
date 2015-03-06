@@ -14,7 +14,7 @@
         <intercept-url pattern='/view/private/messages.jsp' access='ROLE_USER, ROLE_MANAGER' />
         <form-login
                 login-page="/view/public/login.jsp"
-                default-target-url="/welcome"
+                default-target-url="/"
                 authentication-failure-url="/view/public/login.jsp?error"
                 username-parameter="username"
                 password-parameter="password" />

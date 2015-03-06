@@ -53,7 +53,7 @@
           <p>Password</p>
           <p><input type='password' name='password' style="border-width: 1px; border-style: solid"></p>
           <p><input id="remember" name="_spring_security_remember_me" type="checkbox" /> Remember me</p>
-          <input name="submit" type="submit" value="Login"/><p>Sign in</p></button>
+          <input name="submit" type="submit" value="Login"/>
 
           <input type="hidden" name="${_csrf.parameterName}"
                  value="${_csrf.token}" />

@@ -22,7 +22,7 @@
                     <li><a href="${root}/view/public/index.jsp">Home</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Work</a></li>
-                    <li><a href="${root}/view/public/redirect">Profile</a></li>
+                    <li><a href="${root}/view/private/redirect">Profile</a></li>
                 </ul>
             </div>
         </div>
