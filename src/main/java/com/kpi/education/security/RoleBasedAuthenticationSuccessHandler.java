@@ -1,4 +1,4 @@
-package com.kpi.education.rest.config.security;
+package com.kpi.education.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,9 +1,9 @@
-package com.kpi.education.rest.config.security;
+package com.kpi.education.security;
 
 import com.kpi.education.businesslogic.user.ManagerUser;
 import com.kpi.education.businesslogic.user.SimpleUser;
-import com.kpi.education.rest.dao.ManagerUserDAO;
-import com.kpi.education.rest.dao.SimpleUserDAO;
+import com.kpi.education.dao.ManagerUserDAO;
+import com.kpi.education.dao.SimpleUserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.List;
 
 
-public class CustomUserDetailsServise implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
     private SimpleUserDAO simpleUserDAO;
     private ManagerUserDAO managerUserDAO;

@@ -3,21 +3,13 @@ package com.kpi.education.businesslogic.user;
 import com.kpi.education.businesslogic.Message;
 import com.kpi.education.businesslogic.Photo;
 import com.kpi.education.businesslogic.data.Gender;
-import com.kpi.education.businesslogic.roles.Role;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
-@NamedQueries(value = {
-        @NamedQuery(name = "list.byKeyword.name", query = "from User u where u.firstName like :keyword or u.lastName like :keyword"),
-        @NamedQuery(name = "list.byKeyword.personalData", query = "from User u where u.personalData like :keyword "),
-        @NamedQuery(name = "list.byKeyword.login", query = "from User u where u.login like :keyword"),
-        @NamedQuery(name = "list.byGender", query = "from User u where u.gender = :gender"),
-})
 public abstract class User {
 
     @Id
@@ -43,19 +35,8 @@ public abstract class User {
 
     @ManyToMany(mappedBy = "receivers", cascade = CascadeType.ALL)
     private List<Message> receivedMessages = new ArrayList<Message>();
-    
-    @ElementCollection
-    private Set<Role> roles;
 
     protected User() {
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 
     public int getId() {
@@ -177,7 +158,6 @@ public abstract class User {
                 ", gender=" + gender +
                 ", sentMessages=" + sentMessages +
                 ", receivedMessages=" + receivedMessages +
-                ", roles=" + roles +
                 '}';
     }
 }

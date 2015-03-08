@@ -31,9 +31,8 @@
     <authentication-manager>
         <authentication-provider user-service-ref="userService" />
     </authentication-manager>
-
-    <!--<beans:bean id="authenticationProvider" class="com.kpi.education.rest.config.security.CustomAuthenticationProvider"/>-->
-    <beans:bean id="userService" class="com.kpi.education.rest.config.security.CustomUserDetailsServise"/>
+    
+    <beans:bean id="userService" class="com.kpi.education.security.CustomUserDetailsService"/>
     
 
 </beans:beans>

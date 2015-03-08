@@ -14,7 +14,7 @@ $(function() {
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            url: "http://localhost:8081/FoodService/resources/user/manager/create/form",
+            url: "http://localhost:8081/FoodService/resources/user/manager",
             data: JSON.stringify(formData),
             dataType: "json",
             success: function() {

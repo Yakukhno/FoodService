@@ -1,7 +1,7 @@
 package com.kpi.education.rest.resources;
 
 import com.kpi.education.businesslogic.user.SimpleUser;
-import com.kpi.education.rest.dao.SimpleUserDAO;
+import com.kpi.education.dao.SimpleUserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,6 @@ public class SimpleUserResource {
     
 
     @POST
-    @Path("/create/form")
     @Consumes("application/json")
     @Produces("application/json")
     public Response create(SimpleUser simpleUser) {
@@ -34,7 +33,7 @@ public class SimpleUserResource {
     }
 
     @GET
-    @Path("/retrieve/byid/{id}")
+    @Path("/byid/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response retrieve(@PathParam("id") int id) {
         SimpleUser simpleUser = simpleUserDAO.retrieve(id);
@@ -55,7 +54,6 @@ public class SimpleUserResource {
     }
 
     @PUT
-    @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(SimpleUser simpleUser) {
@@ -67,7 +65,6 @@ public class SimpleUserResource {
     }
 
     @DELETE
-    @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(SimpleUser simpleUser) {

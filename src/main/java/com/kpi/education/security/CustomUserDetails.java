@@ -1,4 +1,4 @@
-package com.kpi.education.rest.config.security;
+package com.kpi.education.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

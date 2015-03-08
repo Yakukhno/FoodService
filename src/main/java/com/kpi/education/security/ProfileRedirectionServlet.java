@@ -1,4 +1,4 @@
-package com.kpi.education.rest.config.security;
+package com.kpi.education.security;
 
 
 import org.springframework.security.core.GrantedAuthority;
@@ -26,11 +26,6 @@ public class ProfileRedirectionServlet extends HttpServlet {
             System.out.println("Has role ROLE_MANAGER");
             req.getRequestDispatcher("/view/private/ROLE_MANAGER/profile.jsp").forward(req,resp);
         }
-//        try {
-//            throw new IllegalAccessException();
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
     }
 
     private boolean hasRole(String role) {
