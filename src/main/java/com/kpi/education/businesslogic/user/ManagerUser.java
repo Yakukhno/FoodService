@@ -8,10 +8,6 @@ import java.util.List;
 
 @Entity
 @javax.persistence.Table(name = "manager_user")
-@NamedQueries(value = {
-        @NamedQuery(name = "managerUser.byLogin", query = "from ManagerUser u where u.login = :login"),
-        @NamedQuery(name = "managerUser.byLoginAndPassword", query = "from ManagerUser u where u.login = :login and u.password = :password"),
-})
 public class ManagerUser extends User {
 
     private String contactTelephone;

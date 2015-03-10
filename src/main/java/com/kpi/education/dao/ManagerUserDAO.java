@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class ManagerUserDAO implements CRUD<ManagerUser, Integer> {
@@ -18,22 +19,12 @@ public class ManagerUserDAO implements CRUD<ManagerUser, Integer> {
         this.sessionFactory = sessionFactory;
     }
 
-
     @Override
+    @Transactional
     public ManagerUser create(ManagerUser object) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        try {
-            tx.begin();
-            session.persist(object);
-            tx.commit();
-            return object;
-        } catch (Exception e) {
-            e.printStackTrace();
-            tx.rollback();
-            session.close();
-            return null;
-        }
+        Session session = sessionFactory.getCurrentSession();
+        session.persist(object);
+        return object;
     }
 
     @Override

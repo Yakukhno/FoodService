@@ -12,7 +12,7 @@ $(function() {
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            url: "http://localhost:8081/FoodService/resources/user/simple",
+            url: "/FoodService/resources/user/simple",
             data: JSON.stringify(formData),
             dataType: "json",
             success: function() {
