@@ -22,7 +22,7 @@ public class FriendshipDAO implements CRUD<Friendship, Integer> {
     }
 
     @Override
-    public Friendship retrieve(Integer object) {
+    public Friendship get(Integer object) {
         return null;
     }
 

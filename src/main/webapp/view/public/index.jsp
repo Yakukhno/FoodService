@@ -28,7 +28,7 @@
         <p>Leftbar</p>
     </div>
     <div id="centralBar">
-        <p style="text-align: center;">Welcome!</p>
+        <p style="text-align: center;">Welcome My FRIEND!</p>
         <br>
         <p><img src="${root}/view/res/images/welcome_page.png" style="margin-left: 22px" /></p>
     </div>

@@ -29,24 +29,24 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
     
     @Override
-    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         
 
         List<SimpleGrantedAuthority> auths = new java.util.ArrayList<>();
 
-        System.out.println("Finding for name: " + name);
-        SimpleUser simpleUser = simpleUserDAO.retrieveByLogin(name);
+        System.out.println("Finding for name: " + email);
+        SimpleUser simpleUser = simpleUserDAO.getByEmail(email);
         if (simpleUser != null) {
-            System.out.println("login: " + simpleUser.getLogin() + "  | password : " + simpleUser.getPassword());
+            System.out.println("login: " + simpleUser.getEmail() + "  | password : " + simpleUser.getPassword());
             auths.add(new SimpleGrantedAuthority("ROLE_USER"));
-            return new CustomUserDetails(auths, simpleUser.getLogin(), simpleUser.getPassword());
+            return new CustomUserDetails(auths, simpleUser.getEmail(), simpleUser.getPassword());
         } else {
-            ManagerUser managerUser = managerUserDAO.retrieveByLogin(name);
+            ManagerUser managerUser = managerUserDAO.getByEmail(email);
             if(managerUser != null) {
-                System.out.println("login: " + managerUser.getLogin() + "  | password : " + managerUser.getPassword());
+                System.out.println("login: " + managerUser.getEmail() + "  | password : " + managerUser.getPassword());
 
                 auths.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
-                return new CustomUserDetails(auths, managerUser.getLogin(), managerUser.getPassword());
+                return new CustomUserDetails(auths, managerUser.getEmail(), managerUser.getPassword());
             }
         }
         return null;

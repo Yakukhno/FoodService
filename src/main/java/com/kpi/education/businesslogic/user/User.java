@@ -18,17 +18,14 @@ public abstract class User {
 
     private String firstName;
     private String lastName;
-    private String email;
     @Column(unique = true)
-    private String login;
+    private String email;
     private String password;
-    private String personalData;
-    
     @OneToOne
     private Photo photo;
-
     @Enumerated(EnumType.STRING)
     private Gender gender;
+    private String personalData;
 
     @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
     private List<Message> sentMessages = new ArrayList<Message>();
@@ -95,14 +92,6 @@ public abstract class User {
         this.password = password;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public String getLastName() {
         return lastName;
     }
@@ -151,7 +140,6 @@ public abstract class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", personalData='" + personalData + '\'' +
                 ", photo=" + photo +

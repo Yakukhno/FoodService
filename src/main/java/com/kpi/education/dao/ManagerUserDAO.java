@@ -25,24 +25,24 @@ public class ManagerUserDAO implements CRUD<ManagerUser, Integer> {
     @Transactional(propagation = Propagation.REQUIRED, noRollbackFor =  DuplicatedKeyException.class)
     public ManagerUser create(ManagerUser object) {
         Session session = sessionFactory.getCurrentSession();
-        if (retrieveByLogin(object.getLogin()) != null) throw new DuplicatedKeyException();
+        if (getByEmail(object.getEmail()) != null) throw new DuplicatedKeyException();
         session.persist(object);
         return object;
     }
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-    public ManagerUser retrieve(Integer object) {
+    public ManagerUser get(Integer object) {
         Session session = sessionFactory.getCurrentSession();
         ManagerUser managerUser = (ManagerUser) session.get(ManagerUser.class, object);
         return managerUser;
     }
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-    public ManagerUser retrieveByLogin(String login) {
+    public ManagerUser getByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from ManagerUser where login = :login");
-        query.setParameter("login", login);
+        Query query = session.createQuery("from ManagerUser where email = :email");
+        query.setParameter("email", email);
         return (ManagerUser) query.uniqueResult();
     }
     

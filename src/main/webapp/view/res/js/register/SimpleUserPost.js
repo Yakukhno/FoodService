@@ -2,9 +2,9 @@ $(function() {
     $('#submitSimpleUserForm').click(function (e) {
 
         var formData = {
+            firstName: $('#firstName').val(),
             lastName: $('#lastName').val(),
             email: $('#email').val(),
-            login: $('#login').val(),
             password: $('#password').val(),
             personalData: $('#personalData').val()
         }

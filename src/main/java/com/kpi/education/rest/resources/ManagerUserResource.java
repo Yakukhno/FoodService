@@ -1,8 +1,8 @@
 package com.kpi.education.rest.resources;
 
 import com.kpi.education.businesslogic.user.ManagerUser;
-import com.kpi.education.dao.ManagerUserDAO;
 import com.kpi.education.exceptions.DuplicatedKeyException;
+import com.kpi.education.services.ManagerUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,11 +14,11 @@ import javax.ws.rs.core.Response;
 @Path("/user/manager")
 public class ManagerUserResource {
 
-    private ManagerUserDAO managerUserDAO;
+    private ManagerUserService managerUserService;
 
     @Autowired
-    public void setManagerUserDAO(ManagerUserDAO managerUserDAO) {
-        this.managerUserDAO = managerUserDAO;
+    public void setManagerUserService(ManagerUserService managerUserService) {
+        this.managerUserService = managerUserService;
     }
 
     @POST
@@ -26,7 +26,7 @@ public class ManagerUserResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(ManagerUser managerUser) {
         try {
-            ManagerUser managerUser1 = managerUserDAO.create(managerUser);
+            ManagerUser managerUser1 = managerUserService.create(managerUser);
             return Response.ok(managerUser1).status(200).build();
         } catch (DuplicatedKeyException e)  {
             return Response.status(403).build();
@@ -37,7 +37,7 @@ public class ManagerUserResource {
     @Path("/byid/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response retrieve(@PathParam("id") int id) {
-        ManagerUser managerUser = managerUserDAO.retrieve(id);
+        ManagerUser managerUser = managerUserService.get(id);
         if (managerUser != null)
             return Response.ok(managerUser).status(200).build();
         else
@@ -45,9 +45,10 @@ public class ManagerUserResource {
     }
 
     @GET
-    @Path("/byLogin/{login}")
-    public Response retrieve(@PathParam("login") String login) {
-        ManagerUser managerUser = managerUserDAO.retrieveByLogin(login);
+    @Path("/byEmail/{email}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response retrieve(@PathParam("email") String email) {
+        ManagerUser managerUser = managerUserService.getByEmain(email);
         if (managerUser != null)
             return Response.ok(managerUser).status(200).build();
         else
@@ -58,7 +59,7 @@ public class ManagerUserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(ManagerUser managerUser) {
-        ManagerUser managerUser1 = managerUserDAO.update(managerUser);
+        ManagerUser managerUser1 = managerUserService.update(managerUser);
         if (managerUser1 != null)
             return Response.status(200).build();
         else
@@ -69,7 +70,7 @@ public class ManagerUserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(ManagerUser managerUser) {
-        boolean res = managerUserDAO.delete(managerUser);
+        boolean res = managerUserService.delete(managerUser);
         if (res)
             return Response.status(200).build();
         else
