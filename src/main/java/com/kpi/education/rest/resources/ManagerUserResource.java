@@ -2,6 +2,7 @@ package com.kpi.education.rest.resources;
 
 import com.kpi.education.businesslogic.user.ManagerUser;
 import com.kpi.education.dao.ManagerUserDAO;
+import com.kpi.education.exceptions.DuplicatedKeyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,11 +25,12 @@ public class ManagerUserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(ManagerUser managerUser) {
-        ManagerUser managerUser1 = managerUserDAO.create(managerUser);
-        if (managerUser1 != null)
+        try {
+            ManagerUser managerUser1 = managerUserDAO.create(managerUser);
             return Response.ok(managerUser1).status(200).build();
-        else
+        } catch (DuplicatedKeyException e)  {
             return Response.status(403).build();
+        }
     }
 
     @GET

@@ -1,4 +1,4 @@
-package com.kpi.education.dao;
+package com.kpi.education;
 
 
 public interface CRUD <T,V> {

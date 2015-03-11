@@ -1,5 +1,6 @@
 package com.kpi.education.dao;
 
+import com.kpi.education.CRUD;
 import com.kpi.education.businesslogic.friendship.Friendship;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
