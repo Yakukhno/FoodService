@@ -34,7 +34,7 @@ public class ManagerUserResource {
     }
 
     @GET
-    @Path("/byid/{id}")
+    @Path("/byId/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response retrieve(@PathParam("id") int id) {
         ManagerUser managerUser = managerUserService.get(id);

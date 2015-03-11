@@ -48,7 +48,7 @@
         
         <br>
         <form name='f' action="<c:url value='/j_spring_security_check' />" method='POST'>
-          <p>Login</p>
+          <p>Email</p>
           <p><input type='text' name='username' style="border-width: 1px; border-style: solid"></p>
           <p>Password</p>
           <p><input type='password' name='password' style="border-width: 1px; border-style: solid"></p>

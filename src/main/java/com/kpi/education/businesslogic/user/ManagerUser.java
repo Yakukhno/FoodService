@@ -12,7 +12,7 @@ public class ManagerUser extends User {
 
     private String contactTelephone;
 
-    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Shop> shops = new ArrayList<Shop>();
 
 

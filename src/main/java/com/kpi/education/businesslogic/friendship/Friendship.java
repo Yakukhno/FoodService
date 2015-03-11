@@ -1,7 +1,7 @@
 package com.kpi.education.businesslogic.friendship;
 
 import com.kpi.education.businesslogic.data.State;
-import com.kpi.education.businesslogic.user.User;
+import com.kpi.education.businesslogic.user.SimpleUser;
 
 import javax.persistence.*;
 
@@ -19,11 +19,11 @@ public class Friendship {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "applicant_id")
-    private User applicant;
+    private SimpleUser applicant;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "acceptor_id")
-    private User acceptor;
+    private SimpleUser acceptor;
 
     @Enumerated(EnumType.STRING)
     private State state;
@@ -44,19 +44,19 @@ public class Friendship {
         this.id = id;
     }
 
-    public User getApplicant() {
+    public SimpleUser getApplicant() {
         return applicant;
     }
 
-    public void setApplicant(User applicant) {
+    public void setApplicant(SimpleUser applicant) {
         this.applicant = applicant;
     }
 
-    public User getAcceptor() {
+    public SimpleUser getAcceptor() {
         return acceptor;
     }
 
-    public void setAcceptor(User acceptor) {
+    public void setAcceptor(SimpleUser acceptor) {
         this.acceptor = acceptor;
     }
 }

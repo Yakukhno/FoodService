@@ -1,3 +1,5 @@
+<%@ page import="com.kpi.education.security.CustomUserDetails" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <c:set var="root" value="${pageContext.request.contextPath}" />
@@ -11,8 +13,10 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
     <script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>
     <script src="${root}/view/res/js/animate-bg.js" type="text/javascript"></script>
+    
+    <script src="${root}/view/res/js/load/load_managerUser.js"></script>
 </head>
-<body>
+<body onload="getContent('<%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>');">
 <div id="header">
     <div id="logo">
         <a href="${root}/view/public/index.jsp"><img src="${root}/view/res/images/foodservice.png"></a>
@@ -47,13 +51,13 @@
                 <p>About you : </p>
             </div>
             <div id="profileTextValue">
-                <p id="profileFName">Ivan</p>
+                <p id="profileFName"></p>
                 <br>
-                <p id="profileLName">Yakukhno</p>
+                <p id="profileLName"></p>
                 <br>
-                <p id="profileEmail">sokole2@yandex.ru</p>
+                <p id="profileEmail"></p>
                 <br>
-                <p id="profileInfo">Some information</p>
+                <p id="profileInfo"></p>
             </div>
             <div id="profileMenu">
                 <form>

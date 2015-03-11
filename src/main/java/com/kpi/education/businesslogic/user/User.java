@@ -27,10 +27,10 @@ public abstract class User {
     private Gender gender;
     private String personalData;
 
-    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Message> sentMessages = new ArrayList<Message>();
 
-    @ManyToMany(mappedBy = "receivers", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "receivers", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Message> receivedMessages = new ArrayList<Message>();
 
     protected User() {

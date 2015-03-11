@@ -34,7 +34,7 @@ public class SimpleUserResource {
     }
 
     @GET
-    @Path("/byid/{id}")
+    @Path("/byId/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response retrieve(@PathParam("id") int id) {
         SimpleUser simpleUser = simpleUserService.get(id);

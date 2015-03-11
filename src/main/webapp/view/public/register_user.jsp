@@ -46,7 +46,7 @@
                     <p><input id="password" onchange="checkPasswords()" type="password" placeholder="Your password" required></p>
                     <p><input id="passwordconfirm" onchange="checkPasswords()" type="password" placeholder="Confirm password" required></p>
                     <p>About you</p>
-                    <p><input id="personalData"  type="text" placeholder="Tell some words about you"></p><br>
+                    <p><input id="personalData"  type="text" maxlength="5000" placeholder="Tell some words about you"></p><br>
                     <p><button id="submitSimpleUserForm" type="submit">Send</button></p>
                 </form>    
             </div>

@@ -1,6 +1,5 @@
 package com.kpi.education.dao;
 
-import com.kpi.education.CRUD;
 import com.kpi.education.businesslogic.user.ManagerUser;
 import com.kpi.education.exceptions.DuplicatedKeyException;
 import org.hibernate.Query;

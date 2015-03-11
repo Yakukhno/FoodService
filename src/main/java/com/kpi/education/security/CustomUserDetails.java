@@ -10,8 +10,10 @@ public class CustomUserDetails implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
     private String password;
     private String username;
+    private int id;
 
-    public CustomUserDetails(Collection<? extends GrantedAuthority> authorities, String username, String password) {
+    public CustomUserDetails(int id, Collection<? extends GrantedAuthority> authorities, String username, String password) {
+        this.id = id;
         this.authorities = authorities;
         this.username = username;
         this.password = password;
@@ -62,5 +64,13 @@ public class CustomUserDetails implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

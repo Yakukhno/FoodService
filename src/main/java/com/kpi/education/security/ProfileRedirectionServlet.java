@@ -20,6 +20,7 @@ public class ProfileRedirectionServlet extends HttpServlet {
         System.out.println("Servlet working");
         if (hasRole("ROLE_USER")) {
             System.out.println("Has role ROLE_USER");
+//            req.getSession().setAttribute("");
             req.getRequestDispatcher("/view/private/ROLE_USER/profile.jsp").forward(req,resp);
         }
         if (hasRole("ROLE_MANAGER")) {
