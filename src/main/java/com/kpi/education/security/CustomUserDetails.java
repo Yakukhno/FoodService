@@ -8,15 +8,26 @@ import java.util.Collection;
 public class CustomUserDetails implements UserDetails {
     
     private Collection<? extends GrantedAuthority> authorities;
-    private String password;
-    private String username;
     private int id;
+    private String username;
+    private String password;
+    private String firstName;
+    private String lastName;
+    
+    
 
-    public CustomUserDetails(int id, Collection<? extends GrantedAuthority> authorities, String username, String password) {
+    public CustomUserDetails(Collection<? extends GrantedAuthority> authorities,
+                             int id,
+                             String username, 
+                             String password, 
+                             String firstName, 
+                             String lastName) {
         this.id = id;
         this.authorities = authorities;
         this.username = username;
         this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     @Override
@@ -58,12 +69,28 @@ public class CustomUserDetails implements UserDetails {
         this.authorities = authorities;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getId() {

@@ -36,7 +36,7 @@ public class ManagerUserResource {
     @GET
     @Path("/byId/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response retrieve(@PathParam("id") int id) {
+    public Response get(@PathParam("id") int id) {
         ManagerUser managerUser = managerUserService.get(id);
         if (managerUser != null)
             return Response.ok(managerUser).status(200).build();
@@ -47,13 +47,29 @@ public class ManagerUserResource {
     @GET
     @Path("/byEmail/{email}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response retrieve(@PathParam("email") String email) {
+    public Response get(@PathParam("email") String email) {
         ManagerUser managerUser = managerUserService.getByEmain(email);
         if (managerUser != null)
             return Response.ok(managerUser).status(200).build();
         else
             return Response.status(404).build();
     }
+
+//    /**
+//     * * This method is lightweight and it is often invoked.
+//     * @param id
+//     * @return ManagerUser entity with next attributes available: firstName, lastName, email
+//     */
+//    @GET
+//    @Path("/byId/{id}/attributes")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response getMainAttributes(@PathParam("id") Integer id) {
+//        ManagerUser managerUser = managerUserService.getMainAttributes(id);
+//        if (managerUser != null)
+//            return Response.ok(managerUser).status(200).build();
+//        else
+//            return Response.status(404).build();
+//    }
     
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)

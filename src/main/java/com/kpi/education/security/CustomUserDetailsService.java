@@ -35,12 +35,22 @@ public class CustomUserDetailsService implements UserDetailsService {
        
         if (simpleUser != null) {
             auths.add(new SimpleGrantedAuthority("ROLE_USER"));
-            return new CustomUserDetails(simpleUser.getId(), auths, simpleUser.getEmail(), simpleUser.getPassword());
+            return new CustomUserDetails(auths, 
+                    simpleUser.getId(),
+                    simpleUser.getEmail(), 
+                    simpleUser.getPassword(), 
+                    simpleUser.getFirstName(), 
+                    simpleUser.getLastName());
         } else {
             ManagerUser managerUser = managerUserDAO.getByEmail(email);
             if(managerUser != null) {
                 auths.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
-                return new CustomUserDetails(managerUser.getId(), auths, managerUser.getEmail(), managerUser.getPassword());
+                return new CustomUserDetails(auths, 
+                        managerUser.getId(), 
+                        managerUser.getEmail(), 
+                        managerUser.getPassword(),
+                        managerUser.getFirstName(),
+                        managerUser.getLastName());
             }
         }
         return null;

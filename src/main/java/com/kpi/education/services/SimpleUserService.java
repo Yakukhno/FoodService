@@ -41,6 +41,11 @@ public class SimpleUserService implements UserService<SimpleUser> {
         return simpleUser;
     }
 
+//    @Override
+//    public SimpleUser getMainAttributes(Integer key) {
+//        return null;
+//    }
+
     @Override
     public SimpleUser update(SimpleUser object) {
         SimpleUser simpleUser = simpleUserDAO.update(object);

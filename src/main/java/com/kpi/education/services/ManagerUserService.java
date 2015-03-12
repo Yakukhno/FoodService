@@ -40,7 +40,13 @@ public class ManagerUserService implements UserService<ManagerUser> {
         ManagerUser managerUser = managerUserDAO.getByEmail(email);
         return managerUser;
     }
-    
+
+//    @Override
+//    public ManagerUser getMainAttributes(Integer key) {
+//        ManagerUser managerUser = managerUserDAO.getMainAttributes(key);
+//        return managerUser;
+//    }
+
     @Override
     @Transactional
     public ManagerUser update(ManagerUser object) {

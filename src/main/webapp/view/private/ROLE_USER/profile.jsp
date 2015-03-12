@@ -7,29 +7,20 @@
 <head>
     <meta charset="utf-8">
     <title>User profile</title>
-    <link href="${root}/view/res/style.css" rel="stylesheet" type="text/css">
+    <%--<link href="${root}/view/res/style.css" rel="stylesheet" type="text/css">--%>
 
     <!--for posting data-->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
-    <script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>
-    <script src="${root}/view/res/js/animate-bg.js" type="text/javascript"></script>
+    <%--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>--%>
+    <%--<script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>--%>
+    <%--<script src="${root}/view/res/js/animate-bg.js" type="text/javascript"></script>--%>
 
     <script src="${root}/view/res/js/load/load_simpleUser.js"></script>
 </head>
 <body onload="getContent('<%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>');">
-<div id="header">
-    <div id="logo">
-        <a href="${root}/view/public/index.jsp"><img src="${root}/view/res/images/foodservice.png"></a>
-    </div>
-    <div id="menu">
-        <ul id="nav">
-            <li><a href="${root}/view/public/index.jsp">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Work</a></li>
-            <li><a href="${root}/view/private/redirect">Profile</a></li>
-        </ul>
-    </div>
-</div>
+
+<%--include header--%>
+<%@ include file="/view/public/common/header.jsp" %>
+
 <div id="content">
     <div id="leftBar">
         <p>Leftbar</p>
@@ -51,13 +42,13 @@
                 <p>About you : </p>
             </div>
             <div id="profileTextValue">
-                <p id="profileFName">Ivan</p>
+                <p id="profileFName"></p>
                 <br>
-                <p id="profileLName">Yakukhno</p>
+                <p id="profileLName"></p>
                 <br>
-                <p id="profileEmail">sokole2@yandex.ru</p>
+                <p id="profileEmail"></p>
                 <br>
-                <p id="profileInfo">Some information</p>
+                <p id="profileInfo"></p>
             </div>
             <div id="profileMenu">
                 <form>
@@ -70,32 +61,6 @@
                 </form>
             </div>
         </div>
-
-
-        <c:url value="/j_spring_security_logout" var="logoutUrl" />
-
-        <!-- csrt for log out-->
-        <form action="${logoutUrl}" method="post" id="logoutForm">
-            <input type="hidden"
-                   name="${_csrf.parameterName}"
-                   value="${_csrf.token}" />
-        </form>
-
-        <script>
-            function formSubmit() {
-                document.getElementById("logoutForm").submit();
-            }
-        </script>
-
-        <c:if test="${pageContext.request.userPrincipal.name != null}">
-            <h2>
-                Welcome : ${pageContext.request.userPrincipal.name} | <a
-                    href="javascript:formSubmit()"> Logout</a>
-            </h2>
-        </c:if>
-        
-        
-        
     </div>
     <div id="rightBar">
         <p>Rightbar</p>

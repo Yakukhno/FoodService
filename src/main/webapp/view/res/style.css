@@ -38,6 +38,29 @@ body {
 	background: url(images/bg1.png) center top no-repeat;
 }
 
+#profileHeader {
+    vertical-align: top;
+    height: 20px;
+    width: 250px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding: 16px 20px 35px 20px;
+    font-size: 14px;
+    margin-left: 12px;
+    display: inline-block;
+	background-color: #FFFBED;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+}
+
+#profileHeaderText {
+    width: 174px;
+    display: inline-block;
+}
+
 #logo {
     vertical-align: top;
     margin-left: 25px;
@@ -153,7 +176,7 @@ button {
     padding: 5px;
 }
 
-button#imageButton {
+button.imageButton {
     background-color: darksalmon; 
     width: auto;
     height: 45px;

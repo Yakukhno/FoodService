@@ -3,31 +3,15 @@
 <c:set var="root" value="${pageContext.request.contextPath}" />
 	<head>
 		<meta charset="utf-8">
-		<title>Register</title>
-        <link href="${root}/view/res/style.css" rel="stylesheet" type="text/css">
-
-        <!--for posting data-->
-        <!--<script src="js/lib/JQuery-2.1.1.js"></script>-->
+		<title>Register Manager</title>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
         <script src="${root}/view/res/js/register/ManagerUserPost.js"></script>
-        <script src="${root}/view/res/js/animate-bg.js" type="text/javascript"></script>
-        <script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>
-
     </head>
 	<body>
-        <div id="header">
-            <div id="logo">
-                <a href="index.jsp"><img src="../res/images/foodservice.png"></a>
-            </div>
-            <div id="menu">
-                <ul id="nav">
-                    <li><a href="${root}/view/public/index.jsp">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Work</a></li>
-                    <li><a href="${root}/view/private/redirect">Profile</a></li>
-                </ul>
-            </div>
-        </div>
+        
+        <%--include header--%>
+        <%@ include file="/view/public/common/header.jsp" %>
+        
         <div id="content">   
             <div id="leftbar">
                 <p>Leftbar</p>
@@ -35,7 +19,7 @@
             <div id="centralbar">
                 <div id="title"><p>Sign up as manager</p></div>
                 <br>
-                <form action="${root}/view/private/redirect">
+                <form action="${root}/view/private/redirect" accept-charset=utf-8>
                     <p>First name</p>
                     <p><input id="firstName"  type="text" placeholder="Your first name" required></p>
                     <p>Last name</p>
@@ -48,7 +32,7 @@
                     <p><input id="password" onchange="checkPasswords()" type="password" placeholder="Your password" required></p>
                     <p><input id="passwordconfirm" onchange="checkPasswords()" type="password" placeholder="Confirm password" required></p>
                     <p>About you</p>
-                    <p><input id="personalData"  type="text" maxlength="5000" placeholder="Tell some words about you"></p><br>
+                    <p><input id="personalData"  type="text" placeholder="Tell some words about you"></p><br>
                     <p><button id="submitManagerUserForm" type="submit" >Send</button></p>
                 </form>
             </div>

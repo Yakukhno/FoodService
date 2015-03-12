@@ -29,10 +29,10 @@
     </http>
 
     <authentication-manager>
-        <authentication-provider user-service-ref="userService" />
+        <authentication-provider user-service-ref="userService"  />
     </authentication-manager>
     
     <beans:bean id="userService" class="com.kpi.education.security.CustomUserDetailsService"/>
-    
+    <beans:bean id="authenticationSuccessHandler" class="com.kpi.education.security.CustomAuthenticationSuccessHandler"/>
 
 </beans:beans>
