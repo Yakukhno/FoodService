@@ -4,10 +4,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Food Service</title>
-    <%--<link href="${root}/view/res/style.css" rel="stylesheet" type="text/css" media="screen" />--%>
-    <%--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>--%>
-    <%--<script src="${root}/view/res/js/animate-bg.js" type="text/javascript"></script>--%>
-    <%--<script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>--%>
 </head>
 <body>
 

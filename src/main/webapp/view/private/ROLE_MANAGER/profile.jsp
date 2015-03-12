@@ -7,13 +7,7 @@
 <head>
     <meta charset="utf-8">
     <title>Manager profile</title>
-    <%--<link href="${root}/view/res/style.css" rel="stylesheet" type="text/css">--%>
-
-    <%--<!--for posting data-->--%>
-    <%--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>--%>
-    <%--<script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>--%>
-    <%--<script src="${root}/view/res/js/animate-bg.js" type="text/javascript"></script>--%>
-    
+    <script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>
     <script src="${root}/view/res/js/load/load_managerUser.js"></script>
 </head>
 <body onload="getContent('<%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>');">

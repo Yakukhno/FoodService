@@ -30,7 +30,6 @@
 
     <c:set var="show" value="<%=SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof CustomUserDetails %>"/>
     <c:if test="${show}">
-        <c:set var="id" value="<%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>"/>
         <div id="profileHeader">
               <div id="profileHeaderText">
                 <p id="fNameIconData" style="display: inline-block; vertical-align: top; width: 120px"><sec:authentication property="principal.firstName" /></p>

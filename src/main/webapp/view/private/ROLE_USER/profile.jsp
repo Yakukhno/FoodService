@@ -7,13 +7,7 @@
 <head>
     <meta charset="utf-8">
     <title>User profile</title>
-    <%--<link href="${root}/view/res/style.css" rel="stylesheet" type="text/css">--%>
-
-    <!--for posting data-->
-    <%--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>--%>
-    <%--<script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>--%>
-    <%--<script src="${root}/view/res/js/animate-bg.js" type="text/javascript"></script>--%>
-
+    <script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>
     <script src="${root}/view/res/js/load/load_simpleUser.js"></script>
 </head>
 <body onload="getContent('<%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>');">
@@ -52,10 +46,10 @@
             </div>
             <div id="profileMenu">
                 <form>
-                    <button formaction="${root}/view/private/friends.jsp" name="imageButton" onmousemove="moveImage(this)" onmouseout="outImage(this)">
+                    <button formaction="${root}/view/private/friends.jsp" class="imageButton" onmousemove="moveImage(this)" onmouseout="outImage(this)">
                         <img src="${root}/view/res/images/ic_action_user.png"/>
                     </button>
-                    <button formaction="${root}/view/private/messages.jsp" name="imageButton" onmousemove="moveImage(this)" onmouseout="outImage(this)">
+                    <button formaction="${root}/view/private/messages.jsp" class="imageButton" onmousemove="moveImage(this)" onmouseout="outImage(this)">
                         <img src="${root}/view/res/images/ic_action_mail.png"/>
                     </button>
                 </form>

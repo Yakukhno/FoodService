@@ -6,7 +6,6 @@
 		<title>Register User</title>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
         <script src="${root}/view/res/js/register/SimpleUserPost.js"></script>
-
 	</head>
 	<body>
 
