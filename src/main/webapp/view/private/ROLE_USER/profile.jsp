@@ -7,10 +7,11 @@
 <head>
     <meta charset="utf-8">
     <title>User profile</title>
-    <script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>
-    <script src="${root}/view/res/js/load/load_simpleUser.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
+    <%--<script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>--%>
+    <script src="${root}/view/res/js/load/REST_client.js"></script>
 </head>
-<body onload="getContent('<%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>');">
+<body onload="SimpleUserByID('<%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>');">
 
 <%--include header--%>
 <%@ include file="/view/public/common/header.jsp" %>

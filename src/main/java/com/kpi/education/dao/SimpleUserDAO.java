@@ -49,7 +49,7 @@ public class SimpleUserDAO implements CRUD<SimpleUser, Integer> {
     @Transactional(propagation = Propagation.REQUIRED)
     public SimpleUser update(SimpleUser object) {
         Session session = sessionFactory.getCurrentSession();
-        session.update(object);
+        session.merge(object);
         return object;
     }
 
@@ -60,7 +60,7 @@ public class SimpleUserDAO implements CRUD<SimpleUser, Integer> {
         Query query = session.createQuery("delete SimpleUser where id = :id");
         query.setParameter("id", object.getId());
         int res = query.executeUpdate();
-        return res == 1 ? true : false;
+        return res == 1;
     }
     
 }

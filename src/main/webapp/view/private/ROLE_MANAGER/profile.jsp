@@ -7,10 +7,11 @@
 <head>
     <meta charset="utf-8">
     <title>Manager profile</title>
-    <script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>
-    <script src="${root}/view/res/js/load/load_managerUser.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
+    <%--<script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>--%>
+    <script src="${root}/view/res/js/load/REST_client.js"></script>
 </head>
-<body onload="getContent('<%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>');">
+<body onload="ManagerUserByID('<%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>');">
 
 <%--include header--%>
 <%@ include file="/view/public/common/header.jsp" %>
@@ -46,8 +47,8 @@
             </div>
             <div id="profileMenu">
                 <form>
-                    <button formaction="${root}/view/private/friends.jsp" class="imageButton" onmousemove="moveImage(this)" onmouseout="outImage(this)">
-                        <img src="${root}/view/res/images/ic_action_user.png"/>
+                    <button formaction="${root}/view/private/ROLE_MANAGER/add_shop.jsp" class="imageButton" onmousemove="moveImage(this)" onmouseout="outImage(this)">
+                        <img src="${root}/view/res/images/ic_store_white_48dp.png"/>
                     </button>
                     <button formaction="${root}/view/private/messages.jsp" class="imageButton" onmousemove="moveImage(this)" onmouseout="outImage(this)">
                         <img src="${root}/view/res/images/ic_action_mail.png"/>

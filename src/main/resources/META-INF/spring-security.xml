@@ -25,7 +25,6 @@
         </session-management>
 
         <remember-me key="FoodService" token-validity-seconds="864000" />
-        
     </http>
 
     <authentication-manager>

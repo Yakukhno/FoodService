@@ -1,3 +1,8 @@
+/**
+ * @author Alexander Farkas
+ * v. 1.21
+ */
+
 
 (function($) {
 	if(!document.defaultView || !document.defaultView.getComputedStyle){ // IE6-IE8

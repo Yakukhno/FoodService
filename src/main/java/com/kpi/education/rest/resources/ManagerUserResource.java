@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Component
-@Path("/user/manager")
+@Path("/users/manager")
 public class ManagerUserResource {
 
     private ManagerUserService managerUserService;
@@ -50,7 +50,7 @@ public class ManagerUserResource {
     public Response get(@PathParam("email") String email) {
         ManagerUser managerUser = managerUserService.getByEmain(email);
         if (managerUser != null)
-            return Response.ok(managerUser).status(200).build();
+            return Response.ok(managerUser.getId()).status(200).build();
         else
             return Response.status(404).build();
     }

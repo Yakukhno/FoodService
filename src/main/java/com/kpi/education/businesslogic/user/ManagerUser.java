@@ -1,8 +1,12 @@
 package com.kpi.education.businesslogic.user;
 
 import com.kpi.education.businesslogic.Shop;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +16,7 @@ public class ManagerUser extends User {
 
     private String contactTelephone;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Shop> shops = new ArrayList<Shop>();
 

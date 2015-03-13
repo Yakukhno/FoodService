@@ -63,7 +63,7 @@ public class ManagerUserDAO implements CRUD<ManagerUser, Integer> {
     @Transactional(propagation = Propagation.REQUIRED)
     public ManagerUser update(ManagerUser object) {
         Session session = sessionFactory.getCurrentSession();
-        session.update(object);
+        session.merge(object);
         return object;
     }
 
@@ -74,6 +74,6 @@ public class ManagerUserDAO implements CRUD<ManagerUser, Integer> {
         Query query = session.createQuery("delete ManagerUser where id = :id");
         query.setParameter("id", object.getId());
         int res = query.executeUpdate();
-        return res == 1 ? true : false;
+        return res == 1;
     }
 }

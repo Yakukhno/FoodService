@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Component
-@Path("/user/simple")
+@Path("/users/simple")
 public class SimpleUserResource {
     
     private SimpleUserService simpleUserService;
@@ -27,7 +27,7 @@ public class SimpleUserResource {
     public Response create(SimpleUser simpleUser) {
         try {
             SimpleUser managerUser1 = simpleUserService.create(simpleUser);
-            return Response.ok(managerUser1).status(200).build();
+            return Response.ok(managerUser1.getId()).status(200).build();
         } catch (DuplicatedKeyException e)  {
             return Response.status(403).build();
         }
@@ -36,7 +36,7 @@ public class SimpleUserResource {
     @GET
     @Path("/byId/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response retrieve(@PathParam("id") int id) {
+    public Response get(@PathParam("id") int id) {
         SimpleUser simpleUser = simpleUserService.get(id);
         if (simpleUser != null)
             return Response.ok(simpleUser).status(200).build();
@@ -47,7 +47,7 @@ public class SimpleUserResource {
     @GET
     @Path("/byEmail/{email}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response retrieve(@PathParam("email") String email) {
+    public Response get(@PathParam("email") String email) {
         SimpleUser simpleUser = simpleUserService.getByEmain(email);
         if (simpleUser != null)
             return Response.ok(simpleUser).status(200).build();

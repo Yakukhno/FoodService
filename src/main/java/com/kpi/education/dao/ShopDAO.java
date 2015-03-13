@@ -2,6 +2,7 @@ package com.kpi.education.dao;
 
 import com.kpi.education.businesslogic.Shop;
 import com.kpi.education.exceptions.DuplicatedKeyException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,18 +31,26 @@ public class ShopDAO implements CRUD<Shop, Integer> {
     @Override
     @Transactional(readOnly = true)
     public Shop get(Integer object) {
-        return null;
+        Session session = sessionFactory.getCurrentSession();
+        Shop shop = (Shop) session.get(Shop.class, object);
+        return shop;
     }
 
     @Override
     @Transactional(readOnly = true)
     public Shop update(Shop object) {
-        return null;
+        Session session = sessionFactory.getCurrentSession();
+        session.merge(object);
+        return object;
     }
 
     @Override
     @Transactional
     public boolean delete(Shop object) {
-        return false;
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("delete Shop where id = :id");
+        query.setParameter("id", object.getId());
+        int res = query.executeUpdate();
+        return res == 1;
     }
 }

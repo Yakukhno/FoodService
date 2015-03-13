@@ -22,7 +22,7 @@
   <div id="menu">
     <ul id="nav">
       <li><a href="${root}/view/public/index.jsp">Home</a></li>
-      <li><a href="#">Service</a></li>
+      <li><a href="${root}/view/public/service.jsp">Service</a></li>
       <li><a href="#">Work</a></li>
       <li><a href="${root}/view/private/redirect">Profile</a></li>
     </ul>
@@ -32,9 +32,11 @@
     <c:if test="${show}">
         <div id="profileHeader">
               <div id="profileHeaderText">
-                <p id="fNameIconData" style="display: inline-block; vertical-align: top; width: 120px"><sec:authentication property="principal.firstName" /></p>
-                <p id="lNameIconData" style="display: inline-block; vertical-align: top; width: 120px"><sec:authentication property="principal.lastName" /></p>
-                <p id="emailIconData" style="vertical-align: top; width: 120px"><sec:authentication property="principal.username" /></p>
+                    <p id="lNameIconData" style="display: inline-block; vertical-align: top; width: 120px">
+                        <sec:authentication property="principal.firstName" />
+                        <sec:authentication property="principal.lastName" />
+                    </p>
+                    <p id="emailIconData" style="vertical-align: top; width: 120px"><sec:authentication property="principal.username" /></p>
               </div>
               <button style="display: inline-block; vertical-align: top;" onclick="javascript:formSubmit()"><p>Logout</p></button>
               <c:url value="/j_spring_security_logout" var="logoutUrl" />

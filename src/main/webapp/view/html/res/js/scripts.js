@@ -38,7 +38,7 @@ function uploadShops() {
     for (var i = 0; i < 5; i++) {
         var p = document.createElement("div");
         p.setAttribute("id", "shop");
-        p.innerHTML = '<h3>McDonalds ' + i + '</h3> <div id="shopText"> <p>Description: fddsfsdfsdfffsfssdsdfs sddf fsdfsdfsd ssdfsdf sddfsd ssdfsdfsdsdsdf sfsfs  sdfs dfsdsf </p> </div> <div id="profileImage"> <img height="150px" src="${root}/view/res/images/photo.jpg"/></div>';
+        p.innerHTML = '<h3>McDonalds ' + i + '</h3> <div id="shopText"> <p>Description: fddsfsdfsdfffsfssdsdfs sddf fsdfsdfsd ssdfsdf sddfsd ssdfsdfsdsdsdf sfsfs  sdfs dfsdsf </p> </div> <div id="profileImage"> <img height="150px" src="res/images/photo.jpg"/></div>';
         bar.appendChild(p);      
     }
 }
