@@ -1,0 +1,250 @@
+
+body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, img, form, fieldset, input, textarea, blockquote {
+    font-family: Montserrat;
+	margin: 0; padding: 0; border: 0;
+}
+
+@font-face {
+    font-family: Abeezee;
+    src: url(fonts/Abeezee/abeezee-regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url(fonts/Montserrat/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url(fonts/Montserrat/Montserrat-Bold.ttf);
+}
+
+body {
+    background: url(images/wood.png);
+}
+
+#header {
+    vertical-align: top;
+    width: 1366px;
+    margin: 0 auto;
+}
+
+#menu {
+    vertical-align: top;
+    width: 700px;
+    height: 150px;
+    margin-left: 12px;
+    display: inline-block;
+	background: url(images/bg1.png) center top no-repeat;
+}
+
+#profileHeader {
+    vertical-align: top;
+    height: 20px;
+    width: 250px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding: 16px 20px 35px 20px;
+    font-size: 14px;
+    margin-left: 12px;
+    display: inline-block;
+	background-color: #FFFBED;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+}
+
+#profileHeaderText {
+    width: 174px;
+    display: inline-block;
+}
+
+#logo {
+    vertical-align: top;
+    margin-left: 25px;
+    height: 150px;
+    width: 290px;
+    display: inline-block;
+}
+
+#content {
+    top: 150px;
+    margin: 0 auto;
+    width: 1366px;
+    font-size: 18px;
+}
+
+#leftBar {
+    vertical-align: top;
+    margin-left: 25px;
+	width: 250px; 
+	height: 385px;
+	padding: 20px 20px 35px 20px; 
+    display: inline-block;
+	background-color: #FFFBED;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+	color : #000000;
+}
+
+#centralBar {
+    vertical-align: top;
+    margin-left: 20px;
+    margin-right: 20px;
+	width: 640px; 
+	height: auto;
+	padding: 15px 20px 35px 20px;
+    font: bold;
+    display: inline-block;
+    background: #FFFBED;
+    border-radius: 30px;
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+	color: #000000;
+}
+
+#rightBar {
+	vertical-align: top;
+	width: 250px; 
+	height: 385px;
+	padding: 20px 20px 35px 20px;
+    display: inline-block;
+	background-color: #FFFBED;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+	color : #000000;
+}
+
+#shop {
+    vertical-align: top;
+    margin-left: 20px;
+    margin-top: 20px;
+    width: 560px;
+	height: auto;
+	padding: 15px 20px 35px 20px;
+    font: bold;
+    display: inline-block;
+    background-color: bisque;
+    border-radius: 20px;
+    border-color: darkred;
+    border-width: 2px;
+    border-style: solid;
+}
+
+#shopText {
+    width: 400px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#profileImage {
+    height: 150px;
+    width: 150px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#profileText {
+    width: auto;
+    height: auto;
+    margin-top: -155px;
+    margin-left: 160px;
+}
+
+#profileTextKey {
+    width: 120px;
+    height: auto;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#profileTextValue {
+    width: 280px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#profileMenu {;
+    width: 55px;
+    height: auto;
+    vertical-align: top;
+    display: inline-block;
+
+}
+
+h2 {
+    color: darkred;
+    text-shadow: 0 1px 3px #c4bda6;
+	font-size: 25px;
+}
+
+h3 {
+    color: darkred;
+}
+
+input {
+    font-size: 16px;
+    border-width: 1px;
+    border-style: dotted;
+    margin-bottom: 7px;
+}
+
+input.photo {
+    font-size: px;
+    border-width: 1px;
+    border-style: dotted;
+    margin-bottom: 7px;
+}
+
+button {
+    font: bold 16px Sans-Serif;
+    margin-bottom: 7px;
+    color: darkred;
+    padding: 5px;
+    background-color: antiquewhite;
+    border-color: firebrick;
+    border-radius: 5px;
+}
+
+button.imageButton {
+    background-color: darksalmon; 
+    width: auto;
+    height: 45px;
+    padding: 0px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: firebrick;
+    border-radius: 5px;
+}
+
+ul#nav {
+	width: 700px; margin: 0 auto; text-align: center; overflow: hidden;
+}
+	ul#nav li {
+		float: left; list-style: none; 
+	}
+		ul#nav li a {
+			display: block; width: 97px; height: 77px; 
+			padding: 68px 0 0 0; margin: 0 32px 0 44px;
+			font: bold 16px; text-transform: uppercase;
+			color: darkred; text-shadow: 0 1px 3px #c4bda6; text-decoration: none;
+			
+			background: url(images/label.png) 0 -149px no-repeat;
+		}
+			ul#nav li a:hover {
+				background: url(images/label.png) 0 0 no-repeat;
+				color: #eee9d9; text-shadow: 0 2px 3px #4c2222;
+			}
+			
+			ul#nav li a.js:hover {
+				background: url(images/label.png) 0 -149px no-repeat;
+			}

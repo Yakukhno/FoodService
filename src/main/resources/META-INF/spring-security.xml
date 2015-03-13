@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                 http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                                 http://www.springframework.org/schema/security
+                                 http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+    <beans:import resource="spring-context.xml"/>
+    
+    <http auto-config="true"  >
+        <intercept-url pattern='/view/private/redirect' access='ROLE_USER, ROLE_MANAGER' />
+        <intercept-url pattern='/view/private/friends.jsp' access='ROLE_USER, ROLE_MANAGER' />
+        <intercept-url pattern='/view/private/messages.jsp' access='ROLE_USER, ROLE_MANAGER' />
+        <form-login
+                login-page="/view/public/login.jsp"
+                default-target-url="/"
+                authentication-failure-url="/view/public/login.jsp?error"
+                username-parameter="username"
+                password-parameter="password" />
+        <logout logout-success-url="/" delete-cookies="JSESSIONID" />
+
+        <session-management invalid-session-url="/" session-fixation-protection="newSession">
+            <concurrency-control max-sessions="3" error-if-maximum-exceeded="true" />
+        </session-management>
+
+        <remember-me key="FoodService" token-validity-seconds="864000" />
+        
+    </http>
+
+    <authentication-manager>
+        <authentication-provider user-service-ref="userService"  />
+    </authentication-manager>
+    
+    <beans:bean id="userService" class="com.kpi.education.security.CustomUserDetailsService"/>
+    <beans:bean id="authenticationSuccessHandler" class="com.kpi.education.security.CustomAuthenticationSuccessHandler"/>
+
+</beans:beans>
