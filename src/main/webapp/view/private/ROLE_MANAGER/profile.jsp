@@ -14,15 +14,9 @@
             managerID = <%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>
                     shops = ShopsByManagerUserID(managerID);
                     ManagerUserByID(managerID);
-            
-//            var imgContainer = $("#shopContainer");
-//            $.each(shops,function(key,value){
-//                console.log(imgContainer);
-//                imgContainer.append('<hr><br> value.name <br> value.location.country <hr><br> ');
-//            })
-            var div = document.getElementById("#shopContainer");
-            shops.forEach(function(item, index){
-                div.innerHTML = div.innerHTML + ("<hr><br> item.name <br> item.location.country <hr><br>");
+
+            $.each(results, function() {
+                $("#shopContainer").append($('<option></option>').text(this.name).val(this.location.country));
             });
         }
 

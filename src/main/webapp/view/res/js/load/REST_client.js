@@ -117,9 +117,8 @@ function ShopsByManagerUserID(managerId) {
         type: "GET",
         url: "/FoodService/resources/shops/byManagerID/" + managerId,
         dataType: 'json',
-        success: function(response) {
-            alert(response)
-            return JSON.parse(response);
+        success: function(results) {
+            return results;
         },
         error: function () {
             alert("ERROR");
