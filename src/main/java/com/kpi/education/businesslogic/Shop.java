@@ -2,6 +2,7 @@ package com.kpi.education.businesslogic;
 
 import com.kpi.education.businesslogic.user.ManagerUser;
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,15 +28,18 @@ public class Shop {
     @JoinColumn(name = "manager_user_id")
     private ManagerUser manager;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Table> tables = new ArrayList<Table>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Photo> photos = new ArrayList<Photo>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Dish> dishes = new ArrayList<Dish>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rating> ratings = new ArrayList<Rating>();
 

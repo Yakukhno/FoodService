@@ -2,6 +2,7 @@ package com.kpi.education.businesslogic;
 
 import com.kpi.education.businesslogic.data.State;
 import com.kpi.education.businesslogic.user.SimpleUser;
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -15,6 +16,7 @@ public class Rating {
     private int value;
     private String comment;
 
+    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shop_id")
     private Shop shop;

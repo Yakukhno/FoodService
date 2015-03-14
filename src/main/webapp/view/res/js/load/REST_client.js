@@ -80,7 +80,7 @@ function SimpleUserCreate() {
 
 function ShopCreate(managerUserID) {
 
-    var location = {
+    location = {
         building: $('#building').val(),
         street: $('#street').val(),
         city: $('#city').val(),
@@ -88,7 +88,7 @@ function ShopCreate(managerUserID) {
         zipcode: $('#zipCode').val()
     }
 
-    var shop = {
+    shop = {
         name: $('#shopName').val(),
         location: location,
         description: $('#description').val()
@@ -111,6 +111,9 @@ function ShopCreate(managerUserID) {
 }
 
 //returns List of Shops
+/**
+ * @return {null}
+ */
 function ShopsByManagerUserID(managerId) {
 
     $.ajax({
@@ -118,6 +121,14 @@ function ShopsByManagerUserID(managerId) {
         url: "/FoodService/resources/shops/byManagerID/" + managerId,
         dataType: 'json',
         success: function(results) {
+            $.each(results, function() {
+                $("#shopContainer").append(
+                    $('<option></option>').text(this.name),
+                    $('<option></option>').text(this.location.country),
+                    $('<option></option>').text(this.location.city),
+                    $('<option></option>').text(this.location.building),
+                    $('<hr><br>'));
+            });
             return results;
         },
         error: function () {

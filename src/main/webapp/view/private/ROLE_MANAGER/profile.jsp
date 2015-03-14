@@ -14,10 +14,6 @@
             managerID = <%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>
                     shops = ShopsByManagerUserID(managerID);
                     ManagerUserByID(managerID);
-
-            $.each(results, function() {
-                $("#shopContainer").append($('<option></option>').text(this.name).val(this.location.country));
-            });
         }
 
     </script>
