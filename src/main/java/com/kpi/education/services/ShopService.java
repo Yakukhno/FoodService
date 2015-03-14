@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 @Transactional
 public class ShopService {
@@ -37,6 +40,12 @@ public class ShopService {
     public Shop get(Integer key) {
         Shop shop = shopDAO.get(key);
         return shop;
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Shop> getByCriterion(Map<String, Object> criterionParameters) {
+        List<Shop> result = shopDAO.getByCriterion(criterionParameters);
+        return result;
     }
 
 

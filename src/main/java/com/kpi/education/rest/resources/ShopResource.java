@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component
 @Path("/shops")
@@ -47,10 +50,29 @@ public class ShopResource {
     
     @GET
     @Path("/byCriterion")
-    public Response getByCriterion(@DefaultValue("0") @QueryParam("minRating") int minRating,
-                                   @DefaultValue("5") @QueryParam("minRating") int maxRating) {
-        
-        return null;
+    public Response getByCriterion(@DefaultValue("") @QueryParam("nameLike") String name,
+                                   @DefaultValue("0") @QueryParam("minRating") int minRating,
+                                   @DefaultValue("5") @QueryParam("maxRating") int maxRating,
+                                   @DefaultValue("") @QueryParam("countryLike") String country,
+                                   @DefaultValue("") @QueryParam("cityLike") String city,
+                                   @DefaultValue("") @QueryParam("streetLike") String street,
+                                   @DefaultValue("") @QueryParam("buildingLike") String building,
+                                   @DefaultValue("0") @QueryParam("firstResult") int firstResut,
+                                   @DefaultValue("0") @QueryParam("maxResults") int maxResults) {
+        Map<String, Object> parameters = new HashMap();
+        parameters.put("nameLike", name);
+        parameters.put("minRating", minRating);
+        parameters.put("maxRating", maxRating);
+        parameters.put("countryLike", country);
+        parameters.put("cityLike", city);
+        parameters.put("streetLike", street);
+        parameters.put("buildingLike", building);
+        List<Shop> result = shopService.getByCriterion(parameters);
+        if (result.size() != 0) {
+            return Response.ok(result).status(200).build();
+        } else {
+            return Response.status(404).build();
+        }
     }
 
     @PUT

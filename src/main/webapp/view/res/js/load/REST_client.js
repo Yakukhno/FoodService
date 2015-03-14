@@ -108,5 +108,4 @@ function ShopCreate(managerUserID) {
         }
     });
     return false;
-    
 }
