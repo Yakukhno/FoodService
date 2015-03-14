@@ -109,3 +109,23 @@ function ShopCreate(managerUserID) {
     });
     return false;
 }
+
+//returns List of Shops
+function ShopsByManagerUserID(managerId) {
+
+    $.ajax({
+        type: "GET",
+        url: "/FoodService/resources/shops/byManagerID/" + managerId,
+        dataType: 'json',
+        success: function(response) {
+            alert(response)
+            return JSON.parse(response);
+        },
+        error: function () {
+            alert("ERROR");
+            return null;
+        }
+    });
+    return null;
+    
+}

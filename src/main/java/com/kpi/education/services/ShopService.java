@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.ws.rs.PathParam;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +41,12 @@ public class ShopService {
     public Shop get(Integer key) {
         Shop shop = shopDAO.get(key);
         return shop;
+    }
+
+    @Transactional(readOnly = true)
+    public List<Shop> getByManagerID(@PathParam("managerID") Integer managerID) {
+        List<Shop> result = shopDAO.getByManagerID(managerID);
+        return result;
     }
     
     @Transactional(readOnly = true)

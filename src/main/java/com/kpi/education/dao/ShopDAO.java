@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.ws.rs.PathParam;
 import java.util.List;
 import java.util.Map;
 
@@ -46,10 +47,18 @@ public class ShopDAO implements CRUD<Shop, Integer> {
     }
 
     @Transactional(readOnly = true)
+    public List<Shop> getByManagerID(@PathParam("managerID") Integer managerID) {
+        Session session = sessionFactory.getCurrentSession();
+        List<Shop> shops = session.createQuery(
+                "from Shop where manager.id = :managerID")
+                .setParameter("managerID", managerID).list();
+        return shops;
+    }
+    
+    @Transactional(readOnly = true)
     public List<Shop> getByCriterion(Map<String, Object> criterionParameters) {
         Session session = sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(Shop.class, "s");
-        
         String param;
         if (!(param = (String) criterionParameters.get("nameLike")).equals("")) {
             criteria.add(Restrictions.like("name", param));
@@ -66,11 +75,9 @@ public class ShopDAO implements CRUD<Shop, Integer> {
         if (!(param = (String) criterionParameters.get("buildingLike")).equals("")) {
             criteria.add(Restrictions.like("location.building", param));
         }
-        
         DetachedCriteria avg = DetachedCriteria.forClass(Rating.class, "r")
                 .setProjection(Projections.avg("r.value"))
                 .add(Restrictions.eq("r.shop", "s"));
-        
         int temp;
         if ((temp = (Integer) criterionParameters.get("maxRating")) != 0) {
             criteria.setReadOnly(true);

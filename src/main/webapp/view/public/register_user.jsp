@@ -9,7 +9,7 @@
         <script>
             $(function() {
                 $('#submitSimpleUserForm').click(function (e) {
-                    ManagerUserCreate();
+                    SimpleUserCreate();
                 })
             })
         </script>

@@ -8,10 +8,27 @@
     <meta charset="utf-8">
     <title>Manager profile</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
-    <%--<script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>--%>
     <script src="${root}/view/res/js/load/REST_client.js"></script>
+    <script>
+        function onLoadBody() {
+            managerID = <%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>
+                    shops = ShopsByManagerUserID(managerID);
+                    ManagerUserByID(managerID);
+            
+//            var imgContainer = $("#shopContainer");
+//            $.each(shops,function(key,value){
+//                console.log(imgContainer);
+//                imgContainer.append('<hr><br> value.name <br> value.location.country <hr><br> ');
+//            })
+            var div = document.getElementById("#shopContainer");
+            shops.forEach(function(item, index){
+                div.innerHTML = div.innerHTML + ("<hr><br> item.name <br> item.location.country <hr><br>");
+            });
+        }
+
+    </script>
 </head>
-<body onload="ManagerUserByID('<%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>');">
+<body id="body" onload="onLoadBody()">
 
 <%--include header--%>
 <%@ include file="/view/public/common/header.jsp" %>
@@ -58,7 +75,7 @@
         </div>
     </div>
     <div id="rightBar">
-        <p>Rightbar</p>
+        <div id="shopContainer"></div>
     </div>
 </div>
 </body>

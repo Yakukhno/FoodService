@@ -47,6 +47,21 @@ public class ShopResource {
         else
             return Response.status(404).build();
     }
+
+    @GET
+    @Path("/byManagerID/{managerID}")
+    public Response getByManagerID(@PathParam("managerID") Integer managerID) {
+        List<Shop> result = shopService.getByManagerID(managerID);
+        Shop[] array = new Shop[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            array[i] = result.get(i);
+        }
+        if (result.size() != 0) {
+            return Response.ok(array).status(200).build();
+        } else {
+            return Response.status(404).build();
+        }
+    }
     
     @GET
     @Path("/byCriterion")
