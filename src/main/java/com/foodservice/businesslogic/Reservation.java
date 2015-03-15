@@ -13,11 +13,11 @@ public class Reservation {
     @Id
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "table_id")
     private com.foodservice.businesslogic.Table table;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "simple_user_id")
     private SimpleUser client;
 

@@ -57,7 +57,6 @@ public class SimpleUserResource {
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response update(SimpleUser simpleUser) {
         SimpleUser simpleUser1 = simpleUserService.update(simpleUser);
         if (simpleUser1 != null)
@@ -68,7 +67,6 @@ public class SimpleUserResource {
 
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response delete(SimpleUser simpleUser) {
         boolean res = simpleUserService.delete(simpleUser);
         if (res)
