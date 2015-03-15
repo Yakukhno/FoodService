@@ -28,18 +28,18 @@ public class Shop {
     @JoinColumn(name = "manager_user_id")
     private ManagerUser manager;
 
-    @JsonManagedReference
+//    @JsonManagedReference
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Table> tables = new ArrayList<Table>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Photo> photos = new ArrayList<Photo>();
 
-    @JsonManagedReference
+//    @JsonManagedReference
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Dish> dishes = new ArrayList<Dish>();
 
-    @JsonManagedReference
+//    @JsonManagedReference
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rating> ratings = new ArrayList<Rating>();
 

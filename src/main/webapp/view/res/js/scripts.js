@@ -50,10 +50,3 @@ function loadProfile() {
     document.getElementById("profileInfo").innerHTML = "...";
 }
 
-function moveImage(o) {
-    o.style.backgroundColor = "firebrick";
-}
-
-function outImage(o){
-    o.style.backgroundColor = "darksalmon";
-}

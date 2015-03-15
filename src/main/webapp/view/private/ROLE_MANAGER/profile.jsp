@@ -54,10 +54,10 @@
             </div>
             <div id="profileMenu">
                 <form>
-                    <button formaction="${root}/view/private/ROLE_MANAGER/add_shop.jsp" class="imageButton" onmousemove="moveImage(this)" onmouseout="outImage(this)">
+                    <button formaction="${root}/view/private/ROLE_MANAGER/add_shop.jsp" class="imageButton">
                         <img src="${root}/view/res/images/ic_store_white_48dp.png"/>
                     </button>
-                    <button formaction="${root}/view/private/messages.jsp" class="imageButton" onmousemove="moveImage(this)" onmouseout="outImage(this)">
+                    <button formaction="${root}/view/private/messages.jsp" class="imageButton">
                         <img src="${root}/view/res/images/ic_action_mail.png"/>
                     </button>
                 </form>

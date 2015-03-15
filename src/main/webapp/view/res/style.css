@@ -213,6 +213,7 @@ button {
     background-color: antiquewhite;
     border-color: firebrick;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 button.imageButton {
@@ -224,6 +225,11 @@ button.imageButton {
     border-style: solid;
     border-color: firebrick;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+button.imageButton:hover {
+    background-color: firebrick;
 }
 
 ul#nav {

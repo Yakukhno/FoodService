@@ -18,7 +18,7 @@ public class Dish {
     private String type;
     private String description;
 
-    @JsonBackReference
+//    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shop_id")
     private Shop shop;

@@ -17,7 +17,7 @@ public class Table {
     private int size;
     private String description;
 
-    @JsonBackReference
+//    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shop_id")
     private Shop shop;

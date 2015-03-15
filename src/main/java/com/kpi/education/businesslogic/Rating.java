@@ -16,7 +16,7 @@ public class Rating {
     private int value;
     private String comment;
 
-    @JsonBackReference
+//    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shop_id")
     private Shop shop;
