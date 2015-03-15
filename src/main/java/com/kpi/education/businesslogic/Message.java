@@ -14,6 +14,7 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+
     private String text;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -24,7 +25,7 @@ public class Message {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "receiver_message", joinColumns = @JoinColumn(name = "message_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> receivers = new ArrayList<User>();
+    private List<User> receivers = new ArrayList<>();
 
     public int getId() {
         return id;
