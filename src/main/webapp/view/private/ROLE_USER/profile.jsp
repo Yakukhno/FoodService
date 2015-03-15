@@ -47,10 +47,10 @@
             </div>
             <div id="profileMenu">
                 <form>
-                    <button formaction="${root}/view/private/friends.jsp" class="imageButton">
+                    <button formaction="${root}/view/private/friends.jsp" class="imageButton" width="35px">
                         <img src="${root}/view/res/images/ic_action_user.png"/>
                     </button>
-                    <button formaction="${root}/view/private/messages.jsp" class="imageButton">
+                    <button formaction="${root}/view/private/messages.jsp" class="imageButton" width="35px">
                         <img src="${root}/view/res/images/ic_action_mail.png"/>
                     </button>
                 </form>

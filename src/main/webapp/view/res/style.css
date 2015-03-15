@@ -29,45 +29,43 @@ body {
     margin: 0 auto;
 }
 
-#menu {
-    vertical-align: top;
-    width: 700px;
-    height: 150px;
-    margin-left: 12px;
-    display: inline-block;
-	background: url(images/bg1.png) center top no-repeat;
-}
+    #logo {
+        vertical-align: top;
+        display: inline-block;
+        margin-left: 25px;
+        height: 150px;
+        width: 290px;
+    }
 
-#profileHeader {
-    vertical-align: top;
-    height: 20px;
-    width: 250px;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    padding: 16px 20px 35px 20px;
-    font-size: 14px;
-    margin-left: 12px;
-    display: inline-block;
-	background-color: #FFFBED;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    border-color: #000000;
-    border-width: 1px;
-    border-style: solid;
-}
+    #menu {
+        vertical-align: top;
+        display: inline-block;
+        width: 700px;
+        height: 150px;
+        margin-left: 12px;
+        background: url(images/bg1.png) center top no-repeat;
+    }
 
-#profileHeaderText {
-    width: 174px;
-    display: inline-block;
-}
+    #profileHeader {
+        vertical-align: top;
+        display: inline-block;
+        height: 20px;
+        width: 250px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        padding: 16px 20px 35px 20px;
+        font-size: 14px;
+        margin-left: 12px;
+        background-color: #FFFBED;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border: 1px solid;
+    }
 
-#logo {
-    vertical-align: top;
-    margin-left: 25px;
-    height: 150px;
-    width: 290px;
-    display: inline-block;
-}
+        #profileHeaderText {
+            display: inline-block;    
+            width: 174px;
+        }
 
 #content {
     top: 150px;
@@ -76,52 +74,85 @@ body {
     font-size: 18px;
 }
 
-#leftBar {
-    vertical-align: top;
-    margin-left: 25px;
-	width: 250px; 
-	height: 385px;
-	padding: 20px 20px 35px 20px; 
-    display: inline-block;
-	background-color: #FFFBED;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    border-color: #000000;
-    border-width: 1px;
-    border-style: solid;
-	color : #000000;
-}
+    #leftBar {
+        vertical-align: top;
+        display: inline-block;
+        margin-left: 25px;
+        width: 250px; 
+        height: 385px;
+        padding: 15px 20px 35px 20px; 
+        background-color: #FFFBED;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border: 1px solid;
+    }
 
-#centralBar {
-    vertical-align: top;
-    margin-left: 20px;
-    margin-right: 20px;
-	width: 640px; 
-	height: auto;
-	padding: 15px 20px 35px 20px;
-    font: bold;
-    display: inline-block;
-    background: #FFFBED;
-    border-radius: 30px;
-    border-color: #000000;
-    border-width: 1px;
-    border-style: solid;
-	color: #000000;
-}
+    #centralBar {
+        vertical-align: top;
+        display: inline-block;
+        margin-left: 20px;
+        margin-right: 20px;
+        width: 640px; 
+        height: auto;
+        padding: 15px 20px 35px 20px;
+        font: bold;
+        background: #FFFBED;
+        border-radius: 15px;
+        border-color: #000000;
+        border: 1px solid;
+    }
 
-#rightBar {
+    #rightBar {
+        vertical-align: top;
+        display: inline-block;
+        width: 250px; 
+        height: 385px;
+        padding: 15px 20px 35px 20px;
+        background-color: #FFFBED;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-color: #000000;
+        border: 1px solid;
+    }
+
+#shopContainer {
 	vertical-align: top;
-	width: 250px; 
-	height: 385px;
-	padding: 20px 20px 35px 20px;
     display: inline-block;
-	background-color: #FFFBED;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    border-color: #000000;
-    border-width: 1px;
-    border-style: solid;
-	color : #000000;
+	width: 100%; 
+	height: 100%;
+}
+
+#shopRight {
+	vertical-align: top;
+    display: inline-block;
+    height: 20px;
+    width: 85%;
+    margin-bottom: 20px;
+    padding: 16px 10px 35px 20px;
+    font-size: 14px;
+	background-color: burlywood;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border: 3px solid darkred;
+}
+
+#shopRight .shopPhoto {
+    vertical-align: top;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+}
+
+#shopRight .shopText {
+    vertical-align: top;
+    display: inline-block;
+    height: 40px;
+    width: 168px;
+}
+
+a.shopRightName {
+    font-size: 20px;
+    color:firebrick;
 }
 
 #shop {
@@ -178,7 +209,15 @@ body {
     height: auto;
     vertical-align: top;
     display: inline-block;
+    text-align: center;
+}
 
+p.smallText {
+    font-size: 12px;
+}
+
+a {
+    color: firebrick;
 }
 
 h2 {
@@ -219,7 +258,7 @@ button {
 button.imageButton {
     background-color: darksalmon; 
     width: auto;
-    height: 45px;
+    height: auto;
     padding: 0px;
     border-width: 3px;
     border-style: solid;
@@ -233,7 +272,7 @@ button.imageButton:hover {
 }
 
 ul#nav {
-	width: 700px; margin: 0 auto; text-align: center; overflow: hidden;
+	width: 700px; margin: 0 auto; text-align: center; overflow: hidden; height: 150px;
 }
 	ul#nav li {
 		float: left; list-style: none; 

@@ -33,8 +33,10 @@
         <div id="profileHeader">
               <div id="profileHeaderText">
                     <p id="lNameIconData" style="display: inline-block; vertical-align: top; width: 120px">
-                        <sec:authentication property="principal.firstName" />
-                        <sec:authentication property="principal.lastName" />
+                        <a href="${root}/view/private/redirect">
+                            <sec:authentication property="principal.firstName" />
+                            <sec:authentication property="principal.lastName" />
+                        </a>
                     </p>
                     <p id="emailIconData" style="vertical-align: top; width: 120px"><sec:authentication property="principal.username" /></p>
               </div>
@@ -54,8 +56,9 @@
               </script>
     
             </div>
-          </div>
-      </c:if>
+        </div>
+    </c:if>
+
 
 
 </body>

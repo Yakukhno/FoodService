@@ -55,17 +55,20 @@
             <div id="profileMenu">
                 <form>
                     <button formaction="${root}/view/private/ROLE_MANAGER/add_shop.jsp" class="imageButton">
-                        <img src="${root}/view/res/images/ic_store_white_48dp.png"/>
+                        <img src="${root}/view/res/images/ic_store_white_48dp1.png" width="35px"/>
                     </button>
                     <button formaction="${root}/view/private/messages.jsp" class="imageButton">
-                        <img src="${root}/view/res/images/ic_action_mail.png"/>
+                        <img src="${root}/view/res/images/ic_action_mail.png" width="35px"/>
                     </button>
                 </form>
             </div>
         </div>
     </div>
     <div id="rightBar">
-        <div id="shopContainer"></div>
+        <h2 style="text-align: center;">Your shops</h2>
+        <br>
+        <div id="shopContainer">
+        </div>
     </div>
 </div>
 </body>

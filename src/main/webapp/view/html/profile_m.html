@@ -54,29 +54,47 @@
             </div>
             <div id="profileMenu">
                 <form>
-                    <button formaction="add_shop.html" class="imageButton" onmousemove="moveImage(this)" onmouseout="outImage(this)">
-                        <img src="res/images/ic_action_user.png"/>
+                    <button formaction="add_shop.html" class="imageButton">
+                        <img src="res/images/ic_action_user.png" width="30px"/>
                     </button>
-                    <button formaction="private/messages.jsp" class="imageButton" onmousemove="moveImage(this)" onmouseout="outImage(this)">
-                        <img src="res/images/ic_action_mail.png"/>
+                    <button formaction="private/messages.jsp" class="imageButton">
+                        <img src="res/images/ic_action_mail.png" width="30px"/>
                     </button>
                 </form>
             </div>
         </div>
-
-        <!-- csrt for log out-->
-        <form action="${logoutUrl}" method="post" id="logoutForm">
-            <input type="hidden"
-                   name="${_csrf.parameterName}"
-                   value="${_csrf.token}" />
-        </form>
-        <br>
-        <p style="text-align: right; margin-right"><button onclick="javascript:formSubmit()"><p>Logout</p></button></p>
-
      
     </div>
     <div id="rightBar">
-        <p>Rightbar</p>
+        <div id="shopContainer">
+            <div id="shopRight">
+                <div class="shopText">
+                    <p id="shopName">McDonalds</p>
+                    <p class="smallText">Kyiv, Khreshchatyk 80</p>
+                </div>
+                <div class="shopPhoto">
+                    <img src="res/images/mcdonalds.jpeg" width="40px">
+                </div>
+            </div>
+            <div id="shopRight">
+                <div class="shopText">
+                    <p id="shopName">McDonalds</p>
+                    <p class="smallText">Kyiv, Khreshchatyk 80</p>
+                </div>
+                <div class="shopPhoto">
+                    <img src="res/images/mcdonalds.jpeg" width="40px">
+                </div>
+            </div> 
+            <div id="shopRight">
+                <div class="shopText">
+                    <p id="shopName">McDonalds</p>
+                    <p class="smallText">Kyiv, Khreshchatyk 80</p>
+                </div>
+                <div class="shopPhoto">
+                    <img src="res/images/mcdonalds.jpeg" width="40px">
+                </div>
+            </div>             
+        </div>
     </div>
 </div>
 </body>

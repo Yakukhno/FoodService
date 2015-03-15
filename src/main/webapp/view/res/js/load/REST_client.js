@@ -124,11 +124,13 @@ function ShopsByManagerUserID(managerId) {
         success: function(results) {
             $.each(results, function() {
                 $("#shopContainer").append(
-                    $('<option></option>').text(this.name),
-                    $('<option></option>').text(this.location.country),
-                    $('<option></option>').text(this.location.city),
-                    $('<option></option>').text(this.location.building),
-                    $('<hr><br>'));
+                    $('<div id="shopRight">' +
+                    '<div class="shopText">' +
+                    '<a href="/FoodService/view/public/service.jsp" class="shopRightName">' + this.name + '</a>' +
+                    '<p class="smallText">' + this.location.city + ', ' + this.location.street + ' ' + this.location.building + '</p></div>' +
+                    '<div class="shopPhoto">' +
+                    '<img src="/FoodService/view/res/images/mcdonalds.jpeg" width="40px">' +
+                    '</div></div>'));
             });
             return results;
         },
