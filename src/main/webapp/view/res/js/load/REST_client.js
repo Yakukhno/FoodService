@@ -80,7 +80,7 @@ function SimpleUserCreate() {
 
 function ShopCreate(managerUserID) {
 
-    location = {
+    var location = {
         building: $('#building').val(),
         street: $('#street').val(),
         city: $('#city').val(),
@@ -88,7 +88,7 @@ function ShopCreate(managerUserID) {
         zipcode: $('#zipCode').val()
     }
 
-    shop = {
+    var shop = {
         name: $('#shopName').val(),
         location: location,
         description: $('#description').val()
