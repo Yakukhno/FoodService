@@ -13,6 +13,7 @@ function ManagerUserByID(id) {
     });
 }
 
+
 function SimpleUserByID(id) {
     $.ajax({
         type: 'GET',
