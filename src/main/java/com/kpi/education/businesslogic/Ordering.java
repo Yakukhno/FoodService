@@ -2,7 +2,6 @@ package com.kpi.education.businesslogic;
 
 import com.kpi.education.businesslogic.data.State;
 import com.kpi.education.businesslogic.user.SimpleUser;
-import com.kpi.education.businesslogic.user.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;

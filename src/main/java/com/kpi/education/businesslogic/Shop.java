@@ -2,12 +2,12 @@ package com.kpi.education.businesslogic;
 
 import com.kpi.education.businesslogic.user.ManagerUser;
 import org.codehaus.jackson.annotate.JsonBackReference;
-import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//@JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
 @javax.persistence.Table(name = "shop")
 public class Shop {
@@ -17,6 +17,9 @@ public class Shop {
     private int id;
 
     private String name;
+
+//    @JsonSerialize(as = Location.class)
+//    @JsonDeserialize(as = Location.class)
 
     @Embedded
     private Location location;
@@ -117,4 +120,6 @@ public class Shop {
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }
+
+
 }

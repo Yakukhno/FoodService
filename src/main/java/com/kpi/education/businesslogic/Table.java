@@ -1,11 +1,8 @@
 package com.kpi.education.businesslogic;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Entity
 @javax.persistence.Table(name = "eating_table")

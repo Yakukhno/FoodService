@@ -70,7 +70,6 @@
                 <value>com.kpi.education.businesslogic.Position</value>
                 <value>com.kpi.education.businesslogic.Location</value>
                 <value>com.kpi.education.businesslogic.friendship.Friendship</value>
-                <value>com.kpi.education.businesslogic.friendship.Couple</value>
             </list>
         </property>
     </bean>

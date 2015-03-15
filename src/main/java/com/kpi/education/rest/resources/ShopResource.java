@@ -29,6 +29,7 @@ public class ShopResource {
     @Consumes("application/json")
     @Produces("application/json")
     public Response create(Shop shop, @QueryParam("managerUserID") int managerUserID) {
+        System.out.println(shop);
         try {
             Shop shop1 = shopService.create(shop, managerUserID);
             return Response.ok(shop1.getId()).status(200).build();

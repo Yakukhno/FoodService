@@ -4,10 +4,13 @@ import com.kpi.education.businesslogic.Ordering;
 import com.kpi.education.businesslogic.Rating;
 import com.kpi.education.businesslogic.Reservation;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
-//@XmlRootElement
+
 @Entity
 @javax.persistence.Table(name = "simple_user")
 public class SimpleUser extends User {

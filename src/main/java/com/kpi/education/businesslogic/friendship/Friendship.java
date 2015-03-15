@@ -4,7 +4,9 @@ import com.kpi.education.businesslogic.data.State;
 import com.kpi.education.businesslogic.user.SimpleUser;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 @Entity
 @javax.persistence.Table(name = "friendship", uniqueConstraints=
 @UniqueConstraint(columnNames = {"applicant_id", "acceptor_id"}))
