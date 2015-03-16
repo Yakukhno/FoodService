@@ -126,10 +126,10 @@ function ShopsByManagerUserID(managerId) {
                 $("#shopContainer").append(
                     $('<div id="shopRight">' +
                     '<div class="shopText">' +
-                    '<a href="/FoodService/view/public/service.jsp" class="shopRightName">' + this.name + '</a>' +
+                    '<a href="${root}/view/public/service.jsp" class="shopRightName">' + this.name + '</a>' +
                     '<p class="smallText">' + this.location.city + ', ' + this.location.street + ' ' + this.location.building + '</p></div>' +
                     '<div class="shopPhoto">' +
-                    '<img src="/FoodService/view/res/images/mcdonalds.jpeg" width="40px">' +
+                    '<img src="${root}/view/res/images/mcdonalds.jpeg" width="40px">' +
                     '</div></div>'));
             });
             return results;
