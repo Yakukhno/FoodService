@@ -2,6 +2,7 @@ package com.kpi.education.businesslogic;
 
 import com.kpi.education.businesslogic.user.ManagerUser;
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 //@JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
 @javax.persistence.Table(name = "shop")
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 public class Shop {
 
     @Id

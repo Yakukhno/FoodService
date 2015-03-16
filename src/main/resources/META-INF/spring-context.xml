@@ -20,12 +20,13 @@
 
     <!--transactions-->
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
-    
+    <context:property-placeholder location="classpath:META-INF/connection/connection.properties"/>
+
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/food_service_db"/>
-        <property name="username" value="root"/>
-        <property name="password" value="root"/>
+        <property name="driverClassName" value="${db.driverClassName}"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
     </bean>
 
     <bean id="transactionManager"
@@ -41,11 +42,6 @@
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
-
-                <!--<prop key="hibernate.current_session_context_class">thread</prop>-->
-                <!--<prop key="hibernate.current_session_context_class">-->
-                    <!--org.hibernate.context.internal.ThreadLocalSessionContext-->
-                <!--</prop>-->
 
                 <!--cache-->
                 <prop key="hibernate.cache.use_second_level_cache">true</prop>
@@ -73,6 +69,7 @@
             </list>
         </property>
     </bean>
+
 
     
 </beans>

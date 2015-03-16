@@ -2,16 +2,15 @@ package com.kpi.education.businesslogic.user;
 
 import com.kpi.education.businesslogic.Shop;
 import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @javax.persistence.Table(name = "manager_user")
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 public class ManagerUser extends User {
 
     private String contactTelephone;

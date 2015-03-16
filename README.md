@@ -8,8 +8,9 @@ FoodService
 * JavaScript (JQuery)
 
 **Run project steps:**
-* Change database settings to yours
+* Create new database for FoodService
+* Change database settings to yours in src/main/resources/META-INF/connection/connection.properties
 * Package project with maven
-* Deploy it with Tomcat by using maven plugin: mvn tomcat7:run
+* Deploy it with Tomcat using maven plugin: mvn tomcat7:run
 
-Then go to http://localhost:8081/FoodService/
+Then go to http://localhost:8081/FoodService/ and enjoy:)
