@@ -45,20 +45,6 @@ public class ManagerUserDAO implements CRUD<ManagerUser, Integer> {
         return (ManagerUser) query.uniqueResult();
     }
     
-//    @Transactional(readOnly = true)
-//    public ManagerUser getMainAttributes(Integer id) {
-//        Session session = sessionFactory.getCurrentSession();
-//        Criteria cr = session.createCriteria(ManagerUser.class)
-//                .setProjection(Projections.projectionList()
-//                        .add(Projections.property("firstName"), "firstName")
-//                        .add(Projections.property("lastName"), "lastName")
-//                        .add(Projections.property("email"), "email"))
-//                .add(Restrictions.eq("id", id))
-//                .setResultTransformer(Transformers.aliasToBean(ManagerUser.class));
-//        ManagerUser managerUser = (ManagerUser) cr.uniqueResult();
-//        return managerUser;
-//    }
-    
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public ManagerUser update(ManagerUser object) {

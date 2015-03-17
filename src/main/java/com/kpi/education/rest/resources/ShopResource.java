@@ -53,12 +53,8 @@ public class ShopResource {
     @Path("/byManagerID/{managerID}")
     public Response getByManagerID(@PathParam("managerID") Integer managerID) {
         List<Shop> result = shopService.getByManagerID(managerID);
-        Shop[] array = new Shop[result.size()];
-        for (int i = 0; i < result.size(); i++) {
-            array[i] = result.get(i);
-        }
         if (result.size() != 0) {
-            return Response.ok(array).status(200).build();
+            return Response.ok(result).status(200).build();
         } else {
             return Response.status(404).build();
         }
@@ -73,7 +69,7 @@ public class ShopResource {
                                    @DefaultValue("") @QueryParam("cityLike") String city,
                                    @DefaultValue("") @QueryParam("streetLike") String street,
                                    @DefaultValue("") @QueryParam("buildingLike") String building,
-                                   @DefaultValue("0") @QueryParam("firstResult") int firstResut,
+                                   @DefaultValue("0") @QueryParam("firstResult") int firstResult,
                                    @DefaultValue("0") @QueryParam("maxResults") int maxResults) {
         Map<String, Object> parameters = new HashMap();
         parameters.put("nameLike", name);
@@ -90,6 +86,7 @@ public class ShopResource {
             return Response.status(404).build();
         }
     }
+
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
