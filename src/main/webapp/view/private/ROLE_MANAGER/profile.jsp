@@ -13,7 +13,7 @@
         function onLoadBody() {
             managerID = <%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>
                     shops = ShopsByManagerUserID(managerID);
-                    ManagerUserByID(managerID);
+            ManagerUserByID(managerID);
         }
 
     </script>

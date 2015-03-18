@@ -140,10 +140,10 @@ function ShopsByManagerUserID(managerId) {
         }
     });
     return null;
-    
+
 }
 
-function findShopsByCriterion() {
+function ShopsByCriterion() {
 
     var nameLike = $('#searchName').val();
     var countryLike = $('#searchCountry').val();
@@ -153,7 +153,6 @@ function findShopsByCriterion() {
     var minRating = $('#searchMinRating').val();
     var maxRating = $('#searchMaxRating').val();
 
-    //var url = "/FoodService/resources/shops/byCriterion";
     var url = "/FoodService/resources/shops/byCriterion";
 
     var count = 0;
@@ -170,8 +169,13 @@ function findShopsByCriterion() {
         type: "GET",
         url: url,
         dataType: 'json',
+        async: false,
         success: function(results) {
-            alert(results)
+            $.each(results, function() {
+                $("#resultShopList").append(
+                    $('<hr><br><p>" this.name + "   " + this.location.city "</p><hr><br>'));
+            });
+            alert(results);
             return results;
         },
         error: function () {
@@ -179,6 +183,4 @@ function findShopsByCriterion() {
             return null;
         }
     });
-    return null;
-
 }
