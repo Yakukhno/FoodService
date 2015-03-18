@@ -8,13 +8,13 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
         <script src="${root}/view/res/js/load/REST_client.js"></script>
         <script>
-            $( document ).ready(function() {
+//            $(document).ready(function() {
                 $(function() {
                     $('#submitSearch').click(function (e) {
                         ShopsByCriterion();
                     })
                 })
-            });
+//            });
         </script>
         
 	</head>
@@ -43,7 +43,7 @@
                         From<input id="searchMinRating" class="rating" type="text" placeholder="0">
                         To<input id="searchMaxRating" class="rating" type="text" placeholder="5">
                     </p>
-                    <button id="submitSearch" type="submit" ><p>Send</p></button>
+                    <button id="submitSearch" type="button" ><p>Send</p></button>
                 </form>
             </div>
             <div id="centralBar">

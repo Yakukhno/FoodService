@@ -169,7 +169,6 @@ function ShopsByCriterion() {
         type: "GET",
         url: url,
         dataType: 'json',
-        async: false,
         success: function(results) {
             $.each(results, function() {
                 $("#resultShopList").append(
