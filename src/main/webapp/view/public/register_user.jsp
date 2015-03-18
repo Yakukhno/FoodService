@@ -27,16 +27,16 @@
                 <h2>Sign up as user</h2>
                 <br>
                 <form action="${root}/view/private/redirect" accept-charset=utf-8>
-                    <p>First name</p>
-                    <p><input id="firstName"  type="text" placeholder="Your first name" required></p>
-                    <p>Last name</p>
-                    <p><input id="lastName"  type="text" placeholder="Your last name" required></p>
-                    <p>E-mail</p>
-                    <p><input id="email"  type="email" placeholder="Your e-mail" required></p>
-                    <p>Password</p>
-                    <p><input id="password" onchange="checkPasswords()" type="password" placeholder="Your password" required></p>
+                    <label for="firstName">First name</label>
+                    <p><input id="firstName"  type="text" placeholder="Enter your name" required></p>
+                    <label for="lastName">Last name</label>
+                    <p><input id="lastName"  type="text" placeholder="Enter your last name" required></p>
+                    <label for="email">E-mail</label>
+                    <p><input id="email"  type="email" placeholder="Enter your e-mail" required></p>
+                    <label for="password">Password</label>
+                    <p><input id="password" onchange="checkPasswords()" type="password" placeholder="Enter password" required></p>
                     <p><input id="passwordconfirm" onchange="checkPasswords()" type="password" placeholder="Confirm password" required></p>
-                    <p>About you</p>
+                    <label for="personalData">About you</label>
                     <p><input id="personalData"  type="text"  placeholder="Tell some words about you"></p><br>
                     <button id="submitSimpleUserForm" type="submit"><p>Send</p></button>
                 </form>    

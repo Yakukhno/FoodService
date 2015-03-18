@@ -51,6 +51,7 @@ public class ShopResource {
 
     @GET
     @Path("/byManagerID/{managerID}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getByManagerID(@PathParam("managerID") Integer managerID) {
         List<Shop> result = shopService.getByManagerID(managerID);
         if (result.size() != 0) {
@@ -62,24 +63,35 @@ public class ShopResource {
     
     @GET
     @Path("/byCriterion")
-    public Response getByCriterion(@DefaultValue("") @QueryParam("nameLike") String name,
-                                   @DefaultValue("0") @QueryParam("minRating") int minRating,
-                                   @DefaultValue("5") @QueryParam("maxRating") int maxRating,
-                                   @DefaultValue("") @QueryParam("countryLike") String country,
-                                   @DefaultValue("") @QueryParam("cityLike") String city,
-                                   @DefaultValue("") @QueryParam("streetLike") String street,
-                                   @DefaultValue("") @QueryParam("buildingLike") String building,
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getByCriterion(@DefaultValue("") @QueryParam("nameLike") String nameLike,
+                                   @DefaultValue("0") @QueryParam("minRating") double minRating,
+                                   @DefaultValue("5") @QueryParam("maxRating") double maxRating,
+                                   @DefaultValue("") @QueryParam("countryLike") String countryLike,
+                                   @DefaultValue("") @QueryParam("cityLike") String cityLike,
+                                   @DefaultValue("") @QueryParam("streetLike") String streetLike,
+                                   @DefaultValue("") @QueryParam("buildingLike") String buildingLike,
                                    @DefaultValue("0") @QueryParam("firstResult") int firstResult,
                                    @DefaultValue("0") @QueryParam("maxResults") int maxResults) {
+        System.out.println("nameLike " + nameLike);
+        System.out.println("minRating "+ minRating);
+        System.out.println("maxRating "+ maxRating);
+        System.out.println("countryLike "+ countryLike);
+        System.out.println("cityLike "+ cityLike);
+        System.out.println("streetLike "+ streetLike);
+        System.out.println("buildingLike "+ buildingLike);
+
+
         Map<String, Object> parameters = new HashMap();
-        parameters.put("nameLike", name);
+        parameters.put("nameLike", nameLike);
         parameters.put("minRating", minRating);
         parameters.put("maxRating", maxRating);
-        parameters.put("countryLike", country);
-        parameters.put("cityLike", city);
-        parameters.put("streetLike", street);
-        parameters.put("buildingLike", building);
+        parameters.put("countryLike", countryLike);
+        parameters.put("cityLike", cityLike);
+        parameters.put("streetLike", streetLike);
+        parameters.put("buildingLike", buildingLike);
         List<Shop> result = shopService.getByCriterion(parameters);
+        System.out.println("SIZE" + result.size());
         if (result.size() != 0) {
             return Response.ok(result).status(200).build();
         } else {

@@ -142,3 +142,43 @@ function ShopsByManagerUserID(managerId) {
     return null;
     
 }
+
+function findShopsByCriterion() {
+
+    var nameLike = $('#searchName').val();
+    var countryLike = $('#searchCountry').val();
+    var cityLike = $('#searchCity').val();
+    var streetLike = $('#searchStreet').val();
+    var buildingLike = $('#searchBuilding').val();
+    var minRating = $('#searchMinRating').val();
+    var maxRating = $('#searchMaxRating').val();
+
+    //var url = "/FoodService/resources/shops/byCriterion";
+    var url = "/FoodService/resources/shops/byCriterion";
+
+    var count = 0;
+    if(nameLike != "") {url += ((count==0?"?":"&") + "nameLike=" + nameLike); count++}
+    if(minRating != "") {url += ((count==0?"?":"&") + "minRating=" + minRating); count++}
+    if(maxRating != "") {url += ((count==0?"?":"&") + "maxRating=" + maxRating); count++}
+    if(countryLike != "") {url += ((count==0?"?":"&") + "countryLike=" + countryLike); count++}
+    if(cityLike != "") {url += ((count==0?"?":"&") + "cityLike=" + cityLike); count++}
+    if(streetLike != "") {url += ((count==0?"?":"&") + "streetLike=" + streetLike); count++}
+    if(buildingLike != "") {url += ((count==0?"?":"&") + "buildingLike=" + buildingLike); count++}
+
+    alert(url);
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: 'json',
+        success: function(results) {
+            alert(results)
+            return results;
+        },
+        error: function () {
+            alert("ERROR");
+            return null;
+        }
+    });
+    return null;
+
+}

@@ -11,7 +11,7 @@
     <script src="${root}/view/res/js/load/REST_client.js"></script>
     <script>
         $(function() {
-            $('#submitAddShop').click(function (e) {
+            $('#submitSearchShop').click(function (e) {
                 ShopCreate('<sec:authentication property="principal.id" />');
             })
         })
@@ -46,7 +46,7 @@
             <p><input id="photoShop" type="file" accept="image/*" /></p>
             <p>Description</p>
             <p><input id="description"  type="text" placeholder="Description of your shop"></p>
-            <button id="submitAddShop" type="submit"><p>Send</p></button>
+            <button id="submitSearchShop" type="submit"><p>Send</p></button>
         </form>
     </div>
     <div id="rightBar">

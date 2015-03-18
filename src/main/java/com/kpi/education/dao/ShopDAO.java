@@ -3,14 +3,9 @@ package com.kpi.education.dao;
 import com.kpi.education.businesslogic.Rating;
 import com.kpi.education.businesslogic.Shop;
 import com.kpi.education.exceptions.DuplicatedKeyException;
-import org.hibernate.Criteria;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.criterion.Subqueries;
+import org.hibernate.*;
+import org.hibernate.criterion.*;
+import org.hibernate.transform.AliasToBeanResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,7 +53,25 @@ public class ShopDAO implements CRUD<Shop, Integer> {
     @Transactional(readOnly = true)
     public List<Shop> getByCriterion(Map<String, Object> criterionParameters) {
         Session session = sessionFactory.getCurrentSession();
+
+        System.out.println("nameLike" + criterionParameters.get("nameLike"));
+        System.out.println("minRating"+ criterionParameters.get("minRating"));
+        System.out.println("maxRating"+ criterionParameters.get("maxRating"));
+        System.out.println("countryLike"+ criterionParameters.get("countryLike"));
+        System.out.println("cityLike"+ criterionParameters.get("cityLike"));
+        System.out.println("streetLike"+ criterionParameters.get("streetLike"));
+        System.out.println("buildingLike"+ criterionParameters.get("buildingLike"));
+
+
         Criteria criteria = session.createCriteria(Shop.class, "s");
+        ProjectionList projList = Projections.projectionList();
+        projList.add(Projections.property("id"));
+        projList.add(Projections.property("name"));
+        projList.add(Projections.property("location.country"));
+        projList.add(Projections.property("location.city"));
+        projList.add(Projections.property("location.street"));
+        projList.add(Projections.property("description"));
+        criteria.setProjection(projList);
         String param;
         if (!(param = (String) criterionParameters.get("nameLike")).equals("")) {
             criteria.add(Restrictions.like("name", param));
@@ -75,20 +88,22 @@ public class ShopDAO implements CRUD<Shop, Integer> {
         if (!(param = (String) criterionParameters.get("buildingLike")).equals("")) {
             criteria.add(Restrictions.like("location.building", param));
         }
-        DetachedCriteria avg = DetachedCriteria.forClass(Rating.class, "r")
-                .setProjection(Projections.avg("r.value"))
-                .add(Restrictions.eq("r.shop", "s"));
-        int temp;
-        if ((temp = (Integer) criterionParameters.get("maxRating")) != 0) {
-            criteria.setReadOnly(true);
-            criteria.add(Subqueries.gt(temp, avg));
-//            criteria.add(Restrictions.sqlRestriction(
-//                    "(SELECT * avg(r.value) FROM rating r WHERE s.id = r.shop_id) between(?, ?)", String.valueOf(temp),));
-        }
-        if ((temp = (Integer) criterionParameters.get("minxRating")) != 5) {
-            criteria.setReadOnly(true);
-            criteria.add(Subqueries.lt(temp, avg));
-        }
+//        DetachedCriteria avg = DetachedCriteria.forClass(Rating.class, "r")
+//                .setProjection(Projections.avg("r.value"))
+//                .add(Restrictions.eq("r.shop", "s"));
+//        double temp;
+//        if ((temp = (Double) criterionParameters.get("maxRating")) != 0) {
+//            criteria.setReadOnly(true);
+//            criteria.add(Subqueries.gt(temp, avg));
+////            criteria.add(Restrictions.sqlRestriction(
+////                    "(SELECT * avg(r.value) FROM rating r WHERE s.id = r.shop_id) between(?, ?)", String.valueOf(temp),));
+//        }
+//        if ((temp = (Double) criterionParameters.get("minRating")) != 5) {
+//            criteria.setReadOnly(true);
+//            criteria.add(Subqueries.lt(temp, avg));
+//        }
+
+        criteria.setResultTransformer(new AliasToBeanResultTransformer(Shop.class));
         return criteria.list();
     }
 

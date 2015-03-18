@@ -95,12 +95,64 @@ body {
         width: 640px; 
         height: auto;
         padding: 15px 20px 35px 20px;
-        font: bold;
         background: #FFFBED;
         border-radius: 15px;
-        border-color: #000000;
         border: 1px solid;
     }
+
+        #profileImage {
+            height: 150px;
+            width: 150px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        #profileText {
+            width: auto;
+            height: auto;
+            margin-top: -155px;
+            margin-left: 160px;
+        }
+
+            #profileTextKey {
+                width: 120px;
+                height: auto;
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            #profileTextValue {
+                width: 280px;
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            #profileMenu {;
+                width: 55px;
+                height: auto;
+                vertical-align: top;
+                display: inline-block;
+                text-align: center;
+            }
+
+        #shop {
+            vertical-align: top;
+            margin-left: 20px;
+            margin-top: 20px;
+            width: 560px;
+            height: auto;
+            padding: 15px 20px 35px 20px;
+            display: inline-block;
+            background-color: bisque;
+            border-radius: 20px;
+            border: 2px solid darkred;
+        }
+
+        #shopText {
+            width: 400px;
+            display: inline-block;
+            vertical-align: top;
+        }
 
     #rightBar {
         vertical-align: top;
@@ -111,105 +163,47 @@ body {
         background-color: #FFFBED;
         border-top-left-radius: 15px;
         border-bottom-left-radius: 15px;
-        border-color: #000000;
         border: 1px solid;
     }
 
-#shopContainer {
-	vertical-align: top;
-    display: inline-block;
-	width: 100%; 
-	height: 100%;
-}
+        #shopContainer {
+            vertical-align: top;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
 
-#shopRight {
-	vertical-align: top;
-    display: inline-block;
-    height: 20px;
-    width: 85%;
-    margin-bottom: 20px;
-    padding: 16px 10px 35px 20px;
-    font-size: 14px;
-	background-color: burlywood;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    border: 3px solid darkred;
-}
+            #shopRight {
+                vertical-align: top;
+                display: inline-block;
+                height: 20px;
+                width: 85%;
+                margin-bottom: 20px;
+                padding: 16px 10px 35px 20px;
+                font-size: 14px;
+                background-color: burlywood;
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+                border: 3px solid darkred;
+            }
 
-#shopRight .shopPhoto {
-    vertical-align: top;
-    display: inline-block;
-    height: 40px;
-    width: 40px;
-}
+                #shopRight .shopPhoto {
+                    vertical-align: top;
+                    display: inline-block;
+                    height: 40px;
+                    width: 40px;
+                }
 
-#shopRight .shopText {
-    vertical-align: top;
-    display: inline-block;
-    height: 40px;
-    width: 168px;
-}
+                #shopRight .shopText {
+                    vertical-align: top;
+                    display: inline-block;
+                    height: 40px;
+                    width: 168px;
+                }
 
 a.shopRightName {
     font-size: 20px;
     color:firebrick;
-}
-
-#shop {
-    vertical-align: top;
-    margin-left: 20px;
-    margin-top: 20px;
-    width: 560px;
-	height: auto;
-	padding: 15px 20px 35px 20px;
-    font: bold;
-    display: inline-block;
-    background-color: bisque;
-    border-radius: 20px;
-    border-color: darkred;
-    border-width: 2px;
-    border-style: solid;
-}
-
-#shopText {
-    width: 400px;
-    display: inline-block;
-    vertical-align: top;
-}
-
-#profileImage {
-    height: 150px;
-    width: 150px;
-    display: inline-block;
-    vertical-align: top;
-}
-
-#profileText {
-    width: auto;
-    height: auto;
-    margin-top: -155px;
-    margin-left: 160px;
-}
-
-#profileTextKey {
-    width: 120px;
-    height: auto;
-    display: inline-block;
-    vertical-align: top;
-}
-
-#profileTextValue {
-    width: 280px;
-    display: inline-block;
-    vertical-align: top;
-}
-
-#profileMenu {;
-    width: 55px;
-    height: auto;
-    vertical-align: top;
-    display: inline-block;
-    text-align: center;
 }
 
 p.smallText {
@@ -232,15 +226,18 @@ h3 {
 
 input {
     font-size: 16px;
-    border-width: 1px;
-    border-style: dotted;
+    border: 1px dotted;
     margin-bottom: 7px;
 }
 
+input.rating {
+    width: 20px;
+    text-align: center;
+    margin-left: 5px;
+}
+
 input.photo {
-    font-size: px;
-    border-width: 1px;
-    border-style: dotted;
+    border: 1px dotted;
     margin-bottom: 7px;
 }
 
@@ -259,10 +256,8 @@ button.imageButton {
     background-color: darksalmon; 
     width: auto;
     height: auto;
-    padding: 0px;
-    border-width: 3px;
-    border-style: solid;
-    border-color: firebrick;
+    padding: 0;
+    border: 3px solid firebrick;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -280,7 +275,7 @@ ul#nav {
 		ul#nav li a {
 			display: block; width: 97px; height: 77px; 
 			padding: 68px 0 0 0; margin: 0 32px 0 44px;
-			font: bold 16px; text-transform: uppercase;
+			font-size: 16px; text-transform: uppercase;
 			color: darkred; text-shadow: 0 1px 3px #c4bda6; text-decoration: none;
 			
 			background: url(images/label.png) 0 -149px no-repeat;

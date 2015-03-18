@@ -3,12 +3,14 @@ package com.kpi.education.businesslogic;
 import com.kpi.education.businesslogic.user.ManagerUser;
 import org.codehaus.jackson.annotate.JsonBackReference;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.IndexColumn;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//@JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
 @javax.persistence.Table(name = "shop")
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
@@ -20,9 +22,6 @@ public class Shop {
 
     private String name;
 
-//    @JsonSerialize(as = Location.class)
-//    @JsonDeserialize(as = Location.class)
-
     @Embedded
     private Location location;
 
@@ -33,18 +32,19 @@ public class Shop {
     @JoinColumn(name = "manager_user_id")
     private ManagerUser manager;
 
-//    @JsonManagedReference
+//    @IndexColumn (name = "INDEX_COL")
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Table> tables = new ArrayList<Table>();
 
+//    @IndexColumn (name = "INDEX_COL")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Photo> photos = new ArrayList<Photo>();
 
-//    @JsonManagedReference
+//    @IndexColumn (name = "INDEX_COL")
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Dish> dishes = new ArrayList<Dish>();
 
-//    @JsonManagedReference
+//    @IndexColumn (name = "INDEX_COL")
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rating> ratings = new ArrayList<Rating>();
 
