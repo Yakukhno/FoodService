@@ -123,5 +123,18 @@ public class Shop {
         this.ratings = ratings;
     }
 
-
+    @Override
+    public String toString() {
+        return "Shop{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", location=" + location +
+                ", description='" + description + '\'' +
+                ", manager=" + manager +
+                ", tables=" + tables +
+                ", photos=" + photos +
+                ", dishes=" + dishes +
+                ", ratings=" + ratings +
+                '}';
+    }
 }

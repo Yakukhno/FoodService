@@ -73,13 +73,13 @@ public class ShopResource {
                                    @DefaultValue("") @QueryParam("buildingLike") String buildingLike,
                                    @DefaultValue("0") @QueryParam("firstResult") int firstResult,
                                    @DefaultValue("0") @QueryParam("maxResults") int maxResults) {
-        System.out.println("nameLike " + nameLike);
-        System.out.println("minRating "+ minRating);
-        System.out.println("maxRating "+ maxRating);
-        System.out.println("countryLike "+ countryLike);
-        System.out.println("cityLike "+ cityLike);
-        System.out.println("streetLike "+ streetLike);
-        System.out.println("buildingLike "+ buildingLike);
+//        System.out.println("nameLike " + nameLike);
+//        System.out.println("minRating "+ minRating);
+//        System.out.println("maxRating "+ maxRating);
+//        System.out.println("countryLike "+ countryLike);
+//        System.out.println("cityLike "+ cityLike);
+//        System.out.println("streetLike "+ streetLike);
+//        System.out.println("buildingLike "+ buildingLike);
 
 
         Map<String, Object> parameters = new HashMap();
@@ -91,7 +91,9 @@ public class ShopResource {
         parameters.put("streetLike", streetLike);
         parameters.put("buildingLike", buildingLike);
         List<Shop> result = shopService.getByCriterion(parameters);
-        System.out.println("SIZE" + result.size());
+        for (int i = 0; i < result.size(); i++) {
+            System.out.println(result.get(i));
+        }
         if (result.size() != 0) {
             return Response.ok(result).status(200).build();
         } else {

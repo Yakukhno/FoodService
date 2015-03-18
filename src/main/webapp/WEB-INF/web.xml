@@ -74,8 +74,8 @@
     </listener>
 
     <session-config>
-        <!--1 minute-->
-        <session-timeout>1</session-timeout>
+        <!--30 minute-->
+        <session-timeout>30</session-timeout>
     </session-config>
 
 </web-app>
