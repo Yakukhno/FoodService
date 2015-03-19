@@ -10,19 +10,36 @@
         <script>
 //            $(document).ready(function() {
                 $(function() {
-                    $('#submitSearch').click(function (e) {
+                    $('body').load(function (e) {
+                        alert("See");
+                        document.getElementById('centralBar').innerHTML = '<h2>Shops</h2>' +
+                        '<div id="resultShopList"></div>';
                         ShopsByCriterion();
                     })
-                })
+                });
+                $(function() {
+                    $('#submitSearch').click(function (e) {
+                        document.getElementById('centralBar').innerHTML = '<h2>Shops</h2>' +
+                        '<div id="resultShopList"></div>';
+                        ShopsByCriterion();
+                    })
+                });
+
+                function test() {
+                    document.getElementById('centralBar').innerHTML = '<h2>Shops</h2>' +
+                    '<div id="resultShopList"></div>';
+                    ShopsByCriterion();
+                }
+
 //            });
         </script>
         
 	</head>
-	<body>
+	<body onload="test();">
 
         <%--include header--%>
         <%@ include file="/view/public/common/header.jsp" %>
-    
+
         <div id="content">
             <div id="leftBar">
                 <h2>Search</h2>

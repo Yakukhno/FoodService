@@ -152,6 +152,15 @@ body {
             width: 400px;
             display: inline-block;
             vertical-align: top;
+            text-align: justify;
+        }
+
+        #shopImage {
+            float: right;
+            height: 130px;
+            width: 130px;
+            display: inline-block;
+            vertical-align: top;
         }
 
     #rightBar {
@@ -206,8 +215,18 @@ a.shopRightName {
     color:firebrick;
 }
 
+a.shopRightName {
+    font-size: 20px;
+    color:firebrick;
+}
+
 p.smallText {
-    font-size: 12px;
+     font-size: 12px;
+ }
+
+p.middleText {
+    font-style: italic;
+    font-size: 16px;
 }
 
 a {

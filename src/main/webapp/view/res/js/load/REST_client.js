@@ -164,21 +164,27 @@ function ShopsByCriterion() {
     if(streetLike != "") {url += ((count==0?"?":"&") + "streetLike=" + streetLike); count++}
     if(buildingLike != "") {url += ((count==0?"?":"&") + "buildingLike=" + buildingLike); count++}
 
-    alert(url);
     $.ajax({
         type: "GET",
         url: url,
         dataType: 'json',
         success: function(results) {
+            var bar = document.getElementById("centralBar");
             $.each(results, function() {
                 $("#resultShopList").append(
-                    $('<hr><br><p>" this.name + "   " + this.location.city "</p><hr><br>'));
+                    $('<div id="shop">' +
+                    '<h3><a href="/FoodService/view/public/service.jsp">' + this.name + '</a></h3>' +
+                    '<div id="shopText">' +
+                    '<p class="middleText">' + this.location.city + ', ' + this.location.street + ' ' + this.location.building + '</p>' +
+                    '<p><b>Description</b> : ' + this.description + '</p></div>' +
+                    '<div id="shopImage">' +
+                    '<img height="130px" src="/FoodService/view/res/images/mcdonalds.jpeg"/></div>'));
             });
-            alert(results);
+            //alert(results);
             return results;
         },
         error: function () {
-            alert("ERROR");
+            //alert("ERROR");
             return null;
         }
     });
