@@ -14,9 +14,9 @@
     http://www.springframework.org/schema/aop/spring-aop.xsd">
     
     <context:annotation-config />
-    <context:component-scan base-package="com.kpi.education.rest.resources"/>
-    <context:component-scan base-package="com.kpi.education.services"/>
-    <context:component-scan base-package="com.kpi.education.dao"/>
+    <context:component-scan base-package="com.foodservice.rest.resources"/>
+    <context:component-scan base-package="com.foodservice.services"/>
+    <context:component-scan base-package="com.foodservice.dao"/>
 
     <!--transactions-->
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
@@ -52,20 +52,21 @@
         </property>
         <property name="annotatedClasses">
             <list>
-                <value>com.kpi.education.businesslogic.user.User</value>
-                <value>com.kpi.education.businesslogic.user.ManagerUser</value>
-                <value>com.kpi.education.businesslogic.user.SimpleUser</value>
-                <value>com.kpi.education.businesslogic.Message</value>
-                <value>com.kpi.education.businesslogic.Photo</value>
-                <value>com.kpi.education.businesslogic.Shop</value>
-                <value>com.kpi.education.businesslogic.Table</value>
-                <value>com.kpi.education.businesslogic.Dish</value>
-                <value>com.kpi.education.businesslogic.Reservation</value>
-                <value>com.kpi.education.businesslogic.Rating</value>
-                <value>com.kpi.education.businesslogic.Ordering</value>
-                <value>com.kpi.education.businesslogic.Position</value>
-                <value>com.kpi.education.businesslogic.Location</value>
-                <value>com.kpi.education.businesslogic.friendship.Friendship</value>
+                <value>com.foodservice.businesslogic.user.User</value>
+                <value>com.foodservice.businesslogic.user.ShopAdminUser</value>
+                <value>com.foodservice.businesslogic.user.SimpleUser</value>
+                <value>com.foodservice.businesslogic.user.ManagerUser</value>
+                <value>com.foodservice.businesslogic.Message</value>
+                <value>com.foodservice.businesslogic.Photo</value>
+                <value>com.foodservice.businesslogic.Shop</value>
+                <value>com.foodservice.businesslogic.Table</value>
+                <value>com.foodservice.businesslogic.Dish</value>
+                <value>com.foodservice.businesslogic.Reservation</value>
+                <value>com.foodservice.businesslogic.Rating</value>
+                <value>com.foodservice.businesslogic.Ordering</value>
+                <value>com.foodservice.businesslogic.Position</value>
+                <value>com.foodservice.businesslogic.Location</value>
+                <value>com.foodservice.businesslogic.friendship.Friendship</value>
             </list>
         </property>
     </bean>

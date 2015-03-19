@@ -1,4 +1,4 @@
-<%@ page import="com.kpi.education.security.CustomUserDetails" %>
+<%@ page import="com.foodservice.security.CustomUserDetails" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -56,6 +56,21 @@
               </script>
     
             </div>
+        </div>
+    </c:if>
+    <c:if test="${!show}">
+        <div id="profileHeader">
+            <form>
+                <table>
+                    <tr>Try service right now!</tr>
+                    <tr>
+                        <td>User:</td><td><button id="userSignUp" formaction="${root}/view/public/register_user.jsp"><p>Sign up</p></button></td>
+                    </tr>
+                    <tr>
+                        <td>Shop Admin:</td><td><button id="managerSignUp" formaction="${root}/view/public/register_admin.jsp"><p>Sign up</p></button></td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </c:if>
 

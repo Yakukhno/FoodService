@@ -1,8 +1,8 @@
 
-function ManagerUserByID(id) {
+function ShopAdminUserByID(id) {
     $.ajax({
         type: 'GET',
-        url: '/FoodService/resources/users/manager/byId/' + id,
+        url: '/FoodService/resources/users/admin/byId/' + id,
         dataType: 'json',
         success: function (response) {
             $('#profileFName').html(response.firstName);
@@ -28,7 +28,7 @@ function SimpleUserByID(id) {
     });
 }
 
-function ManagerUserCreate() {
+function ShopAdminUserCreate() {
     var formData = {
         firstName: $('#firstName').val(),
         lastName: $('#lastName').val(),
@@ -41,7 +41,7 @@ function ManagerUserCreate() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        url: "/FoodService/resources/users/manager",
+        url: "/FoodService/resources/users/admin",
         data: JSON.stringify(formData),
         dataType: "json",
         success: function() {
@@ -79,7 +79,7 @@ function SimpleUserCreate() {
     return false;
 }
 
-function ShopCreate(managerUserID) {
+function ShopCreate(shopAdminUserID) {
 
     var location = {
         building: $('#building').val(),
@@ -98,7 +98,7 @@ function ShopCreate(managerUserID) {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        url: "/FoodService/resources/shops?managerUserID=" + managerUserID,
+        url: "/FoodService/resources/shops?shopAdminUserID=" + shopAdminUserID,
         data: JSON.stringify(shop),
         dataType: "json",
         success: function() {
@@ -115,11 +115,11 @@ function ShopCreate(managerUserID) {
 /**
  * @return {null}
  */
-function ShopsByManagerUserID(managerId) {
+function ShopsByShopAdminUserID(shopAdminID) {
 
     $.ajax({
         type: "GET",
-        url: "/FoodService/resources/shops/byManagerID/" + managerId,
+        url: "/FoodService/resources/shops/byShopAdminID/" + shopAdminID,
         dataType: 'json',
         success: function(results) {
             $.each(results, function() {

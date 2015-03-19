@@ -20,11 +20,7 @@
             <p><img src="${root}/view/res/images/welcome_page.png" style="margin-left: 22px" /></p>
         </div>
         <div id="rightBar">
-            <form>
-                <button id="userSignUp" formaction="${root}/view/public/register_user.jsp"><p>Sign up as user</p></button>
-                <br>
-                <button id="managerSignUp" formaction="${root}/view/public/register_manager.jsp"><p>Sign up as manager</p></button>
-            </form>
+
         </div>
     
     </div>

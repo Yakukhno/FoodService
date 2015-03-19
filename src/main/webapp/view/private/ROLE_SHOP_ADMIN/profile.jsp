@@ -1,17 +1,24 @@
 <%@ page import="com.foodservice.security.CustomUserDetails" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page session="true"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <c:set var="root" value="${pageContext.request.contextPath}" />
+<%@page session="true"%>
 <head>
     <meta charset="utf-8">
-    <title>User profile</title>
+    <title>ShopAdmin profile</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
-    <%--<script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>--%>
     <script src="${root}/view/res/js/load/REST_client.js"></script>
+    <script>
+        function onLoadBody() {
+            managerID = <%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>
+                    shops = ShopsByShopAdminUserID(managerID);
+            ShopAdminUserByID(managerID);
+        }
+
+    </script>
 </head>
-<body onload="SimpleUserByID('<%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>');">
+<body id="body" onload="onLoadBody()">
 
 <%--include header--%>
 <%@ include file="/view/public/common/header.jsp" %>
@@ -47,18 +54,21 @@
             </div>
             <div id="profileMenu">
                 <form>
-                    <button formaction="${root}/view/private/friends.jsp" class="imageButton" width="35px">
-                        <img src="${root}/view/res/images/ic_action_user.png"/>
+                    <button formaction="${root}/view/private/ROLE_SHOP_ADMIN/add_shop.jsp" class="imageButton">
+                        <img src="${root}/view/res/images/ic_store_white_48dp1.png" width="35px"/>
                     </button>
-                    <button formaction="${root}/view/private/messages.jsp" class="imageButton" width="35px">
-                        <img src="${root}/view/res/images/ic_action_mail.png"/>
+                    <button formaction="${root}/view/private/messages.jsp" class="imageButton">
+                        <img src="${root}/view/res/images/ic_action_mail.png" width="35px"/>
                     </button>
                 </form>
             </div>
         </div>
     </div>
     <div id="rightBar">
-        <p>Rightbar</p>
+        <h2 style="text-align: center;">Your shops</h2>
+        <br>
+        <div id="shopContainer">
+        </div>
     </div>
 </div>
 </body>
