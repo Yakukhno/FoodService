@@ -5,18 +5,12 @@ import com.foodservice.businesslogic.user.ManagerUser;
 import com.foodservice.businesslogic.user.ShopAdminUser;
 import com.foodservice.dao.ManagerUserDAO;
 import com.foodservice.dao.ShopAdminUserDAO;
-import com.foodservice.exceptions.DuplicatedKeyException;
 import com.foodservice.exceptions.NoSuchUserException;
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.print.attribute.standard.MediaName;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Service
 @Transactional
@@ -68,6 +62,12 @@ public class ManagerUserService implements UserService<ManagerUser> {
     public ManagerUser getByEmail(String email) {
         ManagerUser managerUser = managerUserDAO.getByEmail(email);
         return managerUser;
+    }
+
+    @Transactional(readOnly = true)
+    public List<ManagerUser> getByShopAdminUserID(Integer id) {
+        List<ManagerUser> managerUsers = managerUserDAO.getByShopAdminUserID(id);
+        return managerUsers;
     }
 
     @Override

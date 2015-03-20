@@ -1,13 +1,17 @@
 package com.foodservice.dao;
 
 import com.foodservice.businesslogic.user.ManagerUser;
+import com.foodservice.businesslogic.user.ShopAdminUser;
 import com.foodservice.exceptions.DuplicatedKeyException;
+import com.foodservice.exceptions.NoSuchUserException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Repository
@@ -35,6 +39,18 @@ public class ManagerUserDAO implements UserDAO<ManagerUser, Integer> {
         Session session = sessionFactory.getCurrentSession();
         ManagerUser managerUser = (ManagerUser) session.get(ManagerUser.class, object);
         return managerUser;
+    }
+
+    @Transactional(readOnly = true)
+    public List<ManagerUser> getByShopAdminUserID(Integer id) {
+        Session session = sessionFactory.getCurrentSession();
+        ShopAdminUser shopAdminUser = (ShopAdminUser) session.get(ShopAdminUser.class, id);
+        if (shopAdminUser == null)
+            throw new NoSuchUserException("There is no persistence instance ShopUserAdmin with ID: " + id);
+        List managerUsers = session.createQuery(
+                "from ManagerUser where shopAdminUser = :shopAdminUser")
+                .setParameter("shopAdminUser", shopAdminUser).list();
+        return managerUsers;
     }
 
     @Override

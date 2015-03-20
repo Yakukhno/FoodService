@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Component
 @Path("/users/manager")
@@ -28,7 +29,6 @@ public class ManagerUserResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(@QueryParam("shopAdminUserEmail") String shopAdminUserEmail,
                            ManagerUser managerUser) {
-        System.out.println("STATE::::::::::::::::::: " + managerUser.getState());
         try {
             ManagerUser managerUser1 = managerUserService.create(managerUser, shopAdminUserEmail);
             return Response.ok(managerUser1).status(200).build();
@@ -37,6 +37,24 @@ public class ManagerUserResource {
         } catch (NoSuchUserException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
+    }
+
+    /**
+     * Returns list of ManagerUser related to ShopAdmin with particular id
+     * @param shopAdminID identifier of ShopAdminUser
+     * @return list of managers
+     */
+    @GET
+    @Path("/byShopAdminID")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getByShopAdminUserID(@QueryParam("shopAdminID") int shopAdminID) {
+        try {
+            List<ManagerUser> managerUsers = managerUserService.getByShopAdminUserID(shopAdminID);
+            if (managerUsers != null)
+                throw new NoSuchUserException();
+            return Response.ok(managerUsers).status(200).build();
+        } catch (NoSuchUserException e) {
+            return Response.status(404).build();        }
     }
 
     @GET

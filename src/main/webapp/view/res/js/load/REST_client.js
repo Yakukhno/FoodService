@@ -106,6 +106,36 @@ function ManagerUserCreate() {
     return false;
 }
 
+function ManagerUserChangeState(ManagerID, state) {
+    $.ajax({
+        type: "PUT",
+        contentType: "application/json; charset=utf-8",
+        url: "/FoodService/resources/users/manager/state/" + ManagerID + "?state=" + state,
+        success: function() {
+            alert("State is changed")
+        },
+        error: function () {
+            alert("ERROR");
+        }
+    });
+    return false;
+}
+
+function ManagerUsersGetByShopAdminID(shopAdminID) {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        url: "/FoodService/resources/users/manager/byShopAdminID?shopAdminID=" + shopAdminID,
+        success: function(results) {
+            alert(results)
+        },
+        error: function () {
+            alert("ERROR");
+        }
+    });
+    return false;
+}
+
 function ShopCreate(shopAdminUserID) {
 
     var location = {
