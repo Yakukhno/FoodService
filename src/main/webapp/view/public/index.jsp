@@ -22,7 +22,10 @@
         <div id="rightBar">
 
         </div>
-    
     </div>
+
+    <%--include footer--%>
+    <%@ include file="/view/public/common/footer.jsp" %>
+
 </body>
 </html>

@@ -36,7 +36,7 @@ public class SimpleUserService implements UserService<SimpleUser> {
 
     @Override
     @Transactional(readOnly = true)
-    public SimpleUser getByEmain(String email) {
+    public SimpleUser getByEmail(String email) {
         SimpleUser simpleUser = simpleUserDAO.getByEmail(email);
         return simpleUser;
     }

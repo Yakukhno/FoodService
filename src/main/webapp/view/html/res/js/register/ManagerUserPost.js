@@ -1,5 +1,5 @@
 $(function() {
-    $('#submitManagerUserForm').click(function (e) {
+    $('#submitShopAdminUserForm').click(function (e) {
 
         var formData = {
             firstName: $('#firstName').val(),

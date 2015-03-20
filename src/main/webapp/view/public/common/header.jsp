@@ -2,19 +2,12 @@
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<html xmlns="http://www.w3.org/1999/xhtml">
 <c:set var="root" value="${pageContext.request.contextPath}" />
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link href="${root}/view/res/style.css" rel="stylesheet" type="text/css" media="screen" />
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
   <script src="${root}/view/res/js/animate-bg.js" type="text/javascript"></script>
   <script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>
-  
-  <%--for loading user icon-data--%>
-  <%--<script src="${root}/view/res/js/load/load_user_info_icon_data.js" type="text/javascript"></script>--%>
-</head>
-<body>
+
 <div id="header">
   <div id="logo">
     <a href="${root}/view/public/index.jsp"><img src="${root}/view/res/images/foodservice.png"></a>
@@ -56,25 +49,5 @@
               </script>
     
             </div>
-        </div>
     </c:if>
-    <c:if test="${!show}">
-        <div id="profileHeader">
-            <form>
-                <table>
-                    <tr>Try service right now!</tr>
-                    <tr>
-                        <td>User:</td><td><button id="userSignUp" formaction="${root}/view/public/register_user.jsp"><p>Sign up</p></button></td>
-                    </tr>
-                    <tr>
-                        <td>Shop Admin:</td><td><button id="managerSignUp" formaction="${root}/view/public/register_admin.jsp"><p>Sign up</p></button></td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-    </c:if>
-
-
-
-</body>
-</html>
+</div>

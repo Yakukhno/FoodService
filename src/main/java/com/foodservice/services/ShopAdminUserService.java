@@ -36,7 +36,7 @@ public class ShopAdminUserService implements UserService<ShopAdminUser> {
 
     @Override
     @Transactional(readOnly = true)
-    public ShopAdminUser getByEmain(String email) {
+    public ShopAdminUser getByEmail(String email) {
         ShopAdminUser managerUser = managerUserDAO.getByEmail(email);
         return managerUser;
     }

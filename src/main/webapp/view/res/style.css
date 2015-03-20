@@ -29,6 +29,23 @@ body {
     margin: 0 auto;
 }
 
+#footer {
+    vertical-align: top;
+    width: 1366px;
+    margin: 0 auto;
+}
+
+    #footerPanel {
+        display: inline-block;
+        width: 1275px;
+        margin: 25px;
+        padding: 15px 20px 35px 20px;
+        background: #000000;
+        border: 1px solid;
+        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+    }
+
     #logo {
         vertical-align: top;
         display: inline-block;

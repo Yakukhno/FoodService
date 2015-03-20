@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public class ShopAdminUserDAO implements CRUD<ShopAdminUser, Integer> {
+public class ShopAdminUserDAO implements UserDAO<ShopAdminUser, Integer> {
     
     private SessionFactory sessionFactory;
 
@@ -37,6 +37,7 @@ public class ShopAdminUserDAO implements CRUD<ShopAdminUser, Integer> {
         return managerUser;
     }
 
+    @Override
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public ShopAdminUser getByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();

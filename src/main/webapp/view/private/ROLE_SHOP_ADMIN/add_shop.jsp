@@ -53,5 +53,9 @@
         <p>Rightbar</p>
     </div>
 </div>
+
+<%--include footer--%>
+<%@ include file="/view/public/common/footer.jsp" %>
+
 </body>
 </html>

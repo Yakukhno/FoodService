@@ -48,7 +48,7 @@ public class SimpleUserResource {
     @Path("/byEmail/{email}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response get(@PathParam("email") String email) {
-        SimpleUser simpleUser = simpleUserService.getByEmain(email);
+        SimpleUser simpleUser = simpleUserService.getByEmail(email);
         if (simpleUser != null)
             return Response.ok(simpleUser).status(200).build();
         else

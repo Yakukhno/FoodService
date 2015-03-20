@@ -22,8 +22,10 @@ public abstract class User {
     @Column(unique = true)
     private String email;
     private String password;
+
     @OneToOne
     private Photo photo;
+
     @Enumerated(EnumType.STRING)
     private Gender gender;
     private String personalData;

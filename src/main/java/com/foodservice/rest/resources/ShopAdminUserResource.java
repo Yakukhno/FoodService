@@ -48,7 +48,7 @@ public class ShopAdminUserResource {
     @Path("/byEmail/{email}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response get(@PathParam("email") String email) {
-        ShopAdminUser managerUser = shopAdminUserService.getByEmain(email);
+        ShopAdminUser managerUser = shopAdminUserService.getByEmail(email);
         if (managerUser != null)
             return Response.ok(managerUser.getId()).status(200).build();
         else

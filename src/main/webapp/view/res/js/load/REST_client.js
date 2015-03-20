@@ -79,6 +79,33 @@ function SimpleUserCreate() {
     return false;
 }
 
+function ManagerUserCreate() {
+    var formData = {
+        firstName: $('#firstName').val(),
+        lastName: $('#lastName').val(),
+        //manager is not accepted by shopAdmin user yet
+        state: "NEW",
+        email: $('#email').val(),
+        password: $('#password').val(),
+        personalData: $('#personalData').val()
+    }
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "/FoodService/resources/users/manager?shopAdminUserEmail=" + $('#shopAdminUserEmail').val(),
+        data: JSON.stringify(formData),
+        dataType: "json",
+        success: function() {
+            alert("SUCCESS")
+        },
+        error: function () {
+            alert("ERROR");
+        }
+    });
+    return false;
+}
+
 function ShopCreate(shopAdminUserID) {
 
     var location = {
