@@ -37,7 +37,7 @@ public class MessageDAO implements CRUD<Message, Integer>{
     @Transactional(readOnly = true)
     public Message get(Integer object) {
         Session session = sessionFactory.getCurrentSession();
-        Message message = (Message) session.get(Shop.class, object);
+        Message message = (Message) session.get(Message.class, object);
         return message;
     }
 

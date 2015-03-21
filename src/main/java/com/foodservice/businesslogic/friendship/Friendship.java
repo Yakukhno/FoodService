@@ -10,10 +10,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @javax.persistence.Table(name = "friendship", uniqueConstraints=
 @UniqueConstraint(columnNames = {"applicant_id", "acceptor_id"}))
-@NamedQueries(value = {
-        @NamedQuery(name = "user.list", query = "select f.applicant from Friendship f where f.acceptor = :user and f.state = :state"),
-        @NamedQuery(name = "user.reverse.list", query = "select f.acceptor from Friendship f where f.applicant = :user and f.state = :state")
-})
 public class Friendship {
 
     @Id
@@ -29,6 +25,12 @@ public class Friendship {
 
     @Enumerated(EnumType.STRING)
     private State state;
+
+    public Friendship(SimpleUser applicant, SimpleUser acceptor, State state) {
+        this.applicant = applicant;
+        this.acceptor = acceptor;
+        this.state = state;
+    }
 
     public State getState() {
         return state;
