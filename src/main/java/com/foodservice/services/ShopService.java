@@ -7,13 +7,14 @@ import com.foodservice.businesslogic.Shop;
 import com.foodservice.dao.ShopDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 
 @Service
-@Transactional
+@Transactional(isolation = Isolation.SERIALIZABLE)
 public class ShopService {
 
     private ShopDAO shopDAO;

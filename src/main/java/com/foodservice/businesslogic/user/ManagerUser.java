@@ -4,6 +4,8 @@ import com.foodservice.businesslogic.data.State;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -18,6 +20,7 @@ public class ManagerUser extends User {
      * Determines wether the shop administrator
      * accepts this manager as employee
      */
+    @Enumerated(EnumType.STRING)
     private State state;
 
     public State getState() {

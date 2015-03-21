@@ -61,6 +61,12 @@
             org.springframework.security.web.session.HttpSessionEventPublisher
         </listener-class>
     </listener>
+    <!--Session listener-->
+    <listener>
+        <listener-class>
+            com.foodservice.sessions.SessionCounter
+        </listener-class>
+    </listener>
 
     <session-config>
         <!--30 minute-->

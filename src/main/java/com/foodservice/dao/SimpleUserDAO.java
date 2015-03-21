@@ -7,10 +7,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
+@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
 public class SimpleUserDAO implements UserDAO<SimpleUser, Integer> {
     
     private SessionFactory sessionFactory;
@@ -21,7 +23,7 @@ public class SimpleUserDAO implements UserDAO<SimpleUser, Integer> {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, noRollbackFor =  DuplicatedKeyException.class)
+    @Transactional(noRollbackFor =  DuplicatedKeyException.class)
     public SimpleUser create(SimpleUser object) {
         Session session = sessionFactory.getCurrentSession();
         if (getByEmail(object.getEmail()) != null) throw new DuplicatedKeyException();
@@ -30,7 +32,7 @@ public class SimpleUserDAO implements UserDAO<SimpleUser, Integer> {
     }
 
     @Override
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    @Transactional(readOnly = true)
     public SimpleUser get(Integer object) {
         Session session = sessionFactory.getCurrentSession();
         SimpleUser managerUser = (SimpleUser) session.get(SimpleUser.class, object);
@@ -38,7 +40,7 @@ public class SimpleUserDAO implements UserDAO<SimpleUser, Integer> {
     }
 
     @Override
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    @Transactional(readOnly = true)
     public SimpleUser getByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from SimpleUser where email = :email");
@@ -47,7 +49,11 @@ public class SimpleUserDAO implements UserDAO<SimpleUser, Integer> {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    public int getNumber() {
+        return 0;
+    }
+
+    @Override
     public SimpleUser update(SimpleUser object) {
         Session session = sessionFactory.getCurrentSession();
         session.merge(object);
@@ -55,7 +61,6 @@ public class SimpleUserDAO implements UserDAO<SimpleUser, Integer> {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
     public boolean delete(SimpleUser object) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("delete SimpleUser where id = :id");

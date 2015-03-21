@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,12 +17,13 @@ public class ShopAdminUserDAO implements UserDAO<ShopAdminUser, Integer> {
     private SessionFactory sessionFactory;
 
     @Autowired
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, noRollbackFor =  DuplicatedKeyException.class)
+    @Transactional(noRollbackFor =  DuplicatedKeyException.class)
     public ShopAdminUser create(ShopAdminUser object) {
         Session session = sessionFactory.getCurrentSession();
         if (getByEmail(object.getEmail()) != null) throw new DuplicatedKeyException();
@@ -30,7 +32,7 @@ public class ShopAdminUserDAO implements UserDAO<ShopAdminUser, Integer> {
     }
 
     @Override
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    @Transactional(readOnly = true)
     public ShopAdminUser get(Integer object) {
         Session session = sessionFactory.getCurrentSession();
         ShopAdminUser managerUser = (ShopAdminUser) session.get(ShopAdminUser.class, object);
@@ -38,16 +40,20 @@ public class ShopAdminUserDAO implements UserDAO<ShopAdminUser, Integer> {
     }
 
     @Override
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    @Transactional(readOnly = true)
     public ShopAdminUser getByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from ShopAdminUser where email = :email");
         query.setParameter("email", email);
         return (ShopAdminUser) query.uniqueResult();
     }
-    
+
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    public int getNumber() {
+        return 0;
+    }
+
+    @Override
     public ShopAdminUser update(ShopAdminUser object) {
         Session session = sessionFactory.getCurrentSession();
         session.merge(object);
@@ -55,7 +61,6 @@ public class ShopAdminUserDAO implements UserDAO<ShopAdminUser, Integer> {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
     public boolean delete(ShopAdminUser object) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("delete ShopAdminUser where id = :id");

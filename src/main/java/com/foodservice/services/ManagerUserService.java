@@ -8,12 +8,13 @@ import com.foodservice.dao.ShopAdminUserDAO;
 import com.foodservice.exceptions.NoSuchUserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(isolation = Isolation.SERIALIZABLE)
 public class ManagerUserService implements UserService<ManagerUser> {
 
     private ManagerUserDAO managerUserDAO;
@@ -62,6 +63,11 @@ public class ManagerUserService implements UserService<ManagerUser> {
     public ManagerUser getByEmail(String email) {
         ManagerUser managerUser = managerUserDAO.getByEmail(email);
         return managerUser;
+    }
+
+    @Override
+    public int getNumber() {
+        return 0;
     }
 
     @Transactional(readOnly = true)

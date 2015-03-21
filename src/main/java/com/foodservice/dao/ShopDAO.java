@@ -10,6 +10,8 @@ import org.hibernate.transform.ResultTransformer;
 import org.hibernate.type.DoubleType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.ws.rs.PathParam;
@@ -17,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
+@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
 public class ShopDAO implements CRUD<Shop, Integer> {
     
     private SessionFactory sessionFactory;
@@ -133,7 +136,6 @@ public class ShopDAO implements CRUD<Shop, Integer> {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Shop update(Shop object) {
         Session session = sessionFactory.getCurrentSession();
         session.merge(object);
@@ -141,7 +143,6 @@ public class ShopDAO implements CRUD<Shop, Integer> {
     }
 
     @Override
-    @Transactional
     public boolean delete(Shop object) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("delete Shop where id = :id");

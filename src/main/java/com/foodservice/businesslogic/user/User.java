@@ -3,6 +3,7 @@ package com.foodservice.businesslogic.user;
 import com.foodservice.businesslogic.Photo;
 import com.foodservice.businesslogic.Message;
 import com.foodservice.businesslogic.data.Gender;
+import com.foodservice.businesslogic.data.SystemStatus;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,6 +29,12 @@ public abstract class User {
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
+    /**
+     * Determins the system status of current user
+     */
+    @Enumerated(EnumType.STRING)
+    private SystemStatus systemStatus;
     private String personalData;
 
     @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -35,9 +42,6 @@ public abstract class User {
 
     @ManyToMany(mappedBy = "receivers", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Message> receivedMessages = new ArrayList<Message>();
-
-    protected User() {
-    }
 
     public int getId() {
         return id;
@@ -63,16 +67,24 @@ public abstract class User {
         this.sentMessages = sentMessages;
     }
 
+    public String getPersonalData() {
+        return personalData;
+    }
+
+    public void setPersonalData(String personalData) {
+        this.personalData = personalData;
+    }
+
+    public SystemStatus getSystemStatus() {
+        return systemStatus;
+    }
+
+    public void setSystemStatus(SystemStatus systemStatus) {
+        this.systemStatus = systemStatus;
+    }
+
     public Gender getGender() {
         return gender;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public void setGender(Gender gender) {
@@ -95,6 +107,14 @@ public abstract class User {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getLastName() {
         return lastName;
     }
@@ -109,14 +129,6 @@ public abstract class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getPersonalData() {
-        return personalData;
-    }
-
-    public void setPersonalData(String personalData) {
-        this.personalData = personalData;
     }
 
     @Override
@@ -144,9 +156,10 @@ public abstract class User {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", personalData='" + personalData + '\'' +
                 ", photo=" + photo +
                 ", gender=" + gender +
+                ", systemStatus=" + systemStatus +
+                ", personalData='" + personalData + '\'' +
                 ", sentMessages=" + sentMessages +
                 ", receivedMessages=" + receivedMessages +
                 '}';

@@ -5,10 +5,11 @@ import com.foodservice.businesslogic.user.SimpleUser;
 import com.foodservice.dao.SimpleUserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
+@Transactional(isolation = Isolation.SERIALIZABLE)
 public class SimpleUserService implements UserService<SimpleUser> {
     
     private SimpleUserDAO simpleUserDAO;
@@ -41,10 +42,10 @@ public class SimpleUserService implements UserService<SimpleUser> {
         return simpleUser;
     }
 
-//    @Override
-//    public SimpleUser getMainAttributes(Integer key) {
-//        return null;
-//    }
+    @Override
+    public int getNumber() {
+        return 0;
+    }
 
     @Override
     public SimpleUser update(SimpleUser object) {

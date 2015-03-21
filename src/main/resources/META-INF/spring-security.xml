@@ -21,7 +21,7 @@
         <logout logout-success-url="/" delete-cookies="JSESSIONID" />
 
         <session-management invalid-session-url="/" session-fixation-protection="newSession">
-            <concurrency-control max-sessions="3" error-if-maximum-exceeded="true" />
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
         </session-management>
 
         <remember-me key="FoodService" token-validity-seconds="864000" />

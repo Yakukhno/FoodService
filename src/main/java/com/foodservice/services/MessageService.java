@@ -4,11 +4,13 @@ import com.foodservice.businesslogic.Message;
 import com.foodservice.dao.MessageDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(isolation = Isolation.SERIALIZABLE)
 public class MessageService {
 
     private MessageDAO messageDAO;
@@ -38,12 +40,10 @@ public class MessageService {
         return messageDAO.getSentMessages(userId, firstResult, maxResults);
     }
 
-    @Transactional
     public Message update(Message object) {
         return messageDAO.update(object);
     }
 
-    @Transactional
     public boolean delete(Message object) {
         return messageDAO.delete(object);
     }

@@ -10,7 +10,11 @@ public interface UserService<E extends User> {
     public E create(E object);
     public E get(Integer key);
     public E getByEmail(String email);
-//    public E getMainAttributes(Integer key);
+
+    /**
+     * @return number of users
+     */
+    public int getNumber();
     public E update(E object);
     public boolean delete(E object);
 }

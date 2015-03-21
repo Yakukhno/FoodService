@@ -246,3 +246,48 @@ function ShopsByCriterion() {
         }
     });
 }
+
+/**
+ * Returns system statuses for all users with present identifiers in
+ * {@code identifiers}
+ * @param identifiers array of user identifiers
+ */
+function UserGetServerStatuses(identifiers) {
+    $.ajax({
+        type: "GET",
+        url: "/FoodService/resources/users/statuses",
+        dataType: 'json',
+        data: identifiers,
+        success: function(results) {
+            alert(results);
+            $.each(results, function() {
+
+            });
+            return results;
+        },
+        error: function () {
+            return null;
+        }
+    });
+}
+
+/**
+ * Changes the system status of particular user
+ * @param id identifier of user
+ * @param status System Status
+ * @constructor
+ */
+function UserChangeSystemStatus(id, status) {
+    $.ajax({
+        type: "PUT",
+        url: "/FoodService/resources/users/statuses?id=" + id + "&status=" + status,
+        dataType: 'json',
+        success: function() {
+            alert("Changed")
+        },
+        error: function () {
+            alert("error")
+            return null;
+        }
+    });
+}

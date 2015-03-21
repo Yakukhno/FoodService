@@ -13,8 +13,6 @@ public class CustomUserDetails implements UserDetails {
     private String password;
     private String firstName;
     private String lastName;
-    
-    
 
     public CustomUserDetails(Collection<? extends GrantedAuthority> authorities,
                              int id,
@@ -99,5 +97,22 @@ public class CustomUserDetails implements UserDetails {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CustomUserDetails that = (CustomUserDetails) o;
+
+        if (!username.equals(that.username)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return username.hashCode();
     }
 }

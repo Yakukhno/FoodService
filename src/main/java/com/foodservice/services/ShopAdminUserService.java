@@ -5,9 +5,11 @@ import com.foodservice.dao.ShopAdminUserDAO;
 import com.foodservice.exceptions.DuplicatedKeyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(isolation = Isolation.SERIALIZABLE)
 public class ShopAdminUserService implements UserService<ShopAdminUser> {
 
 
@@ -42,14 +44,17 @@ public class ShopAdminUserService implements UserService<ShopAdminUser> {
     }
 
     @Override
-    @Transactional
+    public int getNumber() {
+        return 0;
+    }
+
+    @Override
     public ShopAdminUser update(ShopAdminUser object) {
         ShopAdminUser managerUser = managerUserDAO.update(object);
         return managerUser;
     }
 
     @Override
-    @Transactional
     public boolean delete(ShopAdminUser object) {
         boolean res = managerUserDAO.delete(object);
         return res;
