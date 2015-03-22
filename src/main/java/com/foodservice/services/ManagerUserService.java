@@ -1,6 +1,7 @@
 package com.foodservice.services;
 
 import com.foodservice.businesslogic.data.State;
+import com.foodservice.businesslogic.data.SystemStatus;
 import com.foodservice.businesslogic.user.ManagerUser;
 import com.foodservice.businesslogic.user.ShopAdminUser;
 import com.foodservice.dao.ManagerUserDAO;
@@ -31,6 +32,7 @@ public class ManagerUserService implements UserService<ManagerUser> {
 
     @Override
     public ManagerUser create(ManagerUser object) {
+        object.setSystemStatus(SystemStatus.OFFLINE);
         ManagerUser managerUser = managerUserDAO.create(object);
         return managerUser;
     }

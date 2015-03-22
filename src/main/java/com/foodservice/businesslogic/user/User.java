@@ -35,6 +35,8 @@ public abstract class User {
      */
     @Enumerated(EnumType.STRING)
     private SystemStatus systemStatus;
+
+    @Lob
     private String personalData;
 
     @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

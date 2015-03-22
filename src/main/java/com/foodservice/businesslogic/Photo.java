@@ -11,7 +11,7 @@ public class Photo {
     private int id;
 
     @Lob
-    private byte[] image;
+    private String image;
 
     private String name;
 
@@ -24,11 +24,11 @@ public class Photo {
         this.id = id;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -38,5 +38,14 @@ public class Photo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Photo{" +
+                "id=" + id +
+                ", image='" + image + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

@@ -28,7 +28,7 @@ public class ShopAdminUserResource {
         try {
             ShopAdminUser managerUser1 = shopAdminUserService.create(managerUser);
             return Response.ok(managerUser1).status(200).build();
-        } catch (DuplicatedKeyException e)  {
+        } catch (Exception e)  {
             return Response.status(403).build();
         }
     }

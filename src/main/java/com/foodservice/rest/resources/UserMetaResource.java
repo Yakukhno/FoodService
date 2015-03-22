@@ -21,6 +21,7 @@ public class UserMetaResource {
 
     @GET
     @Path("/statuses")
+    @Consumes("application/json")
     @Produces("application/json")
     public Response getSystemStatus(Integer[] identifiers) {
         SystemStatus[] statuses = userCommonService.getSystemStatus(identifiers);

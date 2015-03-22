@@ -25,6 +25,10 @@ public class ProfileRedirectionServlet extends HttpServlet {
             System.out.println("Has role ROLE_SHOP_ADMIN");
             req.getRequestDispatcher("/view/private/ROLE_SHOP_ADMIN/profile.jsp").forward(req,resp);
         }
+        if (hasRole("ROLE_MANAGER")) {
+            System.out.println("Has role ROLE_MANAGER");
+            req.getRequestDispatcher("/view/private/ROLE_MANAGER/profile.jsp").forward(req,resp);
+        }
     }
 
     private boolean hasRole(String role) {

@@ -1,5 +1,6 @@
 package com.foodservice.services;
 
+import com.foodservice.businesslogic.data.SystemStatus;
 import com.foodservice.businesslogic.user.ShopAdminUser;
 import com.foodservice.dao.ShopAdminUserDAO;
 import com.foodservice.exceptions.DuplicatedKeyException;
@@ -25,6 +26,7 @@ public class ShopAdminUserService implements UserService<ShopAdminUser> {
     @Transactional(noRollbackFor = DuplicatedKeyException.class)
     public ShopAdminUser create(ShopAdminUser object) {
         //code to check for right email
+        object.setSystemStatus(SystemStatus.OFFLINE);
         ShopAdminUser managerUser = managerUserDAO.create(object);
         return managerUser;
     }

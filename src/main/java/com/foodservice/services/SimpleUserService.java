@@ -1,5 +1,6 @@
 package com.foodservice.services;
 
+import com.foodservice.businesslogic.data.SystemStatus;
 import com.foodservice.exceptions.DuplicatedKeyException;
 import com.foodservice.businesslogic.user.SimpleUser;
 import com.foodservice.dao.SimpleUserDAO;
@@ -22,8 +23,8 @@ public class SimpleUserService implements UserService<SimpleUser> {
     @Override
     @Transactional(noRollbackFor = DuplicatedKeyException.class)
     public SimpleUser create(SimpleUser object) {
-        
-        
+
+        object.setSystemStatus(SystemStatus.OFFLINE);
         SimpleUser simpleUser = simpleUserDAO.create(object);
         return simpleUser;
     }

@@ -1,5 +1,6 @@
 package com.foodservice.dao;
 
+import com.foodservice.businesslogic.Photo;
 import com.foodservice.exceptions.DuplicatedKeyException;
 import com.foodservice.businesslogic.Location;
 import com.foodservice.businesslogic.Shop;
@@ -34,6 +35,9 @@ public class ShopDAO implements CRUD<Shop, Integer> {
     public Shop create(Shop object) {
         Session session = sessionFactory.getCurrentSession();
         if (get(object.getId()) != null) throw new DuplicatedKeyException();
+        Photo photo = object.getPhoto();
+        session.persist(photo);
+        session.flush();
         session.persist(object);
         return object;
     }

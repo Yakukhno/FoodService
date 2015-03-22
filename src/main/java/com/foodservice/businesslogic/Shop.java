@@ -22,7 +22,11 @@ public class Shop {
     @Embedded
     private Location location;
 
+    @Lob
     private String description;
+
+    @OneToOne
+    private Photo photo;
 
     @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL)
@@ -41,6 +45,14 @@ public class Shop {
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rating> ratings = new ArrayList<Rating>();
 
+
+    public Photo getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
+    }
 
     public ShopAdminUser getShopAdminUser() {
         return shopAdminUser;
@@ -114,6 +126,7 @@ public class Shop {
         this.ratings = ratings;
     }
 
+
     @Override
     public String toString() {
         return "Shop{" +
@@ -121,6 +134,7 @@ public class Shop {
                 ", name='" + name + '\'' +
                 ", location=" + location +
                 ", description='" + description + '\'' +
+                ", photo=" + photo +
                 ", shopAdminUser=" + shopAdminUser +
                 ", tables=" + tables +
                 ", photos=" + photos +

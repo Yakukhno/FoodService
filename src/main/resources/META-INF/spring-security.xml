@@ -15,10 +15,10 @@
         <form-login
                 login-page="/view/public/login.jsp"
                 default-target-url="/"
-                authentication-failure-url="/view/public/login.jsp?error"
+                authentication-failure-url="/view/public/login.jsp?error=true"
                 username-parameter="username"
                 password-parameter="password" />
-        <logout logout-success-url="/" delete-cookies="JSESSIONID" />
+        <logout delete-cookies="JSESSIONID" success-handler-ref="logoutSuccessHandler"/>
 
         <session-management invalid-session-url="/" session-fixation-protection="newSession">
             <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
@@ -32,6 +32,6 @@
     </authentication-manager>
     
     <beans:bean id="userService" class="com.foodservice.security.CustomUserDetailsService"/>
-    <beans:bean id="authenticationSuccessHandler" class="com.foodservice.security.CustomAuthenticationSuccessHandler"/>
+    <beans:bean id="logoutSuccessHandler" class="com.foodservice.security.CustomLogoutSuccessHandler" />
 
 </beans:beans>

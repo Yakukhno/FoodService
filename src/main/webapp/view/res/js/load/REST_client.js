@@ -136,6 +136,14 @@ function ManagerUsersGetByShopAdminID(shopAdminID) {
     return false;
 }
 
+
+function previewFile() {
+    var file    = document.querySelector('input[type=file]').files[0];
+    var reader  = new FileReader();
+
+    return reader.result
+}
+
 function ShopCreate(shopAdminUserID) {
 
     var location = {
@@ -146,9 +154,16 @@ function ShopCreate(shopAdminUserID) {
         zipcode: $('#zipCode').val()
     }
 
+    //var img = new Image();
+    //img.src = $('#photoShop').val();
+    var photo = {
+        image: previewFile()
+    }
+
     var shop = {
         name: $('#shopName').val(),
         location: location,
+        photo: photo,
         description: $('#description').val()
     }
 
@@ -186,8 +201,14 @@ function ShopsByShopAdminUserID(shopAdminID) {
                     '<a href="/FoodService/view/public/service.jsp" class="shopRightName">' + this.name + '</a>' +
                     '<p class="smallText">' + this.location.city + ', ' + this.location.street + ' ' + this.location.building + '</p></div>' +
                     '<div class="shopPhoto">' +
-                    '<img src="/FoodService/view/res/images/mcdonalds.jpeg" width="40px">' +
+                    '<img id="thumbnailShop"  width="40px" height="40px">' +
                     '</div></div>'));
+
+                var shop = jQuery.parseJSON(this.photo.image);
+                for (var key in shop) {
+                    //the results is a base64 string.  convert it to an image and assign as 'src'
+                    document.getElementById("thumbnailShop").src = shop[key];
+                }
             });
             return results;
         },
