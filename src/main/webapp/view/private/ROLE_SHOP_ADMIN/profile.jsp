@@ -14,6 +14,7 @@
             managerID = <%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>
                     shops = ShopsByShopAdminUserID(managerID);
             ShopAdminUserByID(managerID);
+            ManagerUsersGetByShopAdminID(managerID);
         }
 
     </script>
@@ -25,7 +26,10 @@
 
 <div id="content">
     <div id="leftBar">
-        <p>Leftbar</p>
+        <h2 style="text-align: center">Your managers</h2>
+        <br>
+        <div id="managerContainer">
+        </div>
     </div>
     <div id="centralBar">
         <h2><p>Profile</p></h2>

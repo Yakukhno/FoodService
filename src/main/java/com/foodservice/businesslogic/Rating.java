@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Rating {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private int value;

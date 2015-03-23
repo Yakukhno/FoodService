@@ -69,7 +69,6 @@
                 <div id="resultShopList" ></div>
             </div>
             <div id="rightBar">
-                <p>Rightbar</p>
             </div>
         </div>
 

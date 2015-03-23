@@ -21,7 +21,6 @@
         
         <div id="content">   
             <div id="leftbar">
-                <p>Leftbar</p>
             </div>
             <div id="centralbar">
                 <h2>Sign up as shop administrator</h2>
@@ -44,7 +43,6 @@
                 </form>
             </div>
             <div id="rightbar">
-                <p>Rightbar</p>
             </div>
         </div>
 

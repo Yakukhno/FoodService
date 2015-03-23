@@ -13,7 +13,6 @@
 
     <div id="content">
       <div id="leftBar">
-        <p>Leftbar</p>
       </div>
       <div id="centralBar">
         <h2>Sign in</h2>
@@ -40,7 +39,6 @@
         </form>
       </div>
       <div id="rightBar">
-        <p>Rightbar</p>
       </div>
     </div>
 

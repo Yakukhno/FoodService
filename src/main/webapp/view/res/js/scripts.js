@@ -33,20 +33,25 @@ function checkPasswords() {
     }
 }
 
-function uploadShops() {
-    var bar = document.getElementById("centralBar");
-    for (var i = 0; i < 5; i++) {
-        var p = document.createElement("div");
-        p.setAttribute("id", "shop");
-        p.innerHTML = '<h3>McDonalds ' + i + '</h3> <div id="shopText"> <p>Description: fddsfsdfsdfffsfssdsdfs sddf fsdfsdfsd ssdfsdf sddfsd ssdfsdfsdsdsdf sfsfs  sdfs dfsdsf </p> </div> <div id="profileImage"> <img height="150px" src="/FoodService/view/res/images/photo.jpg"/></div>';
-        bar.appendChild(p);      
+function dropList() {
+    var list = document.getElementById("dropList");
+    var li1 = document.createElement('a');
+    var li2 = document.createElement('a');
+    var li3 = document.createElement('a');
+    li1.setAttribute("href", '/FoodService/view/public/register_user.jsp');
+    li2.setAttribute("href", '/FoodService/view/public/register_manager.jsp');
+    li3.setAttribute("href", '/FoodService/view/public/register_admin.jsp');
+    li1.innerHTML = "<li>user</li>";
+    li2.innerHTML = "<li>manager</li>";
+    li3.innerHTML = "<li>admin</li>";    
+    if (list.getElementsByTagName('li').length == 0) {
+        list.appendChild(li1);
+        list.appendChild(li2);
+        list.appendChild(li3);
+    } else {
+        list.removeChild(list.lastChild);
+        list.removeChild(list.lastChild);
+        list.removeChild(list.lastChild);
     }
+    
 }
-
-function loadProfile() {
-    document.getElementById("profileFName").innerHTML = "Grygoriy";
-    document.getElementById("profileLName").innerHTML = "Rozhkov";
-    document.getElementById("profileEmail").innerHTML = "grisha@gmail.com";
-    document.getElementById("profileInfo").innerHTML = "...";
-}
-

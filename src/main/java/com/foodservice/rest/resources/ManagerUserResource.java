@@ -50,7 +50,7 @@ public class ManagerUserResource {
     public Response getByShopAdminUserID(@QueryParam("shopAdminID") int shopAdminID) {
         try {
             List<ManagerUser> managerUsers = managerUserService.getByShopAdminUserID(shopAdminID);
-            if (managerUsers != null)
+            if (managerUsers == null)
                 throw new NoSuchUserException();
             return Response.ok(managerUsers).status(200).build();
         } catch (NoSuchUserException e) {

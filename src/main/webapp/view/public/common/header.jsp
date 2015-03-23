@@ -10,50 +10,44 @@
   <script src="${root}/view/res/js/animate-bg.js" type="text/javascript"></script>
   <script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>
 
-<div id="header">
-  <div id="logo">
-    <a href="${root}/view/public/index.jsp"><img src="${root}/view/res/images/foodservice.png"></a>
-  </div>
-  <div id="menu">
-    <ul id="nav">
-      <li><a href="${root}/view/public/index.jsp">Home</a></li>
-      <li><a href="${root}/view/public/service.jsp">Service</a></li>
-      <li><a href="#">Work</a></li>
+<header>
+    <div id="logo">
+        <div class="logoLink"><a href="${root}/view/public/index.jsp">FoodService</a></div></a>
+    </div>
+    <div id="menu">
+        <ul id="nav">
+            <li><a href="${root}/view/public/index.jsp">Home</a></li>
+                <li><a href="${root}/view/public/service.jsp">Service</a></li>
+                <li><a href="#">Work</a></li>
+                <li><a href="#">About</a></li>
+        </ul>
+    </div>
+    <div class="search">
+        <input class="searchLine"/>
+    </div>
     <c:if test="${!show}">
-        <li><a href="${root}/view/private/redirect">Sign in</a></li>
+<!--        <div id="profileHeader">-->
+            <div class="buttons">
+                <button id="userSignUp"><a href="${root}/view/private/redirect">Sign in</a></button>
+                <button id="managerSignUp" onclick="dropList()"><p>Sign up</p></button>
+                <ul id="dropList">
+                </ul>
+            </div>    
+<!--        </div>-->
     </c:if>
-    <c:if test="${show}">
-        <c:url value="/j_spring_security_logout" var="logoutUrl" />
-        <!-- csrt for log out-->
-        <form id="logoutForm" action="${logoutUrl}" method="post" >
-            <input type="hidden"
-                   name="${_csrf.parameterName}"
-                   value="${_csrf.token}" />
-        </form>
-
-        <script>
-            function formSubmit() {
-                document.getElementById("logoutForm").submit();
-            }
-        </script>
-        <li><a href="${logoutUrl}" >Sign out</a></li>
-    </c:if>
-    </ul>
-  </div>
-
     <c:if test="${show}">
         <div id="profileHeader">
-              <div id="profileHeaderText">
-                    <p id="lNameIconData" style="display: inline-block; vertical-align: top; width: 120px">
+            <div id="profileHeaderText">
+                <p id="lNameIconData" style="display: inline-block; vertical-align: top; width: 120px">
                         <a href="${root}/view/private/redirect">
                             <sec:authentication property="principal.firstName" />
                             <sec:authentication property="principal.lastName" />
                         </a>
-                    </p>
-                    <p id="emailIconData" style="vertical-align: top; width: 120px"><sec:authentication property="principal.username" /></p>
+                </p>
+                <p id="emailIconData" style="vertical-align: top; width: 120px"><sec:authentication property="principal.username" /></p>
               </div>
-              <button style="display: inline-block; vertical-align: top;" onclick="javascript:formSubmit()"><p>Logout</p></button>
-              <c:url value="/j_spring_security_logout" var="logoutUrl" />
+            <button style="display: inline-block; vertical-align: top;" onclick="javascript:formSubmit()"><p>Logout</p></button>
+            <c:url value="/j_spring_security_logout" var="logoutUrl" />
               <!-- csrt for log out-->
               <form id="logoutForm" action="${logoutUrl}" method="post" >
                 <input type="hidden"
@@ -67,6 +61,6 @@
                 }
               </script>
     
-            </div>
+        </div>
     </c:if>
-</div>
+</header>

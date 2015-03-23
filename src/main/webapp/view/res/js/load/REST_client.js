@@ -127,7 +127,22 @@ function ManagerUsersGetByShopAdminID(shopAdminID) {
         contentType: "application/json; charset=utf-8",
         url: "/FoodService/resources/users/manager/byShopAdminID?shopAdminID=" + shopAdminID,
         success: function(results) {
-            alert(results)
+            $.each(results, function() {
+                $("#managerContainer").append(
+                    $('<div id="managerRight">' +
+                    '<div class="managerText">' +
+                    '<a href="/FoodService/view/public/service.jsp" class="shopRightName">' + this.firstName + ' ' + this.lastName + '</a>' +
+                    '<p class="smallText">' + this.systemStatus + '</p></div>' +
+                    '<div class="shopPhoto">' +
+                    '<img id="thumbnailShop"  width="40px" height="40px">' +
+                    '</div></div>'));
+
+                var shop = jQuery.parseJSON(this.photo.image);
+                for (var key in shop) {
+                    //the results is a base64 string.  convert it to an image and assign as 'src'
+                    document.getElementById("thumbnailShop").src = shop[key];
+                }
+            });
         },
         error: function () {
             alert("ERROR");

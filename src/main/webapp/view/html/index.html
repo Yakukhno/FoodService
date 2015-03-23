@@ -8,35 +8,62 @@
     <script src="/res/js/scripts.js" type="text/javascript"></script>
 </head>
 <body>
-<div id="header">
+<header>
     <div id="logo">
-        <a href="index.html"><img src="/res/images/foodservice.png"></a>
+        <div class="logoLink"><a href="index.html">FoodService</a></div>
     </div>
     <div id="menu">
         <ul id="nav">
             <li><a href="index.html">Home</a></li>
-            <li><a href="$service.html">Service</a></li>
+            <li><a href="service.html">Service</a></li>
             <li><a href="#">Work</a></li>
             <li><a href="/view/private/redirect">Profile</a></li>
         </ul>
     </div>
+    <input class="search"/>
     <div id="profileHeader">
+<!--        <form>-->
+            <button id="userSignUp" formaction="register_user.html"><p>Sign in</p></button>
+            <button id="managerSignUp" onclick="dropList()"><p>Sign up</p></button>
+            <ul id="dropList">
+<!--                Sign up-->
+<!--
+                <li>user</li>
+                <li>manager</li>
+                <li>administator</li>
+-->
+            </ul>
+<!--
+            <select class="selectButton">
+                <option class="option">Sign up as user</option>
+                <option class="option">Sign up as manager</option>
+                <option class="option">Sign up as administator</option>
+            </select>
+-->
+<!--        </form>        -->
+<!--
         <div id="profileHeaderText">
             <p style="display: inline-block; vertical-align: top; width: 120px">Ivan Yakukhno</p>
             <p style="vertical-align: top; width: 120px">sokole2@yandex.ru</p>
         </div>    
         <button style="display: inline-block; vertical-align: top;" onclick="javascript:formSubmit()"><p>Logout</p></button>
+-->
     </div>
-</div>
+</header>
 <div id="content">
+<!--
     <div id="leftBar">
         <p>Leftbar</p>
     </div>
+-->
+<!--
     <div id="centralBar">
         <p style="text-align: center;">Welcome!</p>
         <br>
         <p><img src="/res/images/welcome_page.png" style="margin-left: 22px" /></p>
     </div>
+-->
+<!--
     <div id="rightBar">
         <form>
             <button id="userSignUp" formaction="register_user.html"><p>Sign up as user</p></button>
@@ -44,6 +71,10 @@
             <button id="managerSignUp" formaction="register_manager.html"><p>Sign up as manager</p></button>
         </form>
     </div>
+-->
 </div>
+<footer>
+    GRYI production
+</footer>
 </body>
 </html>

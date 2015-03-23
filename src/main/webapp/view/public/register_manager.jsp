@@ -21,10 +21,9 @@
 
 <div id="content">
     <div id="leftbar">
-        <p>Leftbar</p>
     </div>
     <div id="centralbar">
-        <h2>Sign up as user</h2>
+        <h2>Sign up as manager</h2>
         <br>
         <form action="${root}/view/private/redirect" accept-charset=utf-8>
             <label for="firstName">First name</label>
@@ -44,7 +43,6 @@
         </form>
     </div>
     <div id="rightbar">
-        <p>Rightbar</p>
     </div>
 </div>
 
