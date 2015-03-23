@@ -121,6 +121,7 @@ function ManagerUserChangeState(ManagerID, state) {
     return false;
 }
 
+
 function ManagerUsersGetByShopAdminID(shopAdminID) {
     $.ajax({
         type: "GET",
