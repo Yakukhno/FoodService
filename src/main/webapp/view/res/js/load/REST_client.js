@@ -130,8 +130,8 @@ function ManagerUsersGetByShopAdminID(shopAdminID) {
         success: function(results) {
             $.each(results, function() {
                 $("#managerContainer").append(
-                    $('<div id="managerRight">' +
-                    '<div class="managerText">' +
+                    $('<div id="managerLeft">' +
+                    '<div class="shopText">' +
                     '<a href="/FoodService/view/public/service.jsp" class="shopRightName">' + this.firstName + ' ' + this.lastName + '</a>' +
                     '<p class="smallText">' + this.systemStatus + '</p></div>' +
                     '<div class="shopPhoto">' +

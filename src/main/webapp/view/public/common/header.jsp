@@ -11,56 +11,61 @@
   <script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>
 
 <header>
-    <div id="logo">
-        <div class="logoLink"><a href="${root}/view/public/index.jsp">FoodService</a></div></a>
-    </div>
-    <div id="menu">
-        <ul id="nav">
-            <li><a href="${root}/view/public/index.jsp">Home</a></li>
-                <li><a href="${root}/view/public/service.jsp">Service</a></li>
-                <li><a href="#">Work</a></li>
-                <li><a href="#">About</a></li>
-        </ul>
-    </div>
-    <div class="search">
-        <input class="searchLine"/>
-    </div>
-    <c:if test="${!show}">
-<!--        <div id="profileHeader">-->
-            <div class="buttons">
-                <button id="userSignUp"><a href="${root}/view/private/redirect">Sign in</a></button>
-                <button id="managerSignUp" onclick="dropList()"><p>Sign up</p></button>
-                <ul id="dropList">
-                </ul>
-            </div>    
-<!--        </div>-->
-    </c:if>
-    <c:if test="${show}">
-        <div id="profileHeader">
-            <div id="profileHeaderText">
-                <p id="lNameIconData" style="display: inline-block; vertical-align: top; width: 120px">
-                        <a href="${root}/view/private/redirect">
-                            <sec:authentication property="principal.firstName" />
-                            <sec:authentication property="principal.lastName" />
-                        </a>
-                </p>
-                <p id="emailIconData" style="vertical-align: top; width: 120px"><sec:authentication property="principal.username" /></p>
-              </div>
-            <button style="display: inline-block; vertical-align: top;" onclick="javascript:formSubmit()"><p>Logout</p></button>
-            <c:url value="/j_spring_security_logout" var="logoutUrl" />
-              <!-- csrt for log out-->
-              <form id="logoutForm" action="${logoutUrl}" method="post" >
-                <input type="hidden"
-                       name="${_csrf.parameterName}"
-                       value="${_csrf.token}" />
-              </form>
-    
-              <script>
-                function formSubmit() {
-                  document.getElementById("logoutForm").submit();
-                }
-              </script>
-    
+    <div class="headerCenter">
+        <div id="logo">
+            <div class="logoLink"><a href="${root}/view/public/index.jsp">FoodService</a></div></a>
         </div>
-    </c:if>
+        <div id="menu">
+            <ul id="nav">
+                <li><a href="${root}/view/public/index.jsp">Home</a></li>
+                    <li><a href="${root}/view/public/service.jsp">Service</a></li>
+                    <li><a href="#">Work</a></li>
+                    <li><a href="#">About</a></li>
+            </ul>
+        </div>
+        <div class="search">
+            <input class="searchLine"/>
+            <button onclick="dropList1()"></button>
+            <ul id="dropList1">
+            </ul>
+        </div>
+        <c:if test="${!show}">
+    <!--        <div id="profileHeader">-->
+                <div class="buttons">
+                    <button id="userSignUp"><a href="${root}/view/private/redirect">Sign in</a></button>
+                    <button id="managerSignUp" onclick="dropList()"><p>Sign up</p></button>
+                    <ul id="dropList">
+                    </ul>
+                </div>
+    <!--        </div>-->
+        </c:if>
+        <c:if test="${show}">
+            <div id="profileHeader">
+                <div id="profileHeaderText">
+                    <p id="lNameIconData" style="display: inline-block; vertical-align: top; width: 120px">
+                            <a href="${root}/view/private/redirect">
+                                <sec:authentication property="principal.firstName" />
+                                <sec:authentication property="principal.lastName" />
+                            </a>
+                    </p>
+                    <p id="emailIconData" style="vertical-align: top; width: 120px"><sec:authentication property="principal.username" /></p>
+                  </div>
+                <button style="display: inline-block; vertical-align: top; margin-top: 3px;" onclick="javascript:formSubmit()"><p>Logout</p></button>
+                <c:url value="/j_spring_security_logout" var="logoutUrl" />
+                  <!-- csrt for log out-->
+                  <form id="logoutForm" action="${logoutUrl}" method="post" >
+                    <input type="hidden"
+                           name="${_csrf.parameterName}"
+                           value="${_csrf.token}" />
+                  </form>
+
+                  <script>
+                    function formSubmit() {
+                      document.getElementById("logoutForm").submit();
+                    }
+                  </script>
+
+            </div>
+        </c:if>
+    </div>
 </header>

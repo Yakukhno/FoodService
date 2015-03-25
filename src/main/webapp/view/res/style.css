@@ -27,7 +27,6 @@ footer {
     width: 100%;
     background: #C7C9BE;
     height: 60px;
-    margin-bottom: 0 auto;
     color: #42433F;
     text-align: center;
     border-top: 1px solid #929487;
@@ -42,24 +41,18 @@ header {
     border-bottom: 1px solid #929487;
 }
 
-/*
-    #footerPanel {
-        display: inline-block;
-        width: 1275px;
-        margin: 25px;
-        padding: 15px 20px 35px 20px;
-        background: #000000;
-        border: 1px solid;
-        border-bottom-right-radius: 15px;
-        border-bottom-left-radius: 15px;
+    .headerCenter {
+        text-align: left;
+        width: 1366px;
+        margin: 0 auto;
     }
-*/
 
     #logo {
         vertical-align: top;
         display: inline-block;
         height: 100%;
         width: auto;
+        margin-left: 100px;
     }
 
     .logoLink {
@@ -84,7 +77,25 @@ header {
         display: inline-block;
         width: 425px;
         height: 100%;
-        margin-left: 100px;
+        margin-left: 53px;
+    }
+
+    .search {
+        vertical-align: top;
+        display: inline-block;
+        margin-left: 20px;
+        margin-top: 22px;
+        height: 100%;
+        width: auto;
+    }
+
+
+
+    input.searchLine {
+        border: 1px solid;
+        border-radius: 30px;
+        padding-left: 8px;
+        padding-right: 8px;
     }
 
     #profileHeader {
@@ -111,7 +122,8 @@ header {
         width: auto;
         margin-top: 18px;
         font-size: 14px;
-        margin-left: 100px;
+        margin-left: 220px;
+        text-align: center;
      }
 
         #profileHeaderText {
@@ -136,13 +148,60 @@ header {
         height: 485px;
         padding: 15px 20px 35px 20px; 
         background: #A3B6C5;
-/*
-        border-top-right-radius: 15px;
-        border-bottom-right-radius: 15px;
-        border: 1px solid;
-*/
         text-align: left;
     }
+
+        .searchText {
+            vertical-align: top;
+            display: inline-block;
+            width: 80px;
+            line-height: 1.5em;
+        }
+
+        .searchInput {
+            vertical-align: top;
+            display: inline-block;
+            width: auto;
+        }
+
+        .searchInput input {
+            width: 165px;
+        }
+
+        #managerContainer {
+            vertical-align: top;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+
+        #managerLeft {
+            vertical-align: top;
+            display: inline-block;
+            height: 20px;
+            width: 85%;
+            margin-bottom: 20px;
+            padding: 16px 10px 35px 20px;
+            font-size: 14px;
+            background: #C7C9BE;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            border: 1px solid #42433F;
+        }
+
+            #managerLeft .shopPhoto {
+                vertical-align: top;
+                display: inline-block;
+                height: 40px;
+                width: 40px;
+            }
+
+            #managerLeft .shopText {
+                vertical-align: top;
+                display: inline-block;
+                height: 40px;
+                width: 168px;
+            }
 
     #centralBar {
         vertical-align: top;
@@ -170,7 +229,7 @@ header {
         #profileText {
             width: auto;
             height: auto;
-            margin-top: -155px;
+            margin-top: -150px;
             margin-left: 160px;
         }
 
@@ -238,6 +297,13 @@ header {
 */
     }
 
+        .listOfFriends {
+            vertical-align: top;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+
         #shopContainer {
             vertical-align: top;
             display: inline-block;
@@ -256,7 +322,7 @@ header {
                 background: #C7C9BE;
                 border-top-left-radius: 15px;
                 border-bottom-left-radius: 15px;
-                border: 3px solid #42433F;
+                border: 1px solid #42433F;
             }
 
                 #shopRight .shopPhoto {
@@ -267,41 +333,6 @@ header {
                 }
 
                 #shopRight .shopText {
-                    vertical-align: top;
-                    display: inline-block;
-                    height: 40px;
-                    width: 168px;
-                }
-
-        #managerContainer {
-            vertical-align: top;
-            display: inline-block;
-            width: 100%;
-            height: 100%;
-        }
-
-            #managerLeft {
-                vertical-align: top;
-                display: inline-block;
-                height: 20px;
-                width: 85%;
-                margin-bottom: 20px;
-                padding: 16px 10px 35px 20px;
-                font-size: 14px;
-                background: #C7C9BE;
-                border-top-right-radius: 15px;
-                border-bottom-right-radius: 15px;
-                border: 3px solid #42433F;
-            }
-
-                #managerLeft .shopPhoto {
-                    vertical-align: top;
-                    display: inline-block;
-                    height: 40px;
-                    width: 40px;
-                }
-
-                #managerLeft .shopText {
                     vertical-align: top;
                     display: inline-block;
                     height: 40px;
@@ -376,6 +407,17 @@ button.imageButton {
     cursor: pointer;
 }
 
+button.searchButton {
+    background: #C7C9BE;
+    width: auto;
+    height: auto;
+    padding: 0;
+    border: 1px solid #42433F;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
 button.imageButton:hover {
     background-color: #42433F;
 }
@@ -400,7 +442,7 @@ button.imageButton:hover {
     position: relative;
 }
 
-#dropList li a {
+#dropList a {
     text-decoration: none;
 }
 
@@ -411,22 +453,6 @@ button a {
     text-decoration: none;
 }
 
-.search {
-    vertical-align: top;
-    display: inline-block;
-    margin-left: 50px;
-    margin-top: 20px;
-    height: 100%;
-    width: auto;
-}
-
-input.searchLine {
-    border: 1px solid;
-    border-radius: 30px;
-    padding-left: 8px;
-    padding-right: 8px;
-}
-
 ul#nav {
 	width: 425px; margin: 0 auto; text-align: center; overflow: hidden; height: 150px;
 }
@@ -435,7 +461,7 @@ ul#nav {
 	}
 		ul#nav li a {
 			display: block; width: 97px; height: 44%; 
-			padding: 23px 0 0 0; margin: 0 0px 0 5px;
+			padding: 23px 0 0 0; margin: 0 0 0 5px;
 			font-size: 100%; text-transform: uppercase;
 			color: #42433F; text-shadow: 0 1px 3px #c4bda6; text-decoration: none;
 			background: url(images/label1.png) 0 -149px no-repeat;

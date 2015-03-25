@@ -18,7 +18,7 @@
 
 <div id="content">
     <div id="leftBar">
-        <p>Leftbar</p>
+        <button>Messages</button>
     </div>
     <div id="centralBar">
         <h2><p>Profile</p></h2>
@@ -58,7 +58,15 @@
         </div>
     </div>
     <div id="rightBar">
-        <p>Rightbar</p>
+        <h2>Friends</h2>
+        <br>
+        <input class="searchLine" style="width: 89%">
+        <button class="searchButton"><img src="${root}/view/res/images/ic_action_search.png" width="20px"></button>
+        <div style="text-align: center;">
+            <button style="width: 32%;">All friends</button>
+            <button style="width: 32%;">Online</button>
+            <button style="width: 32%;">Requests</button>
+        </div>
     </div>
 </div>
 

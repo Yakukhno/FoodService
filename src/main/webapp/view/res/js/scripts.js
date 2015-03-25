@@ -53,5 +53,22 @@ function dropList() {
         list.removeChild(list.lastChild);
         list.removeChild(list.lastChild);
     }
-    
 }
+
+function dropList1() {
+    var list = document.getElementById("dropList1");
+    var li1 = document.createElement('a');
+    var li2 = document.createElement('a');
+    li1.setAttribute("href", '/FoodService/view/public/register_user.jsp');
+    li2.setAttribute("href", '/FoodService/view/public/register_manager.jsp');
+    li1.innerHTML = "<li>people</li>";
+    li2.innerHTML = "<li>services</li>";
+    if (list.getElementsByTagName('li').length == 0) {
+        list.appendChild(li1);
+        list.appendChild(li2);
+    } else {
+        list.removeChild(list.lastChild);
+        list.removeChild(list.lastChild);
+    }
+}
+
