@@ -1,53 +1,120 @@
 package com.foodservice.businesslogic;
 
+import com.foodservice.businesslogic.data.LazyClonable;
+
 import javax.persistence.*;
 
 @Entity
 @javax.persistence.Table(name = "position")
-public class Position {
+public class Position implements LazyClonable<Position> {
 
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "dish_id")
+    @Transient
+    @ManyToOne(targetEntity = Dish.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "dish_id", insertable = false, updatable = false)
     private Dish dish;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ordering_id")
+    @Transient
+    @ManyToOne(targetEntity = Ordering.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "ordering_id", insertable = false, updatable = false)
     private Ordering ordering;
 
-    private int number;
+    /** foreign key */
+    @Column(name = "dish_id")
+    private Integer dishId;
 
-    public int getId() {
+    /** foreign key */
+    @Column(name = "ordering_id")
+    private Integer orderingId;
+
+    private Integer number;
+
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Dish getDish() {
-        return dish;
-    }
-
-    public void setDish(Dish dish) {
-        this.dish = dish;
-    }
-
-    public Ordering getOrdering() {
-        return ordering;
-    }
-
-    public void setOrdering(Ordering ordering) {
-        this.ordering = ordering;
-    }
-
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public Integer getOrderingId() {
+        return orderingId;
+    }
+
+    public void setOrderingId(Integer orderingId) {
+        this.orderingId = orderingId;
+    }
+
+    public Integer getDishId() {
+        return dishId;
+    }
+
+    public void setDishId(Integer dishId) {
+        this.dishId = dishId;
+    }
+
+//    public Ordering getOrdering() {
+//        return ordering;
+//    }
+//
+//    public void setOrdering(Ordering ordering) {
+//        this.ordering = ordering;
+//    }
+//
+//    public Dish getDish() {
+//        return dish;
+//    }
+//
+//    public void setDish(Dish dish) {
+//        this.dish = dish;
+//    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Position position = (Position) o;
+
+        if (id != null ? !id.equals(position.id) : position.id != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "id=" + id +
+                ", dishId=" + dishId +
+                ", orderingId=" + orderingId +
+                ", number=" + number +
+                '}';
+    }
+
+    @Override
+    public Position clone() {
+        Position position = new Position();
+        position.setId(this.getId());
+        position.setDishId(this.getDishId());
+        position.setNumber(this.getNumber());
+        position.setOrderingId(this.getOrderingId());
+        return position;
     }
 }

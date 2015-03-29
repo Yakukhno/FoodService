@@ -30,7 +30,6 @@ public class ManagerUserDAO implements UserDAO<ManagerUser, Integer> {
     @Override
     public ManagerUser create(ManagerUser object) {
         Session session = sessionFactory.getCurrentSession();
-        if (getByEmail(object.getEmail()) != null) throw new DuplicatedKeyException();
         session.persist(object);
         return object;
     }
@@ -46,12 +45,9 @@ public class ManagerUserDAO implements UserDAO<ManagerUser, Integer> {
     @Transactional(readOnly = true)
     public List<ManagerUser> getByShopAdminUserID(Integer id) {
         Session session = sessionFactory.getCurrentSession();
-        ShopAdminUser shopAdminUser = (ShopAdminUser) session.get(ShopAdminUser.class, id);
-        if (shopAdminUser == null)
-            throw new NoSuchUserException("There is no persistence instance ShopUserAdmin with ID: " + id);
         List managerUsers = session.createQuery(
-                "from ManagerUser where shopAdminUser = :shopAdminUser")
-                .setParameter("shopAdminUser", shopAdminUser).list();
+                "from ManagerUser m where m.shopAdminUserId = :shopAdminUserId")
+                .setParameter("shopAdminUserId", id).list();
         return managerUsers;
     }
 
@@ -65,7 +61,7 @@ public class ManagerUserDAO implements UserDAO<ManagerUser, Integer> {
     @Override
     public boolean delete(ManagerUser object) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("delete ManagerUser where id = :id");
+        Query query = session.createQuery("delete ManagerUser m where m.id = :id");
         query.setParameter("id", object.getId());
         int res = query.executeUpdate();
         return res == 1;
@@ -74,13 +70,9 @@ public class ManagerUserDAO implements UserDAO<ManagerUser, Integer> {
     @Override
     public ManagerUser getByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from ManagerUser where email = :email");
+        Query query = session.createQuery("from ManagerUser m where m.email = :email");
         query.setParameter("email", email);
         return (ManagerUser) query.uniqueResult();
     }
 
-    @Override
-    public int getNumber() {
-        return 0;
-    }
 }

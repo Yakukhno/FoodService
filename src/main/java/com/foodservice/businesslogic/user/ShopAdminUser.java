@@ -1,38 +1,39 @@
 package com.foodservice.businesslogic.user;
 
-import com.foodservice.businesslogic.Shop;
-import org.codehaus.jackson.annotate.JsonManagedReference;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+import com.foodservice.businesslogic.data.LazyClonable;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @javax.persistence.Table(name = "shop_admin_user")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
-public class ShopAdminUser extends User {
+public class ShopAdminUser extends User implements LazyClonable<ShopAdminUser> {
 
-    private String contactTelephone;
+    @Lob
+    private String contactData;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "shopAdminUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Shop> shops = new ArrayList<Shop>();
-
-
-    public String getContactTelephone() {
-        return contactTelephone;
+    public String getContactData() {
+        return contactData;
     }
 
-    public void setContactTelephone(String contactTelephone) {
-        this.contactTelephone = contactTelephone;
+    public void setContactData(String contactData) {
+        this.contactData = contactData;
     }
 
-    public List<Shop> getShops() {
-        return shops;
-    }
-
-    public void setShops(List<Shop> shops) {
-        this.shops = shops;
+    @Override
+    public ShopAdminUser clone() {
+        ShopAdminUser object = new ShopAdminUser();
+        object.setId(this.getId());
+        object.setUserType(this.getUserType());
+        object.setPassword(this.getPassword());
+        object.setEmail(this.getEmail());
+        object.setDob(this.getDob());
+        object.setGender(this.getGender());
+        object.setFirstName(this.getFirstName());
+        object.setLastName(this.getLastName());
+        object.setPersonalData(this.getPersonalData());
+        object.setPhotoId(this.getPhotoId());
+        object.setSystemStatus(this.getSystemStatus());
+        object.setContactData(this.getContactData());
+        return object;
     }
 }

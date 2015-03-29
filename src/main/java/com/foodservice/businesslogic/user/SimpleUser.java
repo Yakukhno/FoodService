@@ -1,50 +1,44 @@
 package com.foodservice.businesslogic.user;
 
-import com.foodservice.businesslogic.Ordering;
-import com.foodservice.businesslogic.Rating;
-import com.foodservice.businesslogic.Reservation;
+import com.foodservice.businesslogic.Photo;
+import com.foodservice.businesslogic.data.LazyClonable;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @javax.persistence.Table(name = "simple_user")
-public class SimpleUser extends User {
+public class SimpleUser extends User implements LazyClonable<SimpleUser> {
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Reservation> reservations = new ArrayList<Reservation>();
+    @OneToMany(targetEntity = Photo.class, fetch = FetchType.EAGER)
+    @JoinTable(name = "simple_user_photo",
+            joinColumns = @JoinColumn(name = "photo_id"),
+            inverseJoinColumns = @JoinColumn(name = "shop_id"))
+    private List<Photo> photos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Rating> ratings = new ArrayList<Rating>();
-
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Ordering> orderings = new ArrayList<Ordering>();
-
-    public List<Reservation> getReservations() {
-        return reservations;
+    public List<Photo> getPhotos() {
+        return photos;
     }
 
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
     }
 
-    public List<Rating> getRatings() {
-        return ratings;
+    @Override
+    public SimpleUser clone() {
+        SimpleUser object = new SimpleUser();
+        object.setId(this.getId());
+        object.setUserType(this.getUserType());
+        object.setPassword(this.getPassword());
+        object.setEmail(this.getEmail());
+        object.setDob(this.getDob());
+        object.setGender(this.getGender());
+        object.setFirstName(this.getFirstName());
+        object.setLastName(this.getLastName());
+        object.setPersonalData(this.getPersonalData());
+        object.setPhotoId(this.getPhotoId());
+        object.setSystemStatus(this.getSystemStatus());
+        return object;
     }
-
-    public void setRatings(List<Rating> ratings) {
-        this.ratings = ratings;
-    }
-
-    public List<Ordering> getOrderings() {
-        return orderings;
-    }
-
-    public void setOrderings(List<Ordering> orderings) {
-        this.orderings = orderings;
-    }
-
 }

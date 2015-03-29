@@ -27,9 +27,9 @@ public class ShopAdminUserResource {
     public Response create(ShopAdminUser managerUser) {
         try {
             ShopAdminUser managerUser1 = shopAdminUserService.create(managerUser);
-            return Response.ok(managerUser1).status(200).build();
+            return Response.ok(managerUser1).status(Response.Status.OK).build();
         } catch (Exception e)  {
-            return Response.status(403).build();
+            return Response.status(Response.Status.NOT_ACCEPTABLE).build();
         }
     }
 
@@ -61,9 +61,9 @@ public class ShopAdminUserResource {
     public Response update(ShopAdminUser managerUser) {
         ShopAdminUser managerUser1 = shopAdminUserService.update(managerUser);
         if (managerUser1 != null)
-            return Response.status(200).build();
+            return Response.status(Response.Status.OK).build();
         else
-            return Response.status(404).build();
+            return Response.status(Response.Status.NOT_ACCEPTABLE).build();
     }
 
     @DELETE
@@ -72,8 +72,8 @@ public class ShopAdminUserResource {
     public Response delete(ShopAdminUser managerUser) {
         boolean res = shopAdminUserService.delete(managerUser);
         if (res)
-            return Response.status(200).build();
+            return Response.status(Response.Status.OK).build();
         else
-            return Response.status(404).build();
+            return Response.status(Response.Status.NOT_ACCEPTABLE).build();
     }
 }

@@ -33,7 +33,6 @@ function ShopAdminUserCreate() {
         firstName: $('#firstName').val(),
         lastName: $('#lastName').val(),
         email: $('#email').val(),
-        contactTelephone: $('#telephone').val(),
         password: $('#password').val(),
         personalData: $('#personalData').val()
     }
@@ -138,11 +137,11 @@ function ManagerUsersGetByShopAdminID(shopAdminID) {
                     '<img id="thumbnailShop"  width="40px" height="40px">' +
                     '</div></div>'));
 
-                var shop = jQuery.parseJSON(this.photo.image);
-                for (var key in shop) {
-                    //the results is a base64 string.  convert it to an image and assign as 'src'
-                    document.getElementById("thumbnailShop").src = shop[key];
-                }
+                //var shop = jQuery.parseJSON(this.photo.image);
+                //for (var key in shop) {
+                //    //the results is a base64 string.  convert it to an image and assign as 'src'
+                //    document.getElementById("thumbnailShop").src = shop[key];
+                //}
             });
         },
         error: function () {
@@ -152,34 +151,19 @@ function ManagerUsersGetByShopAdminID(shopAdminID) {
     return false;
 }
 
-
-function previewFile() {
-    var file    = document.querySelector('input[type=file]').files[0];
-    var reader  = new FileReader();
-
-    return reader.result
-}
-
 function ShopCreate(shopAdminUserID) {
 
     var location = {
         building: $('#building').val(),
         street: $('#street').val(),
         city: $('#city').val(),
-        country: $('#country').val(),
-        zipcode: $('#zipCode').val()
+        country: $('#country').val()
     }
 
-    //var img = new Image();
-    //img.src = $('#photoShop').val();
-    var photo = {
-        image: previewFile()
-    }
 
     var shop = {
         name: $('#shopName').val(),
         location: location,
-        photo: photo,
         description: $('#description').val()
     }
 

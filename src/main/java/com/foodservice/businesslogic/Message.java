@@ -1,55 +1,81 @@
 package com.foodservice.businesslogic;
 
+import com.foodservice.businesslogic.data.LazyClonable;
 import com.foodservice.businesslogic.user.User;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 @Entity
 @javax.persistence.Table(name = "message")
-public class Message {
+public class Message implements LazyClonable<Message> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     private String text;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "sender_message", joinColumns = @JoinColumn(name = "message_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date time;
+
+    @Transient
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "sender_id", insertable = false, updatable = false)
     private User sender;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "receiver_message", joinColumns = @JoinColumn(name = "message_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> receivers = new ArrayList<>();
+    @Transient
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "receiver_id", insertable = false, updatable = false)
+    private User receiver;
 
-    public int getId() {
+    /** foreign key */
+    @Column(name = "sender_id")
+    private Integer senderId;
+
+    /** foreign key */
+    @Column(name = "receiver_id")
+    private Integer receiverId;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public List<User> getReceivers() {
-        return receivers;
+    public Integer getReceiverId() {
+        return receiverId;
     }
 
-    public void setReceivers(List<User> receivers) {
-        this.receivers = receivers;
+    public void setReceiverId(Integer receiverId) {
+        this.receiverId = receiverId;
     }
 
-    public User getSender() {
-        return sender;
+    public Integer getSenderId() {
+        return senderId;
     }
 
-    public void setSender(User sender) {
-        this.sender = sender;
+    public void setSenderId(Integer senderId) {
+        this.senderId = senderId;
     }
+
+//    public User getSender() {
+//        return sender;
+//    }
+//
+//    public void setSender(User sender) {
+//        this.sender = sender;
+//    }
+//
+//    public User getReceiver() {
+//        return receiver;
+//    }
+//
+//    public void setReceiver(User receiver) {
+//        this.receiver = receiver;
+//    }
 
     public String getText() {
         return text;
@@ -59,13 +85,50 @@ public class Message {
         this.text = text;
     }
 
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Message message = (Message) o;
+
+        if (id != null ? !id.equals(message.id) : message.id != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
     @Override
     public String toString() {
         return "Message{" +
                 "id=" + id +
                 ", text='" + text + '\'' +
-                ", sender=" + sender +
-                ", receivers=" + receivers +
+                ", time=" + time +
+                ", senderId=" + senderId +
+                ", receiverId=" + receiverId +
                 '}';
+    }
+
+    @Override
+    public Message clone() {
+        Message message = new Message();
+        message.setId(this.getId());
+        message.setReceiverId(this.getReceiverId());
+        message.setSenderId(this.getSenderId());
+        message.setText(this.getText());
+        message.setTime(this.getTime());
+        return message;
     }
 }

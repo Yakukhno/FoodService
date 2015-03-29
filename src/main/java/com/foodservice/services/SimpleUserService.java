@@ -1,6 +1,7 @@
 package com.foodservice.services;
 
 import com.foodservice.businesslogic.data.SystemStatus;
+import com.foodservice.businesslogic.data.UserType;
 import com.foodservice.exceptions.DuplicatedKeyException;
 import com.foodservice.businesslogic.user.SimpleUser;
 import com.foodservice.dao.SimpleUserDAO;
@@ -21,10 +22,10 @@ public class SimpleUserService implements UserService<SimpleUser> {
     }
 
     @Override
-    @Transactional(noRollbackFor = DuplicatedKeyException.class)
     public SimpleUser create(SimpleUser object) {
 
         object.setSystemStatus(SystemStatus.OFFLINE);
+        object.setUserType(UserType.SIMPLE);
         SimpleUser simpleUser = simpleUserDAO.create(object);
         return simpleUser;
     }
@@ -41,11 +42,6 @@ public class SimpleUserService implements UserService<SimpleUser> {
     public SimpleUser getByEmail(String email) {
         SimpleUser simpleUser = simpleUserDAO.getByEmail(email);
         return simpleUser;
-    }
-
-    @Override
-    public int getNumber() {
-        return 0;
     }
 
     @Override

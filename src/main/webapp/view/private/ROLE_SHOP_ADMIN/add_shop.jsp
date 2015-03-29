@@ -40,8 +40,6 @@
             <p><input id="street" type="text" placeholder="Street of your shop" required></p>
             <p>Building</p>
             <p><input id="building" type="number" placeholder="Building of your shop" required></p>
-            <p>ZIP code</p>
-            <p><input id="zipCode" type="text" placeholder="ZIP zode of your shop" required></p>
             <p>Photo</p>
             <p><input id="photoShop" type="file" accept="image/*" /></p>
             <p>Description</p>

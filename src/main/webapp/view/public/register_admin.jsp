@@ -32,8 +32,6 @@
                     <p><input id="lastName"  type="text" placeholder="Your last name" required></p>
                     <p>E-mail</p>
                     <p><input id="email"  type="email" placeholder="Your e-mail" required></p>
-                    <p>Contact telephone</p>
-                    <p><input id="telephone"  type="text" placeholder="Your telephone" required></p>
                     <p>Password</p>
                     <p><input id="password" onchange="checkPasswords()" type="password" placeholder="Your password" required></p>
                     <p><input id="passwordconfirm" onchange="checkPasswords()" type="password" placeholder="Confirm password" required></p>

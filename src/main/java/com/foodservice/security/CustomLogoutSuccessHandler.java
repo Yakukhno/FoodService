@@ -25,7 +25,6 @@ public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
             (HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException, ServletException {
         userCommonService.changeSystemStatus(((CustomUserDetails)authentication.getPrincipal()).getId(), SystemStatus.OFFLINE);
-        System.out.println("***STATUS OFFLINE***");
         super.onLogoutSuccess(request, response, authentication);
     }
 }

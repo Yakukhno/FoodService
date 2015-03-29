@@ -14,9 +14,7 @@
         <div id="leftBar">
         </div>
         <div id="centralBar">
-            <p style="text-align: center;">Welcome!</p>
-            <br>
-            <p><img src="${root}/view/res/images/welcome_page.png" style="margin-left: 22px" /></p>
+
         </div>
         <div id="rightBar">
         </div>

@@ -23,10 +23,8 @@ public class ShopAdminUserDAO implements UserDAO<ShopAdminUser, Integer> {
     }
 
     @Override
-    @Transactional(noRollbackFor =  DuplicatedKeyException.class)
     public ShopAdminUser create(ShopAdminUser object) {
         Session session = sessionFactory.getCurrentSession();
-        if (getByEmail(object.getEmail()) != null) throw new DuplicatedKeyException();
         session.persist(object);
         return object;
     }
@@ -43,14 +41,9 @@ public class ShopAdminUserDAO implements UserDAO<ShopAdminUser, Integer> {
     @Transactional(readOnly = true)
     public ShopAdminUser getByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from ShopAdminUser where email = :email");
+        Query query = session.createQuery("from ShopAdminUser s where s.email = :email");
         query.setParameter("email", email);
         return (ShopAdminUser) query.uniqueResult();
-    }
-
-    @Override
-    public int getNumber() {
-        return 0;
     }
 
     @Override
@@ -63,7 +56,7 @@ public class ShopAdminUserDAO implements UserDAO<ShopAdminUser, Integer> {
     @Override
     public boolean delete(ShopAdminUser object) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("delete ShopAdminUser where id = :id");
+        Query query = session.createQuery("delete ShopAdminUser s where s.id = :id");
         query.setParameter("id", object.getId());
         int res = query.executeUpdate();
         return res == 1;

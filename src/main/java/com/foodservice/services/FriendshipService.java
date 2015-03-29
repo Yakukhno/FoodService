@@ -5,6 +5,7 @@ import com.foodservice.businesslogic.friendship.Friendship;
 import com.foodservice.businesslogic.user.SimpleUser;
 import com.foodservice.dao.FriendshipDAO;
 import com.foodservice.dao.SimpleUserDAO;
+import com.foodservice.exceptions.DuplicatedKeyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -16,21 +17,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class FriendshipService {
 
     private FriendshipDAO friendshipDAO;
-    private SimpleUserDAO simpleUserDAO;
 
     @Autowired
     public void setFriendshipDAO(FriendshipDAO friendshipDAO) {
         this.friendshipDAO = friendshipDAO;
     }
-    @Autowired
-    public void setSimpleUserDAO(SimpleUserDAO simpleUserDAO) {
-        this.simpleUserDAO = simpleUserDAO;
-    }
 
     public Friendship createRelations(int applicantId, int acceptorId, State state) {
-        SimpleUser applicant = simpleUserDAO.get(applicantId);
-        SimpleUser acceptor  = simpleUserDAO.get(acceptorId);
-        return friendshipDAO.create(new Friendship(applicant, acceptor, state));
+        return friendshipDAO.create(new Friendship(applicantId, acceptorId, state));
     }
 
     public boolean changeState(int applicantId, int acceptorId, State state) {

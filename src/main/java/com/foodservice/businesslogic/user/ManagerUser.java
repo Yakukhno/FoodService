@@ -1,20 +1,22 @@
 package com.foodservice.businesslogic.user;
 
+import com.foodservice.businesslogic.data.LazyClonable;
 import com.foodservice.businesslogic.data.State;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @javax.persistence.Table(name = "manager_user")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
-public class ManagerUser extends User {
+public class ManagerUser extends User implements LazyClonable<ManagerUser> {
 
-    @ManyToOne
+    @Transient
+    @ManyToOne(targetEntity = ShopAdminUser.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_admin_user_id", insertable = false, updatable = false)
     private ShopAdminUser shopAdminUser;
+
+    /** foreign key */
+    @Column(name = "shop_admin_user_id")
+    private Integer shopAdminUserId;
 
     /**
      * Determines wether the shop administrator
@@ -22,6 +24,7 @@ public class ManagerUser extends User {
      */
     @Enumerated(EnumType.STRING)
     private State state;
+
 
     public State getState() {
         return state;
@@ -31,11 +34,38 @@ public class ManagerUser extends User {
         this.state = state;
     }
 
-    public ShopAdminUser getShopAdminUser() {
-        return shopAdminUser;
+    public Integer getShopAdminUserId() {
+        return shopAdminUserId;
     }
 
-    public void setShopAdminUser(ShopAdminUser shopAdminUser) {
-        this.shopAdminUser = shopAdminUser;
+    public void setShopAdminUserId(Integer shopAdminUserId) {
+        this.shopAdminUserId = shopAdminUserId;
+    }
+
+//    public ShopAdminUser getShopAdminUser() {
+//        return shopAdminUser;
+//    }
+//
+//    public void setShopAdminUser(ShopAdminUser shopAdminUser) {
+//        this.shopAdminUser = shopAdminUser;
+//    }
+
+    @Override
+    public ManagerUser clone() {
+        ManagerUser object = new ManagerUser();
+        object.setId(this.getId());
+        object.setState(this.getState());
+        object.setUserType(this.getUserType());
+        object.setPassword(this.getPassword());
+        object.setEmail(this.getEmail());
+        object.setDob(this.getDob());
+        object.setShopAdminUserId(this.getShopAdminUserId());
+        object.setGender(this.getGender());
+        object.setFirstName(this.getFirstName());
+        object.setLastName(this.getLastName());
+        object.setPersonalData(this.getPersonalData());
+        object.setPhotoId(this.getPhotoId());
+        object.setSystemStatus(this.getSystemStatus());
+        return object;
     }
 }

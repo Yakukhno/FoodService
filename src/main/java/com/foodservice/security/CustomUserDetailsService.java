@@ -1,6 +1,5 @@
 package com.foodservice.security;
 
-import com.foodservice.businesslogic.data.SystemStatus;
 import com.foodservice.businesslogic.user.ManagerUser;
 import com.foodservice.businesslogic.user.ShopAdminUser;
 import com.foodservice.businesslogic.user.SimpleUser;
@@ -48,19 +47,17 @@ public class CustomUserDetailsService implements UserDetailsService {
         SimpleUser simpleUser = simpleUserService.getByEmail(email);
         if (simpleUser != null) {
             auths.add(new SimpleGrantedAuthority("ROLE_USER"));
-            setOnlineSystemStatus(simpleUser.getId());
-            return new CustomUserDetails(auths, 
+            return new CustomUserDetails(auths,
                     simpleUser.getId(),
-                    simpleUser.getEmail(), 
-                    simpleUser.getPassword(), 
-                    simpleUser.getFirstName(), 
+                    simpleUser.getEmail(),
+                    simpleUser.getPassword(),
+                    simpleUser.getFirstName(),
                     simpleUser.getLastName());
         } else {
             ShopAdminUser shopAdminUser = shopAdminUserService.getByEmail(email);
             if(shopAdminUser != null) {
                 auths.add(new SimpleGrantedAuthority("ROLE_SHOP_ADMIN"));
-                setOnlineSystemStatus(shopAdminUser.getId());
-                return new CustomUserDetails(auths, 
+                return new CustomUserDetails(auths,
                         shopAdminUser.getId(),
                         shopAdminUser.getEmail(),
                         shopAdminUser.getPassword(),
@@ -70,7 +67,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                 ManagerUser managerUser = managerUserService.getByEmail(email);
                 if(managerUser != null) {
                     auths.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
-                    setOnlineSystemStatus(managerUser.getId());
                     return new CustomUserDetails(auths,
                             managerUser.getId(),
                             managerUser.getEmail(),
@@ -82,10 +78,4 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
         return null;
     }
-
-    private void setOnlineSystemStatus(int id) {
-        userCommonService.changeSystemStatus(id, SystemStatus.ONLINE);
-        System.out.println("***STATUS ONLINE***");
-    }
-
 }

@@ -32,10 +32,8 @@ public class SimpleUserDAO implements UserDAO<SimpleUser, Integer> {
     }
 
     @Override
-    @Transactional(noRollbackFor =  DuplicatedKeyException.class)
     public SimpleUser create(SimpleUser object) {
         Session session = sessionFactory.getCurrentSession();
-        if (getByEmail(object.getEmail()) != null) throw new DuplicatedKeyException();
         session.persist(object);
         return object;
     }
@@ -52,7 +50,7 @@ public class SimpleUserDAO implements UserDAO<SimpleUser, Integer> {
     @Transactional(readOnly = true)
     public SimpleUser getByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from SimpleUser where email = :email");
+        Query query = session.createQuery("from SimpleUser s where s.email = :email");
         query.setParameter("email", email);
         return (SimpleUser) query.uniqueResult();
     }
@@ -62,22 +60,20 @@ public class SimpleUserDAO implements UserDAO<SimpleUser, Integer> {
         Session session = sessionFactory.getCurrentSession();
 //        Criteria criteria1 = session.createCriteria(Friendship.class, "f");
 //        criteria1.setProjection(Property.forName("applicant").as("apl"))
-//                .add(Restrictions.eq("apl.acceptor.id", id));
+//                .add(Restrictions.eq("apl.acceptorId", id));
 //
 //        Criteria criteria2 = session.createCriteria(Friendship.class, "f");
 //        criteria1.setProjection(Property.forName("acceptor").as("ac"))
-//                .add(Restrictions.eq("ac.applicant.id", id));
-        Query query1 = session.createQuery("select f.applicant from Friendship f where f.acceptor = :user and f.state = :state");
-        Query query2 = session.createQuery("select f.acceptor from Friendship f where f.applicant = :user and f.state = :state");
+//                .add(Restrictions.eq("ac.applicantId", id));
+        Query query1 = session.createQuery("select f.applicantId from Friendship f where f.acceptorId = :id and f.state = :state");
+        Query query2 = session.createQuery("select f.acceptorId from Friendship f where f.applicantId = :id and f.state = :state");
+        query1.setParameter("id", id);
+        query2.setParameter("id", id);
         List<SimpleUser> users = query1.list();
         users.addAll(query2.list());
         return users;
     }
 
-    @Override
-    public int getNumber() {
-        return 0;
-    }
 
     @Override
     public SimpleUser update(SimpleUser object) {
@@ -89,7 +85,7 @@ public class SimpleUserDAO implements UserDAO<SimpleUser, Integer> {
     @Override
     public boolean delete(SimpleUser object) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("delete SimpleUser where id = :id");
+        Query query = session.createQuery("delete SimpleUser s where s.id = :id");
         query.setParameter("id", object.getId());
         int res = query.executeUpdate();
         return res == 1;

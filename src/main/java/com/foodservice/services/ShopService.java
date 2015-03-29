@@ -1,8 +1,5 @@
 package com.foodservice.services;
 
-import com.foodservice.businesslogic.user.ShopAdminUser;
-import com.foodservice.dao.ShopAdminUserDAO;
-import com.foodservice.exceptions.DuplicatedKeyException;
 import com.foodservice.businesslogic.Shop;
 import com.foodservice.dao.ShopDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,21 +15,14 @@ import java.util.Map;
 public class ShopService {
 
     private ShopDAO shopDAO;
-    private ShopAdminUserDAO shopAdminUserDAO;
 
     @Autowired
     public void setShopDAO(ShopDAO shopDAO) {
         this.shopDAO = shopDAO;
     }
-    @Autowired
-    public void setShopAdminUserDAO(ShopAdminUserDAO shopAdminUserDAO) {
-        this.shopAdminUserDAO = shopAdminUserDAO;
-    }
 
-    @Transactional(noRollbackFor = DuplicatedKeyException.class)
-    public Shop create(Shop object, int managerUserID) {
-        ShopAdminUser managerUser = shopAdminUserDAO.get(managerUserID);
-        object.setShopAdminUser(managerUser);
+    public Shop create(Shop object, int shopAdminUserId) {
+        object.setShopAdminUserId(shopAdminUserId);
         Shop shop = shopDAO.create(object);
         return shop;
     }
@@ -45,7 +35,7 @@ public class ShopService {
 
     @Transactional(readOnly = true)
     public List<Shop> getByShopAdminID(Integer shopAdminID) {
-        List<Shop> result = shopDAO.getByManagerID(shopAdminID);
+        List<Shop> result = shopDAO.getByShopAdminUserID(shopAdminID);
         return result;
     }
     

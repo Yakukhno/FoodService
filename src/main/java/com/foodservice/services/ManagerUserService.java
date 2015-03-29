@@ -2,20 +2,23 @@ package com.foodservice.services;
 
 import com.foodservice.businesslogic.data.State;
 import com.foodservice.businesslogic.data.SystemStatus;
+import com.foodservice.businesslogic.data.UserType;
 import com.foodservice.businesslogic.user.ManagerUser;
 import com.foodservice.businesslogic.user.ShopAdminUser;
 import com.foodservice.dao.ManagerUserDAO;
 import com.foodservice.dao.ShopAdminUserDAO;
+import com.foodservice.exceptions.DuplicatedKeyException;
 import com.foodservice.exceptions.NoSuchUserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional(isolation = Isolation.SERIALIZABLE)
+@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
 public class ManagerUserService implements UserService<ManagerUser> {
 
     private ManagerUserDAO managerUserDAO;
@@ -44,12 +47,14 @@ public class ManagerUserService implements UserService<ManagerUser> {
      * @param shopAdminUserEmail email of ShopAdminUser related to this Manager
      * @return persistence instance of ManagerUser
      */
+    @Transactional(noRollbackFor = NoSuchUserException.class)
     public ManagerUser create(ManagerUser object, String shopAdminUserEmail) {
         ShopAdminUser shopAdminUser = shopAdminUserDAO.getByEmail(shopAdminUserEmail);
         if (shopAdminUser == null)
             throw new NoSuchUserException(
                     "There is no ShopAdminUser with email '" + shopAdminUserEmail +"' in the system");
-        object.setShopAdminUser(shopAdminUser);
+        object.setShopAdminUserId(shopAdminUser.getId());
+        object.setUserType(UserType.MANAGER);
         return create(object);
     }
 
@@ -67,11 +72,6 @@ public class ManagerUserService implements UserService<ManagerUser> {
         return managerUser;
     }
 
-    @Override
-    public int getNumber() {
-        return 0;
-    }
-
     @Transactional(readOnly = true)
     public List<ManagerUser> getByShopAdminUserID(Integer id) {
         List<ManagerUser> managerUsers = managerUserDAO.getByShopAdminUserID(id);
@@ -84,8 +84,12 @@ public class ManagerUserService implements UserService<ManagerUser> {
         return managerUser;
     }
 
+    @Transactional(noRollbackFor = NoSuchUserException.class)
     public ManagerUser updateState(Integer id, State state) {
         ManagerUser managerUser = managerUserDAO.get(id);
+        if (managerUser == null)
+            throw new NoSuchUserException(
+                    "There is no ShopAdminUser with id '" + managerUser.getId() + "' in the system");
         managerUser.setState(state);
         return managerUserDAO.update(managerUser);
     }

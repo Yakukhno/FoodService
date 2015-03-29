@@ -1,47 +1,61 @@
 package com.foodservice.businesslogic;
 
-import com.foodservice.businesslogic.data.State;
+import com.foodservice.businesslogic.data.LazyClonable;
 import com.foodservice.businesslogic.user.SimpleUser;
 
 import javax.persistence.*;
 
 @Entity
 @javax.persistence.Table(name = "rating")
-public class Rating {
+public class Rating implements LazyClonable<Rating> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
-    private int value;
+    private Float value;
     private String comment;
 
-//    @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "shop_id")
+    @Transient
+    @ManyToOne(targetEntity = Shop.class)
+    @JoinColumn(name = "shop_id", insertable = false, updatable = false)
     private Shop shop;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "simple_user_id")
-    private SimpleUser user;
+    /** foreign key */
+    @Column(name = "shop_id")
+    private Integer shopId;
 
-    @Enumerated(EnumType.STRING)
-    private State state;
+    @Transient
+    @ManyToOne(targetEntity = SimpleUser.class)
+    @JoinColumn(name = "simple_user_id", insertable = false, updatable = false)
+    private SimpleUser simpleUser;
 
-    public int getId() {
+    /** foreign key */
+    @Column(name = "simple_user_id")
+    private Integer simpleUserId;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getValue() {
-        return value;
+    public Integer getSimpleUserId() {
+        return simpleUserId;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setSimpleUserId(Integer simpleUserId) {
+        this.simpleUserId = simpleUserId;
+    }
+
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
     }
 
     public String getComment() {
@@ -52,27 +66,52 @@ public class Rating {
         this.comment = comment;
     }
 
-    public Shop getShop() {
-        return shop;
+    public Float getValue() {
+        return value;
     }
 
-    public void setShop(Shop shop) {
-        this.shop = shop;
+    public void setValue(Float value) {
+        this.value = value;
     }
 
-    public SimpleUser getUser() {
-        return user;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Rating rating = (Rating) o;
+
+        if (id != null ? !id.equals(rating.id) : rating.id != null) return false;
+
+        return true;
     }
 
-    public void setUser(SimpleUser user) {
-        this.user = user;
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 
-    public State getState() {
-        return state;
+    @Override
+    public String toString() {
+        return "Rating{" +
+                "id=" + id +
+                ", value=" + value +
+                ", comment='" + comment + '\'' +
+                ", shopId=" + shopId +
+                ", simpleUserId=" + simpleUserId +
+                '}';
     }
 
-    public void setState(State state) {
-        this.state = state;
+    @Override
+    public Rating clone() {
+        Rating rating = new Rating();
+        rating.setId(this.getId());
+        rating.setSimpleUserId(this.getSimpleUserId());
+        rating.setComment(this.getComment());
+        rating.setShopId(this.getShopId());
+        rating.setValue(this.getValue());
+        return rating;
     }
 }

@@ -1,17 +1,18 @@
 package com.foodservice.businesslogic;
 
+import com.foodservice.businesslogic.data.LazyClonable;
 import com.foodservice.businesslogic.user.ShopAdminUser;
-import org.codehaus.jackson.annotate.JsonBackReference;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 
 import javax.persistence.*;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
+//@JsonIgnoreProperties(value = {"shopAdminUser", "photos"})
 @Entity
 @javax.persistence.Table(name = "shop")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
-public class Shop {
+public class Shop implements LazyClonable<Shop> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,42 +26,26 @@ public class Shop {
     @Lob
     private String description;
 
-    @OneToOne
-    private Photo photo;
 
-    @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "manager_user_id")
+    @Transient
+    @ManyToOne(targetEntity = ShopAdminUser.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_admin_user_id", insertable = false, updatable = false)
     private ShopAdminUser shopAdminUser;
 
-    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Table> tables = new ArrayList<Table>();
+    /** foreign key */
+    @Column(name = "shop_admin_user_id")
+    private Integer shopAdminUserId;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Photo> photos = new ArrayList<Photo>();
-
-    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Dish> dishes = new ArrayList<Dish>();
-
-    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Rating> ratings = new ArrayList<Rating>();
+    @OneToMany(targetEntity = Photo.class, fetch = FetchType.EAGER)
+    @JoinTable(name = "shop_photo",
+            joinColumns = @JoinColumn(name = "photo_id"),
+            inverseJoinColumns = @JoinColumn(name = "shop_id"))
+    private List<Photo> photos = new ArrayList<>();
 
 
-    public Photo getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(Photo photo) {
-        this.photo = photo;
-    }
-
-    public ShopAdminUser getShopAdminUser() {
-        return shopAdminUser;
-    }
-
-    public void setShopAdminUser(ShopAdminUser shopAdminUser) {
-        this.shopAdminUser = shopAdminUser;
-    }
+    /** foreign key without any checking */
+    @Column(name = "primary_photo_id")
+    private Integer primaryPhotoId;
 
     public int getId() {
         return id;
@@ -70,36 +55,12 @@ public class Shop {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Integer getPrimaryPhotoId() {
+        return primaryPhotoId;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<Table> getTables() {
-        return tables;
-    }
-
-    public void setTables(List<Table> tables) {
-        this.tables = tables;
+    public void setPrimaryPhotoId(Integer primaryPhotoId) {
+        this.primaryPhotoId = primaryPhotoId;
     }
 
     public List<Photo> getPhotos() {
@@ -110,36 +71,85 @@ public class Shop {
         this.photos = photos;
     }
 
-    public List<Dish> getDishes() {
-        return dishes;
+    public Integer getShopAdminUserId() {
+        return shopAdminUserId;
     }
 
-    public void setDishes(List<Dish> dishes) {
-        this.dishes = dishes;
+    public void setShopAdminUserId(Integer shopAdminUserId) {
+        this.shopAdminUserId = shopAdminUserId;
     }
 
-    public List<Rating> getRatings() {
-        return ratings;
+//    public ShopAdminUser getShopAdminUser() {
+//        return shopAdminUser;
+//    }
+//
+//    public void setShopAdminUser(ShopAdminUser shopAdminUser) {
+//        this.shopAdminUser = shopAdminUser;
+//    }
+
+    public String getDescription() {
+        return description;
     }
 
-    public void setRatings(List<Rating> ratings) {
-        this.ratings = ratings;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Shop shop = (Shop) o;
+
+        if (id != shop.id) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+    @Override
     public String toString() {
         return "Shop{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", location=" + location +
+                "primaryPhotoId=" + primaryPhotoId +
+                ", shopAdminUserId=" + shopAdminUserId +
                 ", description='" + description + '\'' +
-                ", photo=" + photo +
-                ", shopAdminUser=" + shopAdminUser +
-                ", tables=" + tables +
-                ", photos=" + photos +
-                ", dishes=" + dishes +
-                ", ratings=" + ratings +
+                ", location=" + location +
+                ", name='" + name + '\'' +
+                ", id=" + id +
                 '}';
+    }
+
+    @Override
+    public Shop clone() {
+        Shop shop = new Shop();
+        shop.setId(getId());
+        shop.setDescription(getDescription());
+        shop.setLocation(getLocation());
+        shop.setPrimaryPhotoId(getPrimaryPhotoId());
+        shop.setShopAdminUserId(getShopAdminUserId());
+        shop.setName(getName());
+        return shop;
     }
 }

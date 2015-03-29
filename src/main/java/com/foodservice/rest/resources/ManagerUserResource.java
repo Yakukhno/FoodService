@@ -31,11 +31,9 @@ public class ManagerUserResource {
                            ManagerUser managerUser) {
         try {
             ManagerUser managerUser1 = managerUserService.create(managerUser, shopAdminUserEmail);
-            return Response.ok(managerUser1).status(200).build();
-        } catch (DuplicatedKeyException e)  {
-            return Response.status(403).build();
+            return Response.ok(managerUser1).status(Response.Status.CREATED).build();
         } catch (NoSuchUserException e) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            return Response.status(Response.Status.NOT_ACCEPTABLE).build();
         }
     }
 
@@ -48,13 +46,10 @@ public class ManagerUserResource {
     @Path("/byShopAdminID")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getByShopAdminUserID(@QueryParam("shopAdminID") int shopAdminID) {
-        try {
-            List<ManagerUser> managerUsers = managerUserService.getByShopAdminUserID(shopAdminID);
-            if (managerUsers == null)
-                throw new NoSuchUserException();
-            return Response.ok(managerUsers).status(200).build();
-        } catch (NoSuchUserException e) {
-            return Response.status(404).build();        }
+        List<ManagerUser> managerUsers = managerUserService.getByShopAdminUserID(shopAdminID);
+        if (managerUsers.size() == 0)
+            return Response.status(Response.Status.NOT_FOUND).build();
+        return Response.ok(managerUsers).status(Response.Status.OK).build();
     }
 
     @GET
@@ -63,9 +58,9 @@ public class ManagerUserResource {
     public Response get(@PathParam("id") int id) {
         ManagerUser managerUser = managerUserService.get(id);
         if (managerUser != null)
-            return Response.ok(managerUser).status(200).build();
+            return Response.ok(managerUser).status(Response.Status.OK).build();
         else
-            return Response.status(404).build();
+            return Response.status(Response.Status.NOT_FOUND).build();
     }
 
     @GET
@@ -74,9 +69,9 @@ public class ManagerUserResource {
     public Response get(@PathParam("email") String email) {
         ManagerUser managerUser = managerUserService.getByEmail(email);
         if (managerUser != null)
-            return Response.ok(managerUser.getId()).status(200).build();
+            return Response.ok(managerUser).status(Response.Status.OK).build();
         else
-            return Response.status(404).build();
+            return Response.status(Response.Status.NOT_FOUND).build();
     }
 
     @PUT
@@ -85,9 +80,9 @@ public class ManagerUserResource {
     public Response update(ManagerUser managerUser) {
         ManagerUser managerUser1 = managerUserService.update(managerUser);
         if (managerUser1 != null)
-            return Response.status(200).build();
+            return Response.status(Response.Status.OK).build();
         else
-            return Response.status(Response.Status.CONFLICT).build();
+            return Response.status(Response.Status.NOT_ACCEPTABLE).build();
     }
 
     @PUT
@@ -96,11 +91,13 @@ public class ManagerUserResource {
     @Path("/state/{id}")
     public Response updateState(@PathParam("id") Integer id,
                                 @QueryParam("state") State state) {
-        ManagerUser managerUser1 = managerUserService.updateState(id, state);
-        if (managerUser1 != null)
-            return Response.status(200).build();
-        else
-            return Response.status(Response.Status.CONFLICT).build();
+        try {
+            ManagerUser managerUser1 = managerUserService.updateState(id, state);
+            return Response.status(Response.Status.OK).build();
+        } catch (NoSuchUserException e) {
+            return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+        }
+
     }
 
     @DELETE
@@ -109,8 +106,8 @@ public class ManagerUserResource {
     public Response delete(ManagerUser managerUser) {
         boolean res = managerUserService.delete(managerUser);
         if (res)
-            return Response.status(200).build();
+            return Response.status(Response.Status.OK).build();
         else
-            return Response.status(404).build();
+            return Response.status(Response.Status.NOT_ACCEPTABLE).build();
     }
 }

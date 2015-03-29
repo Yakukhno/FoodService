@@ -26,7 +26,6 @@ public class FriendshipDAO implements CRUD<Friendship, Integer> {
     @Override
     public Friendship create(Friendship object) {
         Session session = sessionFactory.getCurrentSession();
-        if (get(object.getId()) != null) throw new DuplicatedKeyException();
         session.persist(object);
         return object;
     }
@@ -41,9 +40,9 @@ public class FriendshipDAO implements CRUD<Friendship, Integer> {
 
     public boolean changeState(int applicantId, int acceptorId, State state) {
         Session session = sessionFactory.getCurrentSession();
-        int res = session.createQuery("update Friendship set state = :state " +
-                "where applicant.id = :applicantId and " +
-                "acceptor.id = :acceptorId")
+        int res = session.createQuery("update Friendship f set f.state = :state " +
+                "where f.applicantId = :applicantId and " +
+                "f.acceptorId = :acceptorId")
                 .setParameter("applicantId", applicantId)
                 .setParameter("acceptorId", acceptorId).executeUpdate();
         return res == 1;
@@ -51,8 +50,8 @@ public class FriendshipDAO implements CRUD<Friendship, Integer> {
 
     public boolean changeState(int id, State state) {
         Session session = sessionFactory.getCurrentSession();
-        int res = session.createQuery("update Friendship set state = :state " +
-                "where id = :id")
+        int res = session.createQuery("update Friendship f set f.state = :state " +
+                "where f.id = :id")
                 .setParameter("id", id).executeUpdate();
         return res == 1;
     }
@@ -67,7 +66,7 @@ public class FriendshipDAO implements CRUD<Friendship, Integer> {
     @Override
     public boolean delete(Friendship object) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("delete Friendship where id = :id");
+        Query query = session.createQuery("delete Friendship f where f.id = :id");
         query.setParameter("id", object.getId());
         int res = query.executeUpdate();
         return res == 1;

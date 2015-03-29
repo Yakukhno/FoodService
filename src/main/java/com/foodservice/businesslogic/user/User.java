@@ -1,13 +1,13 @@
 package com.foodservice.businesslogic.user;
 
 import com.foodservice.businesslogic.Photo;
-import com.foodservice.businesslogic.Message;
 import com.foodservice.businesslogic.data.Gender;
+import com.foodservice.businesslogic.data.LazyClonable;
 import com.foodservice.businesslogic.data.SystemStatus;
+import com.foodservice.businesslogic.data.UserType;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 @Entity
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
@@ -15,66 +15,57 @@ public abstract class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    private int id;
+    private Integer id;
 
     private String firstName;
     private String lastName;
-    
-    @Column(unique = true)
-    private String email;
-    private String password;
 
-    @OneToOne
-    private Photo photo;
+    @Temporal(TemporalType.DATE)
+    private Date dob;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
+    
+    @Column(unique = true, nullable = false)
+    private String email;
+    @Column(nullable = false)
+    private String password;
 
+    @Lob
+    private String personalData;
+
+    @Transient
+    @OneToOne(targetEntity = Photo.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "photo_id", insertable = false, updatable = false)
+    private Photo photo;
+
+    /** foreign key */
+    @Column(name = "photo_id")
+    private Integer photoId;
+
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
     /**
      * Determins the system status of current user
      */
     @Enumerated(EnumType.STRING)
     private SystemStatus systemStatus;
 
-    @Lob
-    private String personalData;
 
-    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Message> sentMessages = new ArrayList<Message>();
-
-    @ManyToMany(mappedBy = "receivers", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Message> receivedMessages = new ArrayList<Message>();
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public List<Message> getReceivedMessages() {
-        return receivedMessages;
+    public UserType getUserType() {
+        return userType;
     }
 
-    public void setReceivedMessages(List<Message> receivedMessages) {
-        this.receivedMessages = receivedMessages;
-    }
-
-    public List<Message> getSentMessages() {
-        return sentMessages;
-    }
-
-    public void setSentMessages(List<Message> sentMessages) {
-        this.sentMessages = sentMessages;
-    }
-
-    public String getPersonalData() {
-        return personalData;
-    }
-
-    public void setPersonalData(String personalData) {
-        this.personalData = personalData;
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
     public SystemStatus getSystemStatus() {
@@ -85,20 +76,20 @@ public abstract class User {
         this.systemStatus = systemStatus;
     }
 
-    public Gender getGender() {
-        return gender;
+    public Integer getPhotoId() {
+        return photoId;
     }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
+    public void setPhotoId(Integer photoId) {
+        this.photoId = photoId;
     }
 
-    public Photo getPhoto() {
-        return photo;
+    public String getPersonalData() {
+        return personalData;
     }
 
-    public void setPhoto(Photo photo) {
-        this.photo = photo;
+    public void setPersonalData(String personalData) {
+        this.personalData = personalData;
     }
 
     public String getPassword() {
@@ -117,12 +108,20 @@ public abstract class User {
         this.email = email;
     }
 
-    public String getLastName() {
-        return lastName;
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 
     public String getFirstName() {
@@ -133,21 +132,37 @@ public abstract class User {
         this.firstName = firstName;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+//    public Photo getPhoto() {
+//        return photo;
+//    }
+//
+//    public void setPhoto(Photo photo) {
+//        this.photo = photo;
+//    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         User user = (User) o;
 
-        if (id != user.id) return false;
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return id;
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
@@ -156,14 +171,14 @@ public abstract class User {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", dob=" + dob +
+                ", gender=" + gender +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", photo=" + photo +
-                ", gender=" + gender +
-                ", systemStatus=" + systemStatus +
                 ", personalData='" + personalData + '\'' +
-                ", sentMessages=" + sentMessages +
-                ", receivedMessages=" + receivedMessages +
+                ", photoId=" + photoId +
+                ", userType=" + userType +
+                ", systemStatus=" + systemStatus +
                 '}';
     }
 }

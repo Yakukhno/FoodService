@@ -8,17 +8,20 @@
                                  http://www.springframework.org/schema/security/spring-security-3.2.xsd">
     <beans:import resource="spring-context.xml"/>
     
-    <http auto-config="true"  >
+    <http auto-config="true" >
         <intercept-url pattern='/view/private/redirect' access='ROLE_USER, ROLE_SHOP_ADMIN, ROLE_MANAGER' />
         <intercept-url pattern='/view/private/friends.jsp' access='ROLE_USER, ROLE_SHOP_ADMIN, ROLE_MANAGER' />
         <intercept-url pattern='/view/private/messages.jsp' access='ROLE_USER, ROLE_SHOP_ADMIN, ROLE_MANAGER' />
+        <intercept-url pattern='/view/private/ROLE_MANAGER/**' access='ROLE_MANAGER' />
+        <intercept-url pattern='/view/private/ROLE_SHOP_ADMIN/**' access='ROLE_SHOP_ADMIN' />
+        <intercept-url pattern='/view/private/ROLE_USER/**' access='ROLE_USER' />
         <form-login
                 login-page="/view/public/login.jsp"
-                default-target-url="/"
+                authentication-success-handler-ref="authenticationSuccessHandler"
                 authentication-failure-url="/view/public/login.jsp?error=true"
                 username-parameter="username"
                 password-parameter="password" />
-        <logout delete-cookies="JSESSIONID" success-handler-ref="logoutSuccessHandler"/>
+        <logout delete-cookies="JSESSIONID, SPRING_SECURITY_REMEMBER_ME_COOKIE" success-handler-ref="logoutSuccessHandler"/>
 
         <session-management invalid-session-url="/" session-fixation-protection="newSession">
             <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
@@ -33,5 +36,5 @@
     
     <beans:bean id="userService" class="com.foodservice.security.CustomUserDetailsService"/>
     <beans:bean id="logoutSuccessHandler" class="com.foodservice.security.CustomLogoutSuccessHandler" />
-
+    <beans:bean id="authenticationSuccessHandler" class="com.foodservice.security.CustomAuthenticationSuccessHandler"/>
 </beans:beans>

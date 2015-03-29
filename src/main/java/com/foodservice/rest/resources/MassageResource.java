@@ -28,9 +28,9 @@ public class MassageResource {
     public Response create(Message message) {
         try {
             Message message1 = messageService.create(message);
-            return Response.ok(message1.getId()).status(200).build();
+            return Response.ok(message1.getId()).status(Response.Status.CREATED).build();
         } catch (DuplicatedKeyException e)  {
-            return Response.status(403).build();
+            return Response.status(Response.Status.NOT_ACCEPTABLE).build();
         }
     }
 
@@ -40,34 +40,23 @@ public class MassageResource {
     public Response get(@PathParam("id") int id) {
         Message message = messageService.get(id);
         if (message != null)
-            return Response.ok(message).status(200).build();
+            return Response.ok(message).status(Response.Status.OK).build();
         else
-            return Response.status(404).build();
+            return Response.status(Response.Status.NOT_FOUND).build();
     }
 
     @GET
-    @Path("/received/byUserId/{userId}")
+    @Path("/dialog")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getReceivedMessages(@PathParam("userId") int userId,
-                                        @DefaultValue("0") @QueryParam("firstResult") int firstResult,
-                                        @DefaultValue("0") @QueryParam("maxResults") int maxResults) {
-        List<Message> messages = messageService.getReceivedMessages(userId, firstResult, maxResults);
-        if (messages.size() != 0)
-            return Response.ok(messages).status(200).build();
-        else
-            return Response.status(404).build();
-    }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getSentMessages(@PathParam("userId") int userId,
+    public Response getDialogMessages(@PathParam("user1Id") int user1Id,
+                                      @PathParam("user2Id") int user2Id,
                                     @DefaultValue("0") @QueryParam("firstResult") int firstResult,
-                                    @DefaultValue("0") @QueryParam("maxResults") int maxResults) {
-        List<Message> messages = messageService.getSentMessages(userId, firstResult, maxResults);
+                                    @DefaultValue("1000000") @QueryParam("maxResults") int maxResults) {
+        List<Message> messages = messageService.getDialogMessages(user1Id, user2Id, firstResult, maxResults);
         if (messages.size() != 0)
-            return Response.ok(messages).status(200).build();
+            return Response.ok(messages).status(Response.Status.OK).build();
         else
-            return Response.status(404).build();
+            return Response.status(Response.Status.NOT_FOUND).build();
     }
 
     @PUT
@@ -76,9 +65,9 @@ public class MassageResource {
     public Response update(Message message) {
         Message message1 = messageService.update(message);
         if (message1 != null)
-            return Response.status(200).build();
+            return Response.status(Response.Status.OK).build();
         else
-            return Response.status(404).build();
+            return Response.status(Response.Status.CONFLICT).build();
     }
 
     @DELETE
@@ -87,9 +76,9 @@ public class MassageResource {
     public Response delete(Message message) {
         boolean res = messageService.delete(message);
         if (res)
-            return Response.status(200).build();
+            return Response.status(Response.Status.OK).build();
         else
-            return Response.status(404).build();
+            return Response.status(Response.Status.CONFLICT).build();
     }
 
 }

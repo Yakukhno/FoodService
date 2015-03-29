@@ -2,6 +2,7 @@ package com.foodservice.services;
 
 import com.foodservice.businesslogic.Message;
 import com.foodservice.dao.MessageDAO;
+import com.foodservice.exceptions.DuplicatedKeyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -20,7 +21,6 @@ public class MessageService {
         this.messageDAO = messageDAO;
     }
 
-    @Transactional
     public Message create(Message object) {
         return messageDAO.create(object);
     }
@@ -30,14 +30,19 @@ public class MessageService {
         return messageDAO.get(object);
     }
 
-    @Transactional(readOnly = true)
-    public List<Message> getReceivedMessages(int userId, int firstResult, int maxResults) {
-        return messageDAO.getReceivedMessages(userId, firstResult, maxResults);
-    }
+//    @Transactional(readOnly = true)
+//    public List<Message> getReceivedMessages(int userId, int firstResult, int maxResults) {
+//        return messageDAO.getReceivedMessages(userId, firstResult, maxResults);
+//    }
+//
+//    @Transactional(readOnly = true)
+//    public List<Message> getSentMessages(int userId, int firstResult, int maxResults) {
+//        return messageDAO.getSentMessages(userId, firstResult, maxResults);
+//    }
 
     @Transactional(readOnly = true)
-    public List<Message> getSentMessages(int userId, int firstResult, int maxResults) {
-        return messageDAO.getSentMessages(userId, firstResult, maxResults);
+    public List<Message> getDialogMessages(int user1Id, int user2Id, int firstResult, int maxResults) {
+        return messageDAO.getDialogMessages(user1Id, user2Id, firstResult, maxResults);
     }
 
     public Message update(Message object) {

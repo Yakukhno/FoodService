@@ -9,7 +9,8 @@ public class Location {
     private String street;
     private String city;
     private String country;
-    private String zipcode;
+    private String otherInfo;
+
 
     public String getBuilding() {
         return building;
@@ -43,12 +44,12 @@ public class Location {
         this.country = country;
     }
 
-    public String getZipcode() {
-        return zipcode;
+    public String getOtherInfo() {
+        return otherInfo;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setOtherInfo(String otherInfo) {
+        this.otherInfo = otherInfo;
     }
 
     @Override
@@ -58,7 +59,7 @@ public class Location {
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +
-                ", zipcode='" + zipcode + '\'' +
+                ", otherInfo='" + otherInfo + '\'' +
                 '}';
     }
 }
