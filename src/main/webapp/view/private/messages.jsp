@@ -4,7 +4,7 @@
 <c:set var="root" value="${pageContext.request.contextPath}" />
 	<head>
 		<meta charset="utf-8">
-		<title>Sign up</title>
+		<title>Messages</title>
 	</head>
 	<body>
 
@@ -13,10 +13,13 @@
 
         <div id="content">
             <div id="leftBar">
-                <p>Leftbar</p>
+                <form>
+                    <button formaction="${root}/view/private/friends.jsp" class="list">Friends</button>
+                    <button formaction="${root}/view/private/messages.jsp" class="list">Messages</button>
+                </form>
             </div>
             <div id="centralBar">
-                <h2><p>Messages</p></h2> 
+                <h2>Messages</h2>
             </div>
             <div id="rightBar">
                 <p>Rightbar</p>

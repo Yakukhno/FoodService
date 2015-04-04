@@ -37,7 +37,7 @@
                     <p><input id="passwordconfirm" onchange="checkPasswords()" type="password" placeholder="Confirm password" required></p>
                     <p>About you</p>
                     <p><input id="personalData"  type="text" placeholder="Tell some words about you"></p><br>
-                    <button id="submitShopAdminUserForm" type="submit"><p>Send</p></button>
+                    <button id="submitShopAdminUserForm" type="submit">Send</button>
                 </form>
             </div>
             <div id="rightbar">

@@ -25,15 +25,17 @@
         </div>
         <div class="search">
             <input class="searchLine"/>
-            <button onclick="dropList1()"></button>
-            <ul id="dropList1">
-            </ul>
+            <%--<button onclick="dropList1()"></button>--%>
+            <%--<ul id="dropList1">--%>
+            <%--</ul>--%>
         </div>
         <c:if test="${!show}">
     <!--        <div id="profileHeader">-->
                 <div class="buttons">
-                    <button id="userSignUp"><a href="${root}/view/private/redirect">Sign in</a></button>
-                    <button id="managerSignUp" onclick="dropList()"><p>Sign up</p></button>
+                    <form style="display: inline-block; vertical-align: top;">
+                        <button id="userSignUp" formaction="${root}/view/private/redirect">Sign in</button>
+                    </form>
+                    <button id="managerSignUp" onclick="dropList()">Sign up</button>
                     <ul id="dropList">
                     </ul>
                 </div>
@@ -50,7 +52,7 @@
                     </p>
                     <p id="emailIconData" style="vertical-align: top; width: 120px"><sec:authentication property="principal.username" /></p>
                   </div>
-                <button style="display: inline-block; vertical-align: top; margin-top: 3px;" onclick="javascript:formSubmit()"><p>Logout</p></button>
+                <button style="display: inline-block; vertical-align: top; margin-top: 3px;" onclick="javascript:formSubmit()">Logout</button>
                 <c:url value="/j_spring_security_logout" var="logoutUrl" />
                   <!-- csrt for log out-->
                   <form id="logoutForm" action="${logoutUrl}" method="post" >

@@ -18,7 +18,10 @@
 
 <div id="content">
     <div id="leftBar">
-        <button>Messages</button>
+        <form>
+            <button formaction="${root}/view/private/friends.jsp" class="list">Friends</button>
+            <button formaction="${root}/view/private/messages.jsp" class="list">Messages</button>
+        </form>
     </div>
     <div id="centralBar">
         <h2><p>Profile</p></h2>
@@ -45,16 +48,16 @@
                 <br>
                 <p id="profileInfo"></p>
             </div>
-            <div id="profileMenu">
-                <form>
-                    <button formaction="${root}/view/private/friends.jsp" class="imageButton" width="35px">
-                        <img src="${root}/view/res/images/ic_action_user.png"/>
-                    </button>
-                    <button formaction="${root}/view/private/messages.jsp" class="imageButton" width="35px">
-                        <img src="${root}/view/res/images/ic_action_mail.png"/>
-                    </button>
-                </form>
-            </div>
+            <%--<div id="profileMenu">--%>
+                <%--<form>--%>
+                    <%--<button formaction="${root}/view/private/friends.jsp" class="imageButton" width="35px">--%>
+                        <%--<img src="${root}/view/res/images/ic_action_user.png"/>--%>
+                    <%--</button>--%>
+                    <%--<button formaction="${root}/view/private/messages.jsp" class="imageButton" width="35px">--%>
+                        <%--<img src="${root}/view/res/images/ic_action_mail.png"/>--%>
+                    <%--</button>--%>
+                <%--</form>--%>
+            <%--</div>--%>
         </div>
     </div>
     <div id="rightBar">
